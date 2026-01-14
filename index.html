@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crossing Boundaries | Durham University & UFRJ</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        durham: { DEFAULT: '#68246D', dark: '#4E1A52', light: '#8A3E8F' },
+                        neutral: { 50: '#F8F9FA', 900: '#1A1A1A', 600: '#4B5563' },
+                        ods: { 15: '#56C02B' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .skip-to-content {
+            position: absolute;
+            top: -999px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #68246D;
+            color: white;
+            padding: 1rem;
+            z-index: 100;
+        }
+
+        .skip-to-content:focus {
+            top: 0;
+        }
+
+        .image-overlay {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(104, 36, 109, 0.9) 100%);
+        }
+    </style>
+</head>
+
+<body class="font-sans text-neutral-600 antialiased bg-white selection:bg-durham selection:text-white">
+
+    <a href="#main-content" class="skip-to-content rounded-b-lg font-bold shadow-lg">Skip to main content</a>
+
+    <header
+        class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-100 transition-all duration-300"
+        id="header">
+        <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+                <a href="#" class="flex flex-col group">
+                    <span
+                        class="font-serif font-bold text-xl text-neutral-900 leading-tight group-hover:text-durham transition-colors">
+                        Crossing <br>Boundaries
+                    </span>
+                </a>
+                <div class="hidden md:block h-8 w-px bg-gray-300"></div>
+                <div class="hidden md:flex gap-4 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                    <span class="text-xs font-bold border border-gray-300 px-2 py-1 rounded">DURHAM</span>
+                    <span class="text-xs font-bold border border-gray-300 px-2 py-1 rounded">UFRJ</span>
+                </div>
+            </div>
+
+            <nav class="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
+                <a href="#projeto"
+                    class="text-sm font-medium text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">The
+                    Project</a>
+                <a href="#solucoes"
+                    class="text-sm font-medium text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Solutions</a>
+                <a href="#updates"
+                    class="text-sm font-medium text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Updates</a>
+                <a href="#time"
+                    class="text-sm font-medium text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Our
+                    Team</a>
+                <a href="#podcast"
+                    class="text-sm font-medium text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Podcast</a>
+
+                <div class="ml-4 flex items-center gap-2 text-sm border-l border-gray-300 pl-6">
+                    <button aria-label="Switch to English" class="font-bold text-durham">EN</button>
+                    <span class="text-gray-300">/</span>
+                    <a href="index-pt.html" aria-label="Mudar para Português"
+                        class="text-gray-400 hover:text-neutral-900 transition-colors">PT</a>
+                </div>
+            </nav>
+
+            <button id="mobile-menu-btn"
+                class="lg:hidden text-neutral-900 p-2 focus:outline-none focus:ring-2 focus:ring-durham rounded-md"
+                aria-label="Open Menu">
+                <i class="ph ph-list text-2xl"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-white border-t border-gray-100 absolute top-20 left-0 w-full shadow-lg z-40 h-screen sm:h-auto">
+            <nav class="flex flex-col p-6 gap-6 text-center sm:text-left">
+                <a href="#projeto" class="text-lg font-medium text-neutral-900 hover:text-durham"
+                    onclick="toggleMenu()">The Project</a>
+                <a href="#solucoes" class="text-lg font-medium text-neutral-900 hover:text-durham"
+                    onclick="toggleMenu()">Solutions</a>
+                <a href="#updates" class="text-lg font-medium text-neutral-900 hover:text-durham"
+                    onclick="toggleMenu()">Updates</a>
+                <a href="#time" class="text-lg font-medium text-neutral-900 hover:text-durham"
+                    onclick="toggleMenu()">Our Team</a>
+                <a href="#podcast" class="text-lg font-medium text-neutral-900 hover:text-durham"
+                    onclick="toggleMenu()">Podcast</a>
+
+                <div class="flex justify-center sm:justify-start gap-4 pt-4 border-t border-gray-100">
+                    <span class="font-bold text-durham">EN</span>
+                    <a href="index-pt.html" class="text-gray-400">PT</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <section class="relative h-[90vh] min-h-[600px] flex items-center">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                    alt="Students collaborating" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-r from-neutral-900/90 via-neutral-900/60 to-transparent">
+                </div>
+            </div>
+
+            <div class="container mx-auto px-6 relative z-10 pt-20">
+                <div class="max-w-2xl animate-fade-in-up">
+                    <span
+                        class="inline-block py-1 px-3 rounded-full bg-durham/20 border border-durham/40 text-durham-light text-xs font-bold uppercase tracking-wider mb-6 backdrop-blur-md">
+                        Interdisciplinary Project
+                    </span>
+                    <h1 class="font-serif font-black text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">
+                        Science Beyond Borders: <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-white">Uniting
+                            Cultures</span>
+                        for Sustainability.
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-200 mb-8 font-light leading-relaxed max-w-lg">
+                        An innovative collaboration between Durham University and UFRJ, bringing students together to
+                        solve global SDG challenges through COIL.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#solucoes"
+                            class="inline-flex items-center justify-center px-8 py-4 bg-durham hover:bg-durham-dark text-white font-semibold rounded-lg shadow-lg shadow-durham/30 transition-all transform hover:-translate-y-1">
+                            Explore Solutions
+                            <i class="ph ph-arrow-right ml-2 text-lg"></i>
+                        </a>
+                        <a href="#projeto"
+                            class="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 font-semibold rounded-lg transition-all">
+                            About Methodology
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projeto" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-4">The COIL Pillars</h2>
+                    <p class="text-gray-600">Our methodology relies on the intersection of three transformative forces.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div
+                        class="group relative h-96 rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            alt="Intercultural friendship">
+                        <div
+                            class="absolute inset-0 image-overlay opacity-80 group-hover:opacity-90 transition-opacity">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 p-8 text-white z-10 translate-y-2 group-hover:translate-y-0 transition-transform">
+                            <i class="ph ph-globe-hemisphere-west text-4xl mb-4 text-purple-200"></i>
+                            <h3 class="font-serif font-bold text-2xl mb-2">Interculturality</h3>
+                            <p
+                                class="text-sm text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                                Overcoming linguistic boundaries (PT/EN) to create real human connections between Brazil
+                                and the UK.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="group relative h-96 rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            alt="Laboratory science">
+                        <div
+                            class="absolute inset-0 image-overlay opacity-80 group-hover:opacity-90 transition-opacity">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 p-8 text-white z-10 translate-y-2 group-hover:translate-y-0 transition-transform">
+                            <i class="ph ph-flask text-4xl mb-4 text-purple-200"></i>
+                            <h3 class="font-serif font-bold text-2xl mb-2">Applied Science</h3>
+                            <p
+                                class="text-sm text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                                From theory to practice: students developing biopesticides and sustainable soil
+                                solutions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="group relative h-96 rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            alt="Plant growing">
+                        <div
+                            class="absolute inset-0 image-overlay opacity-80 group-hover:opacity-90 transition-opacity">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 p-8 text-white z-10 translate-y-2 group-hover:translate-y-0 transition-transform">
+                            <i class="ph ph-plant text-4xl mb-4 text-purple-200"></i>
+                            <h3 class="font-serif font-bold text-2xl mb-2">SDG Impact</h3>
+                            <p
+                                class="text-sm text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                                Research driven to solve real-world problems from the UN 2030 Agenda.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solucoes" class="py-24 bg-neutral-50">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                    <div>
+                        <span class="text-durham font-bold tracking-wider text-sm uppercase">Project Showcase</span>
+                        <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mt-2">Student Innovation
+                        </h2>
+                    </div>
+                    <a href="#"
+                        class="group inline-flex items-center font-semibold text-durham hover:text-durham-dark transition-colors">
+                        View all projects <i
+                            class="ph ph-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <article
+                        class="bg-white rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full group border border-gray-100">
+                        <div class="relative h-48 overflow-hidden rounded-t-xl">
+                            <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4"><span
+                                    class="bg-white/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm"><span
+                                        class="w-2 h-2 rounded-full bg-ods-15"></span>SDG 15</span></div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4"><span class="text-xs text-gray-500 font-medium uppercase">Chemistry &
+                                    Agriculture</span>
+                                <h3 class="font-serif font-bold text-xl text-neutral-900 mt-1">Biodegradable
+                                    Nanopesticides</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-6 flex-1">Nanoparticle-based formulation that degrades
+                                safely in soil, reducing runoff.</p>
+                            <div class="pt-4 border-t border-gray-100 flex justify-between items-center"><span
+                                    class="text-sm font-semibold text-durham">Read more <i
+                                        class="ph ph-caret-right"></i></span></div>
+                        </div>
+                    </article>
+                    <article
+                        class="bg-white rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full group border border-gray-100">
+                        <div class="relative h-48 overflow-hidden rounded-t-xl">
+                            <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4"><span
+                                    class="bg-white/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm"><span
+                                        class="w-2 h-2 rounded-full bg-yellow-500"></span>SDG 2</span></div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4"><span
+                                    class="text-xs text-gray-500 font-medium uppercase">Microbiology</span>
+                                <h3 class="font-serif font-bold text-xl text-neutral-900 mt-1">Probiotics as Fertilizers
+                                </h3>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-6 flex-1">Replacing synthetic nitrogen fertilizers with
+                                probiotic inoculants for sustainable crops.</p>
+                            <div class="pt-4 border-t border-gray-100 flex justify-between items-center"><span
+                                    class="text-sm font-semibold text-durham">Read more <i
+                                        class="ph ph-caret-right"></i></span></div>
+                        </div>
+                    </article>
+                    <article
+                        class="bg-white rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full group border border-gray-100">
+                        <div class="relative h-48 bg-gray-100 flex items-center justify-center rounded-t-xl"><i
+                                class="ph ph-presentation-chart text-4xl text-gray-300"></i></div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-4"><span class="text-xs text-gray-500 font-medium uppercase">Education</span>
+                                <h3 class="font-serif font-bold text-xl text-neutral-900 mt-1">COIL Pedagogy & Impact
+                                </h3>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-6 flex-1">Analysis of student reflective diaries on the
+                                remote international experience.</p>
+                            <div class="pt-4 border-t border-gray-100 flex justify-between items-center"><span
+                                    class="text-sm font-semibold text-durham">Read more <i
+                                        class="ph ph-caret-right"></i></span></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="updates" class="py-24 bg-white border-t border-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="flex items-end justify-between mb-12">
+                    <div>
+                        <span class="text-durham font-bold tracking-wider text-sm uppercase">Stay Connected</span>
+                        <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mt-2">Latest Updates</h2>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="flex flex-col group border-b border-gray-100 pb-8 md:border-none">
+                        <div class="mb-4">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-purple-100 text-purple-800 uppercase tracking-wide">
+                                Event
+                            </span>
+                            <span class="text-xs text-gray-400 font-medium ml-2">Oct 15, 2026</span>
+                        </div>
+                        <h3
+                            class="font-serif font-bold text-xl text-neutral-900 mb-3 group-hover:text-durham transition-colors">
+                            <a href="#">Intercultural Workshop: Bridging Methodologies</a>
+                        </h3>
+                        <p class="text-sm text-gray-600 line-clamp-3 mb-4">
+                            A hybrid symposium connecting Durham and Rio to discuss new approaches in COIL pedagogy and
+                            scientific collaboration.
+                        </p>
+                        <a href="#" class="text-sm font-semibold text-durham flex items-center mt-auto">
+                            Register now <i class="ph ph-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col group border-b border-gray-100 pb-8 md:border-none">
+                        <div class="mb-4">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-blue-100 text-blue-800 uppercase tracking-wide">
+                                Publication
+                            </span>
+                            <span class="text-xs text-gray-400 font-medium ml-2">Sep 22, 2026</span>
+                        </div>
+                        <h3
+                            class="font-serif font-bold text-xl text-neutral-900 mb-3 group-hover:text-durham transition-colors">
+                            <a href="#">New Article in Journal of Cleaner Production</a>
+                        </h3>
+                        <p class="text-sm text-gray-600 line-clamp-3 mb-4">
+                            "Nanopesticides and Soil Health": Our team published the final results of the 2025 cohort
+                            research.
+                        </p>
+                        <a href="#" class="text-sm font-semibold text-durham flex items-center mt-auto">
+                            Read article <i class="ph ph-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="mb-4">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-green-100 text-green-800 uppercase tracking-wide">
+                                News
+                            </span>
+                            <span class="text-xs text-gray-400 font-medium ml-2">Aug 10, 2026</span>
+                        </div>
+                        <h3
+                            class="font-serif font-bold text-xl text-neutral-900 mb-3 group-hover:text-durham transition-colors">
+                            <a href="#">Durham Delegation visits UFRJ Campus</a>
+                        </h3>
+                        <p class="text-sm text-gray-600 line-clamp-3 mb-4">
+                            Strengthening the partnership: Professors Alan Smith and Jane Doe met with the rectory to
+                            expand the COIL program.
+                        </p>
+                        <a href="#" class="text-sm font-semibold text-durham flex items-center mt-auto">
+                            See photos <i class="ph ph-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <a href="#"
+                        class="inline-flex items-center justify-center px-8 py-3 border border-gray-300 text-neutral-700 font-semibold rounded-lg hover:border-durham hover:text-durham transition-all">
+                        View all news & events
+                        <i class="ph ph-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-durham/5">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <span class="text-durham font-bold tracking-wider text-sm uppercase">The Student Experience</span>
+                    <h2 class="font-serif font-bold text-3xl text-neutral-900 mt-2">Voices Crossing Boundaries</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative">
+                        <i class="ph ph-quotes text-4xl text-durham/20 absolute top-6 left-6"></i>
+                        <p class="text-neutral-600 italic mb-6 relative z-10 pt-4">
+                            "Working with UFRJ students changed my perspective. I understood that chemistry is
+                            universal, but how we approach problems depends deeply on local culture."
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-neutral-900">Sarah Jenkins</h4>
+                                <span class="text-xs text-gray-500">Chemistry Student, Durham University</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative">
+                        <i class="ph ph-quotes text-4xl text-durham/20 absolute top-6 left-6"></i>
+                        <p class="text-neutral-600 italic mb-6 relative z-10 pt-4">
+                            "The language barrier was a challenge at first, but we created our own scientific language.
+                            The mentors' support was essential for building the prototype."
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-neutral-900">João Silva</h4>
+                                <span class="text-xs text-gray-500">PhD Microbiology, UFRJ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <a href="#"
+                        class="inline-flex items-center justify-center px-8 py-3 bg-white border border-gray-200 text-neutral-700 font-semibold rounded-lg hover:border-durham hover:text-durham transition-all shadow-sm">
+                        Read all stories
+                        <i class="ph ph-caret-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="podcast" class="py-24 bg-white border-t border-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-center justify-between mb-12">
+                    <div class="max-w-xl">
+                        <span
+                            class="flex items-center gap-2 text-durham font-bold tracking-wider text-sm uppercase mb-2">
+                            <i class="ph ph-microphone-stage text-lg"></i> Official Podcast
+                        </span>
+                        <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900">Crossing Waves</h2>
+                        <p class="text-gray-600 mt-4">Deep dive interviews on science, culture, and the challenges of
+                            international collaboration.</p>
+                    </div>
+                    <a href="#"
+                        class="px-6 py-3 border border-durham text-durham rounded-lg font-semibold hover:bg-durham hover:text-white transition-all mt-4 md:mt-0">
+                        Listen to all episodes
+                    </a>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="group cursor-pointer">
+                        <div class="relative rounded-xl overflow-hidden mb-4 aspect-video bg-neutral-900">
+                            <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div
+                                    class="w-12 h-12 bg-white/20 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <i class="ph ph-play-fill text-white text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-durham uppercase">Episode #01</span>
+                        <h3 class="font-bold text-lg text-neutral-900 group-hover:text-durham transition-colors">The
+                            Chemistry of Meeting: Brazil x UK</h3>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div class="relative rounded-xl overflow-hidden mb-4 aspect-video bg-neutral-900">
+                            <img src="https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div
+                                    class="w-12 h-12 bg-white/20 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <i class="ph ph-play-fill text-white text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-durham uppercase">Episode #02</span>
+                        <h3 class="font-bold text-lg text-neutral-900 group-hover:text-durham transition-colors">Women
+                            in Science & Sustainability</h3>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div class="relative rounded-xl overflow-hidden mb-4 aspect-video bg-neutral-900">
+                            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div
+                                    class="w-12 h-12 bg-white/20 backdrop-blur rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <i class="ph ph-play-fill text-white text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-durham uppercase">Episode #03</span>
+                        <h3 class="font-bold text-lg text-neutral-900 group-hover:text-durham transition-colors">The
+                            Future of COIL</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="time" class="py-24 bg-neutral-50">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="font-serif font-bold text-3xl text-neutral-900 mb-12">Minds Behind the Project</h2>
+
+                <div class="flex flex-wrap justify-center gap-12 mb-12">
+                    <div class="flex flex-col items-center group">
+                        <div
+                            class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md mb-4 group-hover:border-durham transition-colors">
+                            <img src="https://randomuser.me/api/portraits/men/46.jpg"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-neutral-900">Dr. Alan Smith</h4>
+                        <span class="text-xs text-gray-500 uppercase font-medium">Principal Investigator (UK)</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <div
+                            class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md mb-4 group-hover:border-durham transition-colors">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-neutral-900">Dr. Maria Costa</h4>
+                        <span class="text-xs text-gray-500 uppercase font-medium">Principal Investigator (BR)</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <div
+                            class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md mb-4 group-hover:border-durham transition-colors">
+                            <img src="https://randomuser.me/api/portraits/men/86.jpg"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-neutral-900">Prof. John Doe</h4>
+                        <span class="text-xs text-gray-500 uppercase font-medium">Co-Investigator</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <div
+                            class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md mb-4 group-hover:border-durham transition-colors">
+                            <img src="https://randomuser.me/api/portraits/women/12.jpg"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-neutral-900">Dr. Ana Sousa</h4>
+                        <span class="text-xs text-gray-500 uppercase font-medium">Intercultural Lead</span>
+                    </div>
+                    <div class="flex flex-col items-center group">
+                        <div
+                            class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md mb-4 group-hover:border-durham transition-colors">
+                            <img src="https://randomuser.me/api/portraits/women/28.jpg"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-neutral-900">Dr. Emily White</h4>
+                        <span class="text-xs text-gray-500 uppercase font-medium">Postdoc Researcher</span>
+                    </div>
+                </div>
+
+                <a href="#"
+                    class="inline-block border-b border-durham text-durham font-semibold hover:text-durham-dark pb-1">
+                    Meet the full team & curricula
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-neutral-50 border-t border-gray-200 pt-12 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div class="md:col-span-1">
+                    <span class="font-serif font-bold text-xl text-neutral-900 leading-tight block mb-4">Crossing
+                        <br>Boundaries</span>
+                    <p class="text-sm text-gray-500 mb-6">Connecting Durham and Brazil for a sustainable future.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-gray-400 hover:text-durham"><i class="ph ph-x-logo text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-durham"><i
+                                class="ph ph-linkedin-logo text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-neutral-900 mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#projeto" class="text-gray-600 hover:text-durham">The Project</a></li>
+                        <li><a href="#solucoes" class="text-gray-600 hover:text-durham">Solutions</a></li>
+                        <li><a href="#time" class="text-gray-600 hover:text-durham">Our Team</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-neutral-900 mb-4">Contact</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3"><i class="ph ph-envelope-simple text-durham text-lg"></i> <a
+                                href="mailto:contact@crossingboundaries.ac.uk"
+                                class="hover:text-durham underline">contact@crossingboundaries.ac.uk</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+                <p>&copy; 2026 Durham University. All rights reserved.</p>
+                <div class="flex gap-6"><a href="#">Accessibility</a><a href="#">Privacy Policy</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        function toggleMenu() {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list');
+            } else {
+                icon.classList.remove('ph-list');
+                icon.classList.add('ph-x');
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
+    </script>
+</body>
+
+</html>
