@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nosso Time | Crossing Boundaries</title>
+    <meta name="description"
+        content="Conheça a Liderança, a Equipe Central e a Rede de Pesquisadores do projeto Crossing Boundaries.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        durham: { DEFAULT: '#68246D', dark: '#4E1A52', light: '#8A3E8F' },
+                        neutral: { 50: '#F8F9FA', 900: '#1A1A1A', 600: '#4B5563' },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-sans text-neutral-600 antialiased bg-white selection:bg-durham selection:text-white">
+
+    <header
+        class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-100 transition-all duration-300"
+        id="header">
+        <div class="container mx-auto px-6 h-24 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="flex flex-col group shrink-0">
+                    <span
+                        class="font-serif font-black text-2xl text-durham leading-none tracking-tight group-hover:opacity-80 transition-opacity">Crossing
+                        <br>Boundaries</span>
+                </a>
+                <div class="hidden md:block h-10 w-px bg-gray-300"></div>
+                <div class="hidden md:flex items-center gap-4 opacity-100">
+                    <img src="https://placehold.co/120x50/white/68246D?text=DURHAM&font=merriweather"
+                        alt="Durham University" class="h-10 w-auto object-contain border border-gray-100 rounded">
+                    <img src="https://placehold.co/100x50/white/333333?text=UFRJ&font=roboto" alt="UFRJ"
+                        class="h-10 w-auto object-contain border border-gray-100 rounded opacity-80 hover:opacity-100 transition-opacity">
+                </div>
+            </div>
+            <nav class="hidden lg:flex items-center gap-8">
+                <a href="the-project-pt.html"
+                    class="text-sm font-medium text-neutral-900 hover:text-durham transition-all">O Projeto</a>
+                <a href="solutions-pt.html"
+                    class="text-sm font-medium text-neutral-900 hover:text-durham transition-all">Soluções</a>
+                <a href="updates-pt.html"
+                    class="text-sm font-medium text-neutral-900 hover:text-durham transition-all">Atualizações</a>
+                <a href="our-team-pt.html"
+                    class="text-sm font-bold text-durham underline decoration-2 underline-offset-4">Nosso Time</a>
+                <div class="ml-4 flex items-center gap-2 text-sm border-l border-gray-300 pl-6">
+                    <a href="our-team-en.html"
+                        class="font-bold text-gray-400 hover:text-durham transition-colors">EN</a>
+                    <span class="text-gray-300">/</span>
+                    <span class="font-bold text-durham">PT</span>
+                </div>
+            </nav>
+            <button id="mobile-menu-btn" class="lg:hidden text-neutral-900 p-2"><i
+                    class="ph ph-list text-2xl"></i></button>
+        </div>
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-white border-t border-gray-100 absolute top-24 left-0 w-full shadow-lg z-40 h-screen sm:h-auto">
+            <nav class="flex flex-col p-6 gap-6 text-center sm:text-left">
+                <div class="flex justify-center gap-6 mb-4 border-b border-gray-100 pb-4 sm:hidden">
+                    <img src="https://placehold.co/100x40/68246D/white?text=Durham" class="h-8 w-auto">
+                    <img src="https://placehold.co/80x40/333333/white?text=UFRJ" class="h-8 w-auto">
+                </div>
+                <a href="the-project-pt.html" class="text-lg font-medium text-neutral-900 hover:text-durham">O
+                    Projeto</a>
+                <a href="solutions-pt.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Soluções</a>
+                <a href="updates-pt.html"
+                    class="text-lg font-medium text-neutral-900 hover:text-durham">Atualizações</a>
+                <a href="our-team-pt.html" class="text-lg font-bold text-durham">Nosso Time</a>
+                <div class="flex justify-center sm:justify-start gap-4 pt-4 border-t border-gray-100">
+                    <a href="our-team-en.html" class="text-gray-400">EN</a>
+                    <span class="font-bold text-durham">PT</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="relative bg-neutral-900 py-32 flex items-center justify-center">
+            <div class="absolute inset-0 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                    class="w-full h-full object-cover opacity-30">
+                <div class="absolute inset-0 bg-gradient-to-b from-neutral-900/80 to-neutral-900"></div>
+            </div>
+            <div class="container mx-auto px-6 relative z-10 text-center">
+                <h1 class="font-serif font-bold text-4xl md:text-5xl text-white mb-4">Pesquisadores & Especialistas</h1>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto font-light">
+                    A estrutura de excelência dividida em liderança, núcleo executivo e rede de colaboração.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center gap-4 mb-16">
+                    <div class="h-px bg-gray-200 flex-1"></div>
+                    <span class="text-durham font-bold tracking-wider text-sm uppercase">Investigadores
+                        Principais</span>
+                    <div class="h-px bg-gray-200 flex-1"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                    <article class="flex flex-col sm:flex-row gap-8 items-start group">
+                        <div class="w-full sm:w-1/2 md:w-5/12 shrink-0">
+                            <div
+                                class="relative aspect-[3/4] rounded-lg overflow-hidden shadow-lg border border-gray-100">
+                                <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Dr. Alan Smith"
+                                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                                <div
+                                    class="absolute top-4 left-4 bg-durham text-white text-xs font-bold px-3 py-1 rounded shadow-sm">
+                                    DURHAM UK</div>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3
+                                class="font-serif font-bold text-3xl text-neutral-900 mb-2 group-hover:text-durham transition-colors">
+                                Dr. Alan Smith</h3>
+                            <p class="text-durham font-medium text-sm uppercase tracking-wide mb-6">Investigador
+                                Principal (UK)</p>
+                            <div class="prose prose-sm text-gray-600 mb-6">
+                                <p>Professor Titular do Departamento de Química. Coordena a equipe britânica e
+                                    supervisiona o desenvolvimento estratégico da parceria transatlântica.</p>
+                            </div>
+                            <div class="flex gap-4 pt-4 border-t border-gray-100">
+                                <a href="#" class="text-gray-400 hover:text-blue-600 text-2xl"><i
+                                        class="ph ph-linkedin-logo"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-durham text-2xl"><i
+                                        class="ph ph-globe"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="flex flex-col sm:flex-row gap-8 items-start group">
+                        <div class="w-full sm:w-1/2 md:w-5/12 shrink-0">
+                            <div
+                                class="relative aspect-[3/4] rounded-lg overflow-hidden shadow-lg border border-gray-100">
+                                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Dra. Maria Costa"
+                                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                                <div
+                                    class="absolute top-4 left-4 bg-neutral-800 text-white text-xs font-bold px-3 py-1 rounded shadow-sm">
+                                    UFRJ BR</div>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3
+                                class="font-serif font-bold text-3xl text-neutral-900 mb-2 group-hover:text-durham transition-colors">
+                                Dra. Maria Costa</h3>
+                            <p class="text-durham font-medium text-sm uppercase tracking-wide mb-6">Investigadora
+                                Principal (BR)</p>
+                            <div class="prose prose-sm text-gray-600 mb-6">
+                                <p>Pesquisadora Sênior no Instituto de Microbiologia da UFRJ. Lidera a implementação dos
+                                    protocolos COIL no Brasil e a validação dos experimentos em solo tropical.</p>
+                            </div>
+                            <div class="flex gap-4 pt-4 border-t border-gray-100">
+                                <a href="#" class="text-gray-400 hover:text-blue-600 text-2xl"><i
+                                        class="ph ph-linkedin-logo"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-durham text-2xl"><i
+                                        class="ph ph-globe"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-neutral-50 border-t border-gray-200">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="font-serif font-bold text-3xl text-neutral-900">Equipe Central de Pesquisa</h2>
+                    <p class="text-gray-500 mt-2 max-w-2xl mx-auto">Pesquisadores dedicados que lideram os grupos de
+                        trabalho e a execução diária do projeto.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+
+                    <div
+                        class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group flex flex-col h-full border border-gray-100">
+                        <div class="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div
+                                class="absolute top-4 right-4 bg-durham/90 backdrop-blur px-2 py-1 rounded text-xs font-bold text-white shadow-sm">
+                                DURHAM</div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h4 class="font-serif font-bold text-xl text-neutral-900 mb-1">Dra. Sarah Jones</h4>
+                            <span class="text-xs font-bold text-durham uppercase mb-4 block">Educação Química</span>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                                Gerencia a metodologia pedagógica. Pesquisa o impacto do COIL na formação da identidade
+                                profissional dos alunos de química.
+                            </p>
+                            <div class="pt-4 border-t border-gray-100 flex gap-4">
+                                <a href="#" class="text-gray-400 hover:text-blue-600"><i
+                                        class="ph ph-linkedin-logo text-xl"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-durham"><i
+                                        class="ph ph-globe text-xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group flex flex-col h-full border border-gray-100">
+                        <div class="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-bold text-gray-800 shadow-sm border border-gray-200">
+                                UFRJ</div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h4 class="font-serif font-bold text-xl text-neutral-900 mb-1">Dr. Carlos Silva</h4>
+                            <span class="text-xs font-bold text-durham uppercase mb-4 block">Ecologia Microbiana</span>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                                Coordena as análises laboratoriais no Brasil. Especialista em interação planta-solo e
+                                estatística biológica.
+                            </p>
+                            <div class="pt-4 border-t border-gray-100 flex gap-4">
+                                <a href="#" class="text-gray-400 hover:text-blue-600"><i
+                                        class="ph ph-linkedin-logo text-xl"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-durham"><i
+                                        class="ph ph-globe text-xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group flex flex-col h-full border border-gray-100">
+                        <div class="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
+                            <img src="https://randomuser.me/api/portraits/women/12.jpg"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div
+                                class="absolute top-4 right-4 bg-durham/90 backdrop-blur px-2 py-1 rounded text-xs font-bold text-white shadow-sm">
+                                DURHAM</div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h4 class="font-serif font-bold text-xl text-neutral-900 mb-1">Dra. Ana Sousa</h4>
+                            <span class="text-xs font-bold text-durham uppercase mb-4 block">Linguística Aplicada</span>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                                Líder do componente intercultural. Analisa a comunicação bilíngue e facilita a mediação
+                                entre as equipes.
+                            </p>
+                            <div class="pt-4 border-t border-gray-100 flex gap-4">
+                                <a href="#" class="text-gray-400 hover:text-blue-600"><i
+                                        class="ph ph-linkedin-logo text-xl"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-durham"><i
+                                        class="ph ph-globe text-xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group flex flex-col h-full border border-gray-100">
+                        <div class="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
+                            <img src="https://randomuser.me/api/portraits/men/85.jpg"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div
+                                class="absolute top-4 right-4 bg-durham/90 backdrop-blur px-2 py-1 rounded text-xs font-bold text-white shadow-sm">
+                                DURHAM</div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h4 class="font-serif font-bold text-xl text-neutral-900 mb-1">Prof. John Doe</h4>
+                            <span class="text-xs font-bold text-durham uppercase mb-4 block">Síntese Orgânica</span>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                                Responsável técnico pelo desenvolvimento dos nanomateriais e supervisão de segurança nos
+                                laboratórios do UK.
+                            </p>
+                            <div class="pt-4 border-t border-gray-100 flex gap-4">
+                                <a href="#" class="text-gray-400 hover:text-blue-600"><i
+                                        class="ph ph-linkedin-logo text-xl"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-durham"><i
+                                        class="ph ph-globe text-xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group flex flex-col h-full border border-gray-100">
+                        <div class="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
+                            <img src="https://randomuser.me/api/portraits/women/28.jpg"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div
+                                class="absolute top-4 right-4 bg-white/90 backdrop-blur px-2 py-1 rounded text-xs font-bold text-gray-800 shadow-sm border border-gray-200">
+                                UFRJ</div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h4 class="font-serif font-bold text-xl text-neutral-900 mb-1">Dra. Emily White</h4>
+                            <span class="text-xs font-bold text-durham uppercase mb-4 block">Pós-Doutorado</span>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                                Gerencia o trabalho de campo e a coleta de dados longitudinais. Ponto focal para os
+                                estudantes brasileiros.
+                            </p>
+                            <div class="pt-4 border-t border-gray-100 flex gap-4">
+                                <a href="#" class="text-gray-400 hover:text-blue-600"><i
+                                        class="ph ph-linkedin-logo text-xl"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-durham"><i
+                                        class="ph ph-globe text-xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white border-t border-gray-200">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="text-gray-400 font-bold tracking-wider text-xs uppercase block mb-2">Rede
+                        Estendida</span>
+                    <h2 class="font-serif font-bold text-2xl text-neutral-900">Colaboradores & Pesquisadores Associados
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+
+                    <div class="group text-center">
+                        <div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden mb-3 bg-gray-100">
+                            <img src="https://randomuser.me/api/portraits/men/11.jpg"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div
+                                class="absolute bottom-0 w-full bg-durham/90 text-white text-[10px] font-bold py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                DURHAM</div>
+                        </div>
+                        <h5 class="font-bold text-neutral-900 text-sm">Dr. Robert Lang</h5>
+                        <p class="text-xs text-gray-500">Química Analítica</p>
+                        <a href="#" class="text-durham text-xs hover:underline mt-1 inline-block">Ver Perfil</a>
+                    </div>
+
+                    <div class="group text-center">
+                        <div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden mb-3 bg-gray-100">
+                            <img src="https://randomuser.me/api/portraits/women/90.jpg"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div
+                                class="absolute bottom-0 w-full bg-neutral-800/90 text-white text-[10px] font-bold py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                UFRJ</div>
+                        </div>
+                        <h5 class="font-bold text-neutral-900 text-sm">Dra. Clara Nunes</h5>
+                        <p class="text-xs text-gray-500">Educação</p>
+                        <a href="#" class="text-durham text-xs hover:underline mt-1 inline-block">Ver Perfil</a>
+                    </div>
+
+                    <div class="group text-center">
+                        <div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden mb-3 bg-gray-100">
+                            <img src="https://randomuser.me/api/portraits/men/55.jpg"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div
+                                class="absolute bottom-0 w-full bg-durham/90 text-white text-[10px] font-bold py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                DURHAM</div>
+                        </div>
+                        <h5 class="font-bold text-neutral-900 text-sm">Dr. Peter Wright</h5>
+                        <p class="text-xs text-gray-500">Logística & TI</p>
+                        <a href="#" class="text-durham text-xs hover:underline mt-1 inline-block">Ver Perfil</a>
+                    </div>
+
+                    <div class="group text-center">
+                        <div
+                            class="relative w-full aspect-[3/4] rounded-lg overflow-hidden mb-3 bg-neutral-100 flex items-center justify-center group-hover:bg-neutral-200 transition-colors">
+                            <i class="ph-fill ph-user text-5xl text-neutral-300"></i>
+                            <div
+                                class="absolute bottom-0 w-full bg-neutral-800/90 text-white text-[10px] font-bold py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                UFRJ</div>
+                        </div>
+                        <h5 class="font-bold text-neutral-900 text-sm">Dr. Alex Sand</h5>
+                        <p class="text-xs text-gray-500">Estatística</p>
+                        <a href="#" class="text-durham text-xs hover:underline mt-1 inline-block">Ver Perfil</a>
+                    </div>
+
+                    <div class="group text-center">
+                        <div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden mb-3 bg-gray-100">
+                            <img src="https://randomuser.me/api/portraits/women/42.jpg"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div
+                                class="absolute bottom-0 w-full bg-durham/90 text-white text-[10px] font-bold py-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                DURHAM</div>
+                        </div>
+                        <h5 class="font-bold text-neutral-900 text-sm">Dra. Julia Hope</h5>
+                        <p class="text-xs text-gray-500">Comunicação</p>
+                        <a href="#" class="text-durham text-xs hover:underline mt-1 inline-block">Ver Perfil</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-neutral-50 border-t border-gray-200 pt-12 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div class="md:col-span-1">
+                    <span class="font-serif font-bold text-xl text-neutral-900 leading-tight block mb-4">Crossing
+                        <br>Boundaries</span>
+                    <p class="text-sm text-gray-500 mb-6">Conectando Durham e Brasil para um futuro sustentável.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-gray-400 hover:text-durham"><i class="ph ph-x-logo text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-durham"><i
+                                class="ph ph-linkedin-logo text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-neutral-900 mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="the-project-pt.html" class="text-gray-600 hover:text-durham">O Projeto</a></li>
+                        <li><a href="solutions-pt.html" class="text-gray-600 hover:text-durham">Soluções</a></li>
+                        <li><a href="our-team-pt.html" class="text-gray-600 hover:text-durham">Nosso Time</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-neutral-900 mb-4">Contato</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3"><i class="ph ph-envelope-simple text-durham text-lg"></i> <a
+                                href="mailto:contact@crossingboundaries.ac.uk"
+                                class="hover:text-durham underline">contact@crossingboundaries.ac.uk</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+                <p>&copy; 2026 Durham University. Todos os direitos reservados.</p>
+                <div class="flex gap-6"><a href="#">Acessibilidade</a><a href="#">Privacidade</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('ph-x'); icon.classList.add('ph-list');
+            } else {
+                icon.classList.remove('ph-list'); icon.classList.add('ph-x');
+            }
+        });
+    </script>
+</body>
+
+</html>

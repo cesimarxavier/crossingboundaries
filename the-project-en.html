@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Project | COIL Methodology & Partnership | Crossing Boundaries</title>
+    <meta name="description"
+        content="Discover the Crossing Boundaries project methodology: a 10-week journey uniting students from Durham University and UFRJ to solve global SDG challenges.">
+    <meta name="keywords"
+        content="COIL Project, Research Methodology, Durham University, UFRJ, Intercultural Education, Sustainability, Timeline">
+    <meta name="author" content="Crossing Boundaries Team">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.crossingboundaries.ac.uk/the-project-en.html">
+    <meta property="og:title" content="The Project | Connecting Knowledge Brazil-UK">
+    <meta property="og:description"
+        content="Understand how we overcome linguistic and geographical barriers to create sustainable science.">
+    <meta property="og:image" content="assets/social-share-project.jpg">
+    <meta property="og:locale" content="en_GB">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        durham: { DEFAULT: '#68246D', dark: '#4E1A52', light: '#8A3E8F' },
+                        neutral: { 50: '#F8F9FA', 900: '#1A1A1A', 600: '#4B5563' },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .image-overlay {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(104, 36, 109, 0.9) 100%);
+        }
+    </style>
+</head>
+
+<body class="font-sans text-neutral-600 antialiased bg-white selection:bg-durham selection:text-white">
+
+    <header
+        class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-100 transition-all duration-300"
+        id="header">
+        <div class="container mx-auto px-6 h-24 flex items-center justify-between">
+
+            <div class="flex items-center gap-6">
+                <a href="index_en.html" class="flex flex-col group shrink-0">
+                    <span
+                        class="font-serif font-black text-2xl text-durham leading-none tracking-tight group-hover:opacity-80 transition-opacity">
+                        Crossing <br>Boundaries
+                    </span>
+                </a>
+
+                <div class="hidden md:block h-10 w-px bg-gray-300"></div>
+
+                <div class="hidden md:flex items-center gap-4 opacity-100">
+                    <img src="https://placehold.co/120x50/white/68246D?text=DURHAM&font=merriweather"
+                        alt="Durham University" class="h-10 w-auto object-contain border border-gray-100 rounded">
+
+                    <img src="https://placehold.co/100x50/white/333333?text=UFRJ&font=roboto" alt="UFRJ"
+                        class="h-10 w-auto object-contain border border-gray-100 rounded opacity-80 hover:opacity-100 transition-opacity">
+                </div>
+            </div>
+
+            <nav class="hidden lg:flex items-center gap-8">
+                <a href="the-project-en.html"
+                    class="text-sm font-bold text-durham underline decoration-2 underline-offset-4">The Project</a>
+                <a href="solutions-en.html"
+                    class="text-sm font-medium text-neutral-900 hover:text-durham transition-all">Solutions</a>
+                <a href="updates-en.html"
+                    class="text-sm font-medium text-neutral-900 hover:text-durham transition-all">Updates</a>
+                <a href="our-team-en.html"
+                    class="text-sm font-medium text-neutral-900 hover:text-durham transition-all">Our Team</a>
+
+                <div class="ml-4 flex items-center gap-2 text-sm border-l border-gray-300 pl-6">
+                    <span class="font-bold text-durham">EN</span>
+                    <span class="text-gray-300">/</span>
+                    <a href="the-project-pt.html"
+                        class="font-bold text-gray-400 hover:text-durham transition-colors">PT</a>
+                </div>
+            </nav>
+
+            <button id="mobile-menu-btn" class="lg:hidden text-neutral-900 p-2"><i
+                    class="ph ph-list text-2xl"></i></button>
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-white border-t border-gray-100 absolute top-24 left-0 w-full shadow-lg z-40 h-screen sm:h-auto">
+            <nav class="flex flex-col p-6 gap-6 text-center sm:text-left">
+                <div class="flex justify-center gap-6 mb-4 border-b border-gray-100 pb-4 sm:hidden">
+                    <img src="https://placehold.co/100x40/68246D/white?text=Durham" class="h-8 w-auto">
+                    <img src="https://placehold.co/80x40/333333/white?text=UFRJ" class="h-8 w-auto">
+                </div>
+
+                <a href="the-project-en.html" class="text-lg font-bold text-durham">The Project</a>
+                <a href="solutions-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Solutions</a>
+                <a href="updates-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Updates</a>
+                <a href="our-team-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Our Team</a>
+
+                <div class="flex justify-center sm:justify-start gap-4 pt-4 border-t border-gray-100">
+                    <span class="font-bold text-durham">EN</span>
+                    <a href="the-project-pt.html" class="text-gray-400">PT</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="relative h-[60vh] min-h-[400px] flex items-center justify-center pt-20">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                    alt="Strategic planning" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-durham/90 mix-blend-multiply"></div>
+                <div class="absolute inset-0 bg-black/40"></div>
+            </div>
+            <div class="container mx-auto px-6 relative z-10 text-center text-white">
+                <span class="uppercase tracking-widest text-sm font-bold opacity-80 mb-4 block">About the
+                    Initiative</span>
+                <h1 class="font-serif font-bold text-4xl md:text-5xl lg:text-6xl mb-6">Connecting
+                    Knowledge,<br>Transcending Boundaries.</h1>
+                <p class="text-lg text-gray-200 max-w-2xl mx-auto font-light">
+                    How international collaboration between Brazil and the UK is redefining science education for
+                    sustainable development.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-16 items-start">
+                    <div>
+                        <h2 class="font-serif font-bold text-3xl text-neutral-900 mb-6">The Global Challenge</h2>
+                        <p class="text-neutral-600 leading-relaxed mb-6">
+                            The <strong>Crossing Boundaries</strong> project stems from an urgent need: to prepare
+                            scientists to work in a globalized world, where complex problems — such as those defined by
+                            the <span class="text-durham font-bold">UN SDGs</span> — require more than just technical
+                            knowledge.
+                        </p>
+                        <p class="text-neutral-600 leading-relaxed">
+                            We investigate how students of <strong>Chemistry (Durham)</strong> and <strong>Microbiology
+                                (UFRJ)</strong> can collaborate remotely, overcoming linguistic and cultural barriers to
+                            create tangible scientific solutions.
+                        </p>
+                    </div>
+                    <div class="bg-neutral-50 p-8 rounded-2xl border border-gray-100">
+                        <h3 class="font-serif font-bold text-xl text-neutral-900 mb-4 flex items-center gap-2">
+                            <i class="ph ph-target text-durham text-2xl"></i> Key Objectives
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-check-circle text-green-600 mt-1 text-xl"></i>
+                                <span class="text-sm text-neutral-600 font-medium">Investigate the impact of
+                                    intercultural dialogue on solving scientific problems.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-check-circle text-green-600 mt-1 text-xl"></i>
+                                <span class="text-sm text-neutral-600 font-medium">Develop a replicable COIL
+                                    (Collaborative Online International Learning) pedagogy.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="ph ph-check-circle text-green-600 mt-1 text-xl"></i>
+                                <span class="text-sm text-neutral-600 font-medium">Propose real solutions for the SDGs
+                                    (Zero Hunger, Life on Land, Clean Water).</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-neutral-50 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-gray-100/50 skew-x-12 transform origin-top-right"></div>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center mb-16">
+                    <span class="text-durham font-bold tracking-wider text-sm uppercase">Methodology</span>
+                    <h2 class="font-serif font-bold text-3xl text-neutral-900 mt-2">The 10-Week Journey</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">A structured process of remote collaboration,
+                        student autonomy, and hybrid supervision.</p>
+                </div>
+
+                <div class="relative max-w-4xl mx-auto">
+                    <div
+                        class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 transform md:-translate-x-1/2">
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row items-center justify-between mb-12 group">
+                        <div
+                            class="md:w-5/12 order-2 md:order-1 bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-durham/30 transition-colors ml-12 md:ml-0">
+                            <h3 class="font-serif font-bold text-lg text-neutral-900">Week 1-2: Kick-off & Formation
+                            </h3>
+                            <p class="text-sm text-gray-500 mt-2">Random division into mixed groups (UK/BR). Autonomous
+                                definition of working platforms and schedules.</p>
+                        </div>
+                        <div
+                            class="absolute left-4 md:left-1/2 w-8 h-8 bg-durham text-white rounded-full flex items-center justify-center font-bold text-xs border-4 border-white shadow-md transform -translate-x-1/2 z-10 order-1 md:order-2">
+                            1</div>
+                        <div class="md:w-5/12 order-3 md:order-3"></div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row items-center justify-between mb-12 group">
+                        <div class="md:w-5/12 order-3 md:order-1"></div>
+                        <div
+                            class="absolute left-4 md:left-1/2 w-8 h-8 bg-white text-durham rounded-full flex items-center justify-center font-bold text-xs border-4 border-durham shadow-md transform -translate-x-1/2 z-10 order-1 md:order-2">
+                            2</div>
+                        <div
+                            class="md:w-5/12 order-2 md:order-3 bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-durham/30 transition-colors ml-12 md:ml-0">
+                            <h3 class="font-serif font-bold text-lg text-neutral-900">Week 3-8: Development &
+                                Supervision</h3>
+                            <p class="text-sm text-gray-500 mt-2">Bi-weekly hybrid meetings with supervisors. Completion
+                                of reflective diaries on the intercultural experience.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row items-center justify-between mb-12 group">
+                        <div
+                            class="md:w-5/12 order-2 md:order-1 bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-durham/30 transition-colors ml-12 md:ml-0">
+                            <h3 class="font-serif font-bold text-lg text-neutral-900">Week 9: Finalization</h3>
+                            <p class="text-sm text-gray-500 mt-2">Preparation of the final project, simulating a
+                                proposal for real funding agencies.</p>
+                        </div>
+                        <div
+                            class="absolute left-4 md:left-1/2 w-8 h-8 bg-white text-durham rounded-full flex items-center justify-center font-bold text-xs border-4 border-durham shadow-md transform -translate-x-1/2 z-10 order-1 md:order-2">
+                            3</div>
+                        <div class="md:w-5/12 order-3 md:order-3"></div>
+                    </div>
+
+                    <div class="relative flex flex-col md:flex-row items-center justify-between group">
+                        <div class="md:w-5/12 order-3 md:order-1"></div>
+                        <div
+                            class="absolute left-4 md:left-1/2 w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg border-4 border-white shadow-lg transform -translate-x-1/2 z-10 order-1 md:order-2">
+                            <i class="ph ph-flag-checkered"></i>
+                        </div>
+                        <div
+                            class="md:w-5/12 order-2 md:order-3 bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-green-500/30 transition-colors ml-12 md:ml-0">
+                            <h3 class="font-serif font-bold text-lg text-neutral-900">Week 10: Showcase</h3>
+                            <p class="text-sm text-gray-500 mt-2">Presentation of solutions to the "Chemistry and
+                                Society" class at Durham University.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-durham text-white">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2">
+                        <h2 class="font-serif font-bold text-3xl mb-6">Science Meets Culture</h2>
+                        <p class="text-purple-100 text-lg leading-relaxed mb-8">
+                            The project's strength lies not only in chemistry but in the fusion of fields. Intercultural
+                            researchers monitor every step, analyzing how language and culture shape science.
+                        </p>
+                        <a href="our-team-en.html"
+                            class="inline-flex items-center bg-white text-durham font-bold px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors">
+                            Meet the Researchers <i class="ph ph-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    <div class="md:w-1/2 grid grid-cols-2 gap-4">
+                        <div
+                            class="bg-white/10 backdrop-blur p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                            <i class="ph ph-flask text-4xl mb-4 text-purple-200"></i>
+                            <h4 class="font-bold text-xl">Chemistry & Microbio</h4>
+                            <p class="text-sm text-purple-200 mt-2">The technical core of solutions.</p>
+                        </div>
+                        <div
+                            class="bg-white/10 backdrop-blur p-6 rounded-xl border border-white/20 mt-8 hover:bg-white/20 transition-colors">
+                            <i class="ph ph-translate text-4xl mb-4 text-purple-200"></i>
+                            <h4 class="font-bold text-xl">Languages</h4>
+                            <p class="text-sm text-purple-200 mt-2">Portuguese and English as bridges.</p>
+                        </div>
+                        <div
+                            class="bg-white/10 backdrop-blur p-6 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                            <i class="ph ph-student text-4xl mb-4 text-purple-200"></i>
+                            <h4 class="font-bold text-xl">Education</h4>
+                            <p class="text-sm text-purple-200 mt-2">Active methodologies and COIL.</p>
+                        </div>
+                        <div
+                            class="bg-white/10 backdrop-blur p-6 rounded-xl border border-white/20 mt-8 hover:bg-white/20 transition-colors">
+                            <i class="ph ph-globe text-4xl mb-4 text-purple-200"></i>
+                            <h4 class="font-bold text-xl">Sustainability</h4>
+                            <p class="text-sm text-purple-200 mt-2">Full focus on the UN SDGs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-neutral-50 border-t border-gray-200 pt-12 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div class="md:col-span-1">
+                    <span class="font-serif font-bold text-xl text-neutral-900 leading-tight block mb-4">Crossing
+                        <br>Boundaries</span>
+                    <p class="text-sm text-gray-500 mb-6">Connecting Durham and Brazil for a sustainable future.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-gray-400 hover:text-durham"><i class="ph ph-x-logo text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-durham"><i
+                                class="ph ph-linkedin-logo text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-neutral-900 mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="the-project-en.html" class="text-gray-600 hover:text-durham">The Project</a></li>
+                        <li><a href="solutions-en.html" class="text-gray-600 hover:text-durham">Solutions</a></li>
+                        <li><a href="our-team-en.html" class="text-gray-600 hover:text-durham">Our Team</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-neutral-900 mb-4">Contact</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3"><i class="ph ph-envelope-simple text-durham text-lg"></i> <a
+                                href="mailto:contact@crossingboundaries.ac.uk"
+                                class="hover:text-durham underline">contact@crossingboundaries.ac.uk</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+                <p>&copy; 2026 Durham University. All rights reserved.</p>
+                <div class="flex gap-6"><a href="#">Accessibility</a><a href="#">Privacy Policy</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('ph-x'); icon.classList.add('ph-list');
+            } else {
+                icon.classList.remove('ph-list'); icon.classList.add('ph-x');
+            }
+        });
+    </script>
+</body>
+
+</html>
