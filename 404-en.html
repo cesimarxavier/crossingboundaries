@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crossing Boundaries | Science & Culture for Sustainability | Durham & UFRJ</title>
+    <meta name="description"
+        content="An innovative collaboration between Durham University and UFRJ. Students united to solve global SDG challenges through science and intercultural dialogue.">
+    <meta name="keywords"
+        content="COIL, UFRJ, Durham University, SDGs, Sustainability, Chemistry, Intercultural Education, Science, Brazil, UK">
+    <meta name="author" content="Durham University & UFRJ">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.crossingboundaries.ac.uk/en">
+    <meta property="og:title" content="Crossing Boundaries | Science Beyond Borders">
+    <meta property="og:description"
+        content="Discover how students from Brazil and the UK are bridging chemistry and culture to solve real-world UN challenges.">
+    <meta property="og:image" content="https://www.crossingboundaries.ac.uk/assets/social-share-en.jpg">
+    <meta property="og:locale" content="en_GB">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.crossingboundaries.ac.uk/en">
+    <meta property="twitter:title" content="Crossing Boundaries | Durham & UFRJ">
+    <meta property="twitter:description"
+        content="A transatlantic collaboration focused on scientific innovation and intercultural dialogue.">
+    <meta property="twitter:image" content="https://www.crossingboundaries.ac.uk/assets/social-share-en.jpg">
+
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        durham: { DEFAULT: '#68246D', dark: '#4E1A52', light: '#8A3E8F' },
+                        neutral: { 50: '#F8F9FA', 900: '#1A1A1A', 600: '#4B5563' },
+                        ods: { 15: '#56C02B' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .skip-to-content {
+            position: absolute;
+            top: -999px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #68246D;
+            color: white;
+            padding: 1rem;
+            z-index: 100;
+        }
+
+        .skip-to-content:focus {
+            top: 0;
+        }
+
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .image-overlay {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(104, 36, 109, 0.9) 100%);
+        }
+
+        /* Cursor Styles for Dragging */
+        .cursor-grab {
+            cursor: grab;
+        }
+
+        .cursor-grabbing {
+            cursor: grabbing;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-neutral-600 antialiased bg-white selection:bg-durham selection:text-white">
+
+    <a href="#main-content" class="skip-to-content rounded-b-lg font-bold shadow-lg">Skip to main content</a>
+
+    <header
+        class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-100 transition-all duration-300"
+        id="header">
+        <div class="container mx-auto px-6 h-24 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="flex flex-col group shrink-0">
+                    <span
+                        class="font-serif font-black text-2xl text-durham leading-none tracking-tight group-hover:opacity-80 transition-opacity">
+                        Crossing <br>Boundaries
+                    </span>
+                </a>
+                <div class="hidden md:block h-10 w-px bg-gray-300"></div>
+                <div class="hidden md:flex items-center gap-4 opacity-100">
+                    <a href="https://www.durham.ac.uk/" target="_blank" class="md:mx-5" title="Durham University">
+                        <img src="assets/img/logo-durham-university.svg" alt="Durham University"
+                            class="h-10 w-auto object-contain md:scale-[1.25]">
+                    </a>
+                    <a href="" target="_blank" class="md:mx-6" title="Federal University of Rio de Janeiro">
+                        <img src="assets/img/logo-ufrj.svg" alt="UFRJ"
+                            class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity md:scale-[1.25]">
+                    </a>
+                </div>
+            </div>
+
+            <nav class="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
+                <a href="the-project-en.html"
+                    class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">The
+                    Project</a>
+                <a href="solutions-en.html"
+                    class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Solutions</a>
+                <a href="#voices"
+                    class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Voices</a>
+                <a href="updates-en.html"
+                    class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Updates</a>
+                <a href="our-team-en.html"
+                    class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Our
+                    Team</a>
+
+                <div class="ml-4 flex items-center gap-2 text-sm border-l border-gray-300 pl-6">
+                    <span class="font-bold text-durham">EN</span>
+                    <span class="text-gray-300">/</span>
+                    <a href="index-pt.html" class="text-gray-400 hover:text-neutral-900 transition-colors">PT</a>
+                </div>
+            </nav>
+
+            <button id="mobile-menu-btn"
+                class="lg:hidden text-neutral-900 p-2 focus:outline-none focus:ring-2 focus:ring-durham rounded-md">
+                <i class="ph ph-list text-2xl"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-white border-t border-gray-100 absolute top-24 left-0 w-full shadow-lg z-40 h-screen sm:h-auto">
+            <nav class="flex flex-col p-6 gap-6 text-center sm:text-left">
+                <div class="flex justify-center gap-6 mb-4 border-b border-gray-100 pb-4 sm:hidden">
+                    <a href="https://www.durham.ac.uk/" target="_blank" class="md:mx-5 h-8 w-auto"
+                        title="Durham University">
+                        <img src="assets/img/logo-durham-university.svg" alt="Durham University"
+                            class="h-10 w-auto object-contain md:scale-[1.25]">
+                    </a>
+                    <a href="" target="_blank" class="md:mx-6 h-8 w-auto" title="Federal University of Rio de Janeiro">
+                        <img src="assets/img/logo-ufrj.svg" alt="UFRJ"
+                            class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity md:scale-[1.25]">
+                    </a>
+                </div>
+                <a href="the-project-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">The
+                    Project</a>
+                <a href="solutions-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Solutions</a>
+                <a href="#voices" class="text-lg font-medium text-neutral-900 hover:text-durham">Voices</a>
+                <a href="updates-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Updates</a>
+                <a href="our-team-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Our Team</a>
+                <div class="flex justify-center sm:justify-start gap-4 pt-4 border-t border-gray-100">
+                    <span class="font-bold text-durham">EN</span>
+                    <a href="index_pt.html" class="text-gray-400">PT</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center pt-24 pb-12 relative overflow-hidden">
+        <div
+            class="absolute inset-0 opacity-5 bg-[radial-gradient(#68246D_1px,transparent_1px)] [background-size:24px_24px]">
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center py-24">
+
+            <div
+                class="inline-flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-sm mb-8 border border-gray-100">
+                <i class="ph-duotone ph-compass text-5xl text-durham"></i>
+            </div>
+
+            <h1 class="font-serif font-black text-6xl md:text-8xl text-neutral-900 mb-4 tracking-tight">404</h1>
+            <h2 class="font-serif font-bold text-2xl md:text-3xl text-neutral-800 mb-6">Page Not Found</h2>
+
+            <p class="text-lg text-gray-600 max-w-xl mx-auto mb-10 leading-relaxed">
+                It seems you have ventured into unmapped territory. The page you are looking for might have been moved,
+                deleted, or perhaps never existed.
+            </p>
+
+
+            <div class="h-px w-24 bg-gray-300 mx-auto mb-10"></div>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="index.html"
+                    class="px-6 py-2.5 bg-durham text-white font-bold rounded-lg hover:bg-durham-dark transition-colors shadow-md">
+                    Return Home
+                </a>
+                <a href="the-project-en.html"
+                    class="px-6 py-2.5 bg-white text-gray-700 font-bold rounded-lg border border-gray-200 hover:border-durham hover:text-durham transition-colors shadow-sm">
+                    The Project
+                </a>
+                <a href="updates-en.html"
+                    class="px-6 py-2.5 bg-white text-gray-700 font-bold rounded-lg border border-gray-200 hover:border-durham hover:text-durham transition-colors shadow-sm">
+                    Our updates
+                </a>
+                <a href="solutions-en.html"
+                    class="px-6 py-2.5 bg-white text-gray-700 font-bold rounded-lg border border-gray-200 hover:border-durham hover:text-durham transition-colors shadow-sm">
+                    Solutions
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-durham-dark border-t border-purple-900/50 pt-12 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12 text-white">
+                <div class="md:col-span-1">
+                    <span class="font-serif font-bold text-xl leading-tight block mb-4">Crossing <br>Boundaries</span>
+                    <p class="text-sm text-purple-200 mb-6">Connecting Durham and Brazil for a sustainable future.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-purple-200 hover:text-white transition-colors"><i
+                                class="ph ph-x-logo text-xl"></i></a>
+                        <a href="#" class="text-purple-200 hover:text-white transition-colors"><i
+                                class="ph ph-linkedin-logo text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-purple-100">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-purple-200">
+                        <li><a href="the-project-en.html" class="hover:text-white transition-colors">The Project</a>
+                        </li>
+                        <li><a href="solutions-en.html" class="hover:text-white transition-colors">Solutions</a></li>
+                        <li><a href="our-team-en.html" class="hover:text-white transition-colors">Our Team</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-purple-100">Contact</h4>
+                    <ul class="space-y-3 text-sm text-purple-200">
+                        <li class="flex items-start gap-3"><i class="ph ph-envelope-simple text-lg"></i> <a
+                                href="mailto:contact@crossingboundaries.ac.uk"
+                                class="hover:text-white underline">contact@crossingboundaries.ac.uk</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="border-t border-white/25 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-purple-300 gap-4">
+                <p>&copy; 2026 Durham University. All rights reserved.</p>
+                <div class="flex gap-6"><a href="#" class="hover:text-white">Accessibility</a><a href="#"
+                        class="hover:text-white">Privacy Policy</a></div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
+    </script>
+</body>
+
+</html>
