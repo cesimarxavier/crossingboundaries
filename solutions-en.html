@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Solutions & Projects | Student Showcase | Crossing Boundaries</title>
+    <meta name="description"
+        content="Discover innovative solutions developed by UFRJ and Durham students to tackle global sustainability challenges.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        durham: { DEFAULT: '#68246D', dark: '#4E1A52', light: '#8A3E8F' },
+                        neutral: { 50: '#F8F9FA', 900: '#1A1A1A', 600: '#4B5563' },
+                        ods: { 2: '#DDA63A', 6: '#26BDE2', 15: '#56C02B' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .modal-backdrop {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal-backdrop.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-neutral-600 antialiased bg-white selection:bg-durham selection:text-white">
+
+    <header
+        class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-100 transition-all duration-300"
+        id="header">
+        <div class="container mx-auto px-6 h-24 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="flex flex-col group shrink-0">
+                    <span
+                        class="font-serif font-black text-2xl text-durham leading-none tracking-tight group-hover:opacity-80 transition-opacity">
+                        Crossing <br>Boundaries
+                    </span>
+                </a>
+                <div class="hidden md:block h-10 w-px bg-gray-300"></div>
+                <div class="hidden md:flex items-center gap-4 opacity-100">
+                    <a href="https://www.durham.ac.uk/" target="_blank" class="md:mx-5" title="Durham University">
+                        <img src="assets/img/logo-durham-university.svg" alt="Durham University"
+                            class="h-10 w-auto object-contain md:scale-[1.25]">
+                    </a>
+                    <a href="" target="_blank" class="md:mx-6" title="Federal University of Rio de Janeiro">
+                        <img src="assets/img/logo-ufrj.svg" alt="UFRJ"
+                            class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity md:scale-[1.25]">
+                    </a>
+                </div>
+            </div>
+
+            <nav class="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
+                <a href="the-project-en.html"
+                    class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">The
+                    Project</a>
+                <a href="#"
+                    class="text-sm font-medium uppercase text-durham underline decoration-2 underline-offset-4 transition-all">Solutions</a>
+                <a href="voices-en.html"
+                    class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Voices</a>
+                <a href="updates-en.html"
+                    class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Updates</a>
+                <a href="our-team-en.html"
+                    class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Our
+                    Team</a>
+
+                <div class="ml-4 flex items-center gap-2 text-sm border-l border-gray-300 pl-6">
+                    <span class="font-bold text-durham">EN</span>
+                    <span class="text-gray-300">/</span>
+                    <a href="index-pt.html" class="text-gray-400 hover:text-neutral-900 transition-colors">PT</a>
+                </div>
+            </nav>
+
+            <button id="mobile-menu-btn"
+                class="lg:hidden text-neutral-900 p-2 focus:outline-none focus:ring-2 focus:ring-durham rounded-md">
+                <i class="ph ph-list text-2xl"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-white border-t border-gray-100 absolute top-24 left-0 w-full shadow-lg z-40 h-screen sm:h-auto">
+            <nav class="flex flex-col p-6 gap-6 text-center sm:text-left">
+                <div class="flex justify-center gap-6 mb-4 border-b border-gray-100 pb-4 sm:hidden">
+                    <a href="https://www.durham.ac.uk/" target="_blank" class="md:mx-5 h-8 w-auto"
+                        title="Durham University">
+                        <img src="assets/img/logo-durham-university.svg" alt="Durham University"
+                            class="h-10 w-auto object-contain md:scale-[1.25]">
+                    </a>
+                    <a href="" target="_blank" class="md:mx-6 h-8 w-auto" title="Federal University of Rio de Janeiro">
+                        <img src="assets/img/logo-ufrj.svg" alt="UFRJ"
+                            class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity md:scale-[1.25]">
+                    </a>
+                </div>
+                <a href="the-project-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">The
+                    Project</a>
+                <a href="#" class="text-lg font-medium text-durham underline">Solutions</a>
+                <a href="voices-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Voices</a>
+                <a href="updates-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Updates</a>
+                <a href="our-team-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Our Team</a>
+                <div class="flex justify-center sm:justify-start gap-4 pt-4 border-t border-gray-100">
+                    <span class="font-bold text-durham">EN</span>
+                    <a href="solutions-pt.html" class="text-gray-400">PT</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-24">
+
+        <section class="bg-durham-dark py-20 relative overflow-hidden">
+            <div
+                class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff33_1px,transparent_1px)] [background-size:20px_20px]">
+            </div>
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <span
+                    class="inline-block py-1 px-3 rounded-full border border-white/20 text-purple-100 text-xs font-bold uppercase tracking-widest mb-4">Student
+                    Showcase</span>
+                <h1 class="font-serif font-bold text-4xl md:text-5xl text-white mb-6">Impact Solutions</h1>
+                <p class="text-purple-100 text-lg max-w-2xl mx-auto font-light leading-relaxed">
+                    From theory to practice: projects collaboratively developed by UK and Brazilian students to tackle
+                    real-world 2030 Agenda challenges.
+                </p>
+            </div>
+        </section>
+
+        <section class="border-b border-gray-200 bg-white sticky top-24 z-30 shadow-sm">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-sm text-gray-500 font-medium">Showing <span class="text-durham font-bold">3 featured
+                            projects</span></p>
+                    <div class="flex gap-2">
+                        <button
+                            class="px-4 py-1.5 rounded-full bg-durham text-white text-xs font-bold uppercase tracking-wide">All</button>
+                        <button
+                            class="px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 text-xs font-bold uppercase tracking-wide transition-colors">Chemistry</button>
+                        <button
+                            class="px-4 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 text-xs font-bold uppercase tracking-wide transition-colors">Microbiology</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-neutral-50 min-h-screen">
+            <div class="container mx-auto px-6">
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <article
+                        class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full cursor-pointer"
+                        onclick="openProject('nano')">
+                        <div class="h-56 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4 flex gap-2">
+                                <span
+                                    class="bg-white/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm text-gray-800">
+                                    <span class="w-2 h-2 rounded-full bg-ods-15"></span> SDG 15
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-2 text-xs font-bold text-durham uppercase tracking-wide">Chemistry &
+                                Agriculture</div>
+                            <h3
+                                class="font-serif font-bold text-xl text-neutral-900 mb-3 group-hover:text-durham transition-colors">
+                                Biodegradable Nanopesticides</h3>
+                            <p class="text-sm text-gray-600 line-clamp-3 mb-6">A formulation based on silica
+                                nanoparticles that encapsulate the active ingredient, allowing for controlled release
+                                and lower soil impact.</p>
+                            <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
+                                <div class="flex -space-x-2">
+                                    <img class="w-8 h-8 rounded-full border-2 border-white"
+                                        src="https://randomuser.me/api/portraits/women/68.jpg" title="Sarah (UK)">
+                                    <img class="w-8 h-8 rounded-full border-2 border-white"
+                                        src="https://randomuser.me/api/portraits/men/45.jpg" title="Carlos (BR)">
+                                </div>
+                                <span class="text-xs font-bold text-durham flex items-center gap-1">View Details <i
+                                        class="ph-bold ph-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full cursor-pointer"
+                        onclick="openProject('bio')">
+                        <div class="h-56 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4 flex gap-2">
+                                <span
+                                    class="bg-white/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm text-gray-800">
+                                    <span class="w-2 h-2 rounded-full bg-ods-2"></span> SDG 2
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-2 text-xs font-bold text-durham uppercase tracking-wide">Microbiology</div>
+                            <h3
+                                class="font-serif font-bold text-xl text-neutral-900 mb-3 group-hover:text-durham transition-colors">
+                                Soil Bioinoculants</h3>
+                            <p class="text-sm text-gray-600 line-clamp-3 mb-6">Replacing synthetic nitrogen fertilisers
+                                with consortia of bacteria native to the Atlantic Forest for small-scale crops.</p>
+                            <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
+                                <div class="flex -space-x-2">
+                                    <img class="w-8 h-8 rounded-full border-2 border-white"
+                                        src="https://randomuser.me/api/portraits/men/11.jpg" title="João (BR)">
+                                    <img class="w-8 h-8 rounded-full border-2 border-white"
+                                        src="https://randomuser.me/api/portraits/women/32.jpg" title="Emily (UK)">
+                                </div>
+                                <span class="text-xs font-bold text-durham flex items-center gap-1">View Details <i
+                                        class="ph-bold ph-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full cursor-pointer"
+                        onclick="openProject('water')">
+                        <div class="h-56 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1581093458791-9f302e6d8359?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4 flex gap-2">
+                                <span
+                                    class="bg-white/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm text-gray-800">
+                                    <span class="w-2 h-2 rounded-full bg-ods-6"></span> SDG 6
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="mb-2 text-xs font-bold text-durham uppercase tracking-wide">Chemical Engineering
+                            </div>
+                            <h3
+                                class="font-serif font-bold text-xl text-neutral-900 mb-3 group-hover:text-durham transition-colors">
+                                Graphene Water Filters</h3>
+                            <p class="text-sm text-gray-600 line-clamp-3 mb-6">Development of low-cost reduced graphene
+                                oxide membranes for filtering heavy metals in riverside communities.</p>
+                            <div class="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
+                                <div class="flex -space-x-2">
+                                    <img class="w-8 h-8 rounded-full border-2 border-white"
+                                        src="https://randomuser.me/api/portraits/men/85.jpg" title="Lucas (BR)">
+                                    <img class="w-8 h-8 rounded-full border-2 border-white"
+                                        src="https://randomuser.me/api/portraits/men/22.jpg" title="James (UK)">
+                                </div>
+                                <span class="text-xs font-bold text-durham flex items-center gap-1">View Details <i
+                                        class="ph-bold ph-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-durham-dark border-t border-purple-900/50 pt-12 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12 text-white">
+                <div class="md:col-span-1">
+                    <span class="font-serif font-bold text-xl leading-tight block mb-4">Crossing <br>Boundaries</span>
+                    <p class="text-sm text-purple-200 mb-6">Connecting Durham and Brazil for a sustainable future.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-purple-100">Contact</h4>
+                    <ul class="space-y-3 text-sm text-purple-200">
+                        <li class="flex items-start gap-3"><i class="ph ph-envelope-simple text-lg"></i> <a
+                                href="mailto:contact@crossingboundaries.ac.uk"
+                                class="hover:text-white underline">contact@crossingboundaries.ac.uk</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="border-t border-purple-900/50 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-purple-300 gap-4">
+                <p>&copy; 2026 Durham University. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="project-modal"
+        class="fixed inset-0 z-[100] hidden modal-backdrop bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+            class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative modal-content flex flex-col md:flex-row overflow-hidden">
+
+            <button onclick="closeProject()"
+                class="absolute top-4 right-4 z-50 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center text-gray-500 hover:text-durham transition-colors shadow-sm">
+                <i class="ph-bold ph-x text-xl"></i>
+            </button>
+
+            <div class="md:w-5/12 h-64 md:h-auto relative">
+                <img id="modal-img" src="" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute top-4 left-4 bg-white/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm text-gray-800"
+                    id="modal-sdg">
+                </div>
+            </div>
+
+            <div class="md:w-7/12 p-8 md:p-12 overflow-y-auto bg-white">
+                <span class="text-xs font-bold text-durham uppercase tracking-widest mb-2 block"
+                    id="modal-category"></span>
+                <h2 class="font-serif font-bold text-3xl text-neutral-900 mb-6 leading-tight" id="modal-title"></h2>
+
+                <div class="prose prose-sm text-gray-600 mb-8" id="modal-desc"></div>
+
+                <div class="border-t border-gray-100 pt-6">
+                    <h4 class="font-bold text-sm text-neutral-900 mb-4">Project Team</h4>
+                    <div class="flex items-center gap-4" id="modal-team">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const projects = {
+            'nano': {
+                title: "Biodegradable Nanopesticides",
+                category: "Chemistry & Agriculture",
+                img: "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-4.0.3",
+                sdg: "SDG 15: Life on Land",
+                sdgColor: "#56C02B",
+                desc: "<p>This project aims to reduce the environmental impact of traditional pesticides. The team developed a silica nanoparticle capsule that protects the active ingredient from UV degradation and allows for slow release in the soil.</p><p>Initial tests showed a 40% reduction in leaching into groundwater compared to commercial formulations.</p>",
+                team: [
+                    { name: "Sarah Jenkins", role: "Lead (UK)", img: "https://randomuser.me/api/portraits/women/68.jpg" },
+                    { name: "Carlos Mendes", role: "Researcher (BR)", img: "https://randomuser.me/api/portraits/men/45.jpg" }
+                ]
+            },
+            'bio': {
+                title: "Soil Bioinoculants",
+                category: "Microbiology",
+                img: "https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3",
+                sdg: "SDG 2: Zero Hunger",
+                sdgColor: "#DDA63A",
+                desc: "<p>Focusing on family farming, this project isolated nitrogen-fixing bacteria strains native to the Atlantic Forest.</p><p>The goal is to create a low-cost biofertiliser that can replace imported chemical inputs, increasing productivity and long-term soil health.</p>",
+                team: [
+                    { name: "João Silva", role: "Lead (BR)", img: "https://randomuser.me/api/portraits/men/11.jpg" },
+                    { name: "Emily White", role: "Analyst (UK)", img: "https://randomuser.me/api/portraits/women/32.jpg" }
+                ]
+            },
+            'water': {
+                title: "Graphene Water Filters",
+                category: "Chemical Engineering",
+                img: "https://images.unsplash.com/photo-1581093458791-9f302e6d8359?ixlib=rb-4.0.3",
+                sdg: "SDG 6: Clean Water",
+                sdgColor: "#26BDE2",
+                desc: "<p>Access to clean drinking water is a challenge in many communities. This group developed a prototype filter using reduced graphene oxide.</p><p>The technology demonstrated high efficiency in removing heavy metals like mercury and lead, with a production cost viable for NGOs.</p>",
+                team: [
+                    { name: "Lucas Ferreira", role: "Engineer (BR)", img: "https://randomuser.me/api/portraits/men/85.jpg" },
+                    { name: "James Cook", role: "Chemist (UK)", img: "https://randomuser.me/api/portraits/men/22.jpg" }
+                ]
+            }
+        };
+
+        // Modal Logic
+        const modal = document.getElementById('project-modal');
+        function openProject(key) {
+            const p = projects[key];
+            if (!p) return;
+
+            document.getElementById('modal-title').innerText = p.title;
+            document.getElementById('modal-category').innerText = p.category;
+            document.getElementById('modal-img').src = p.img;
+            document.getElementById('modal-desc').innerHTML = p.desc;
+
+            const sdgEl = document.getElementById('modal-sdg');
+            sdgEl.innerHTML = `<span class="w-2 h-2 rounded-full" style="background:${p.sdgColor}"></span> ${p.sdg}`;
+
+            const teamHTML = p.team.map(m => `
+                <div class="flex items-center gap-2">
+                    <img src="${m.img}" class="w-10 h-10 rounded-full border border-gray-100">
+                    <div>
+                        <p class="text-sm font-bold text-neutral-900 leading-none">${m.name}</p>
+                        <p class="text-xs text-gray-500">${m.role}</p>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('modal-team').innerHTML = teamHTML;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.add('active'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProject() {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeProject(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeProject(); });
+
+        // Menu Mobile
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) { icon.classList.remove('ph-x'); icon.classList.add('ph-list'); }
+            else { icon.classList.remove('ph-list'); icon.classList.add('ph-x'); }
+        });
+    </script>
+</body>
+
+</html>
