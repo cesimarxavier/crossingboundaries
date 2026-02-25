@@ -38,41 +38,6 @@ $url_theme = get_template_directory_uri();
     <link rel="stylesheet" href="<?php echo $url_theme ?>/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
-        rel="stylesheet">
-
-    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=FN129iTWt9DpGIWOEP3rUgmk8VQ7-FhIACLRuY_Dpi2clcsxLmvanEm20-ECYe4MCvGEGwl6nY4CWmf9qPzMs4CrBfPEiPx8SwtuIlGsgfs" charset="UTF-8"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        durham: {
-                            DEFAULT: '#68246D',
-                            dark: '#4E1A52',
-                            light: '#8A3E8F'
-                        },
-                        neutral: {
-                            50: '#F8F9FA',
-                            900: '#1A1A1A',
-                            600: '#4B5563'
-                        },
-                        ods: {
-                            15: '#56C02B'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Merriweather', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
 
     <?php wp_head(); ?>
 </head>

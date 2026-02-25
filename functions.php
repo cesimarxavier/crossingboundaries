@@ -4,6 +4,8 @@ if (! defined('ABSPATH')) exit;
 // Carrega os módulos do Core
 require_once get_template_directory() . '/core/class-navigation.php';
 require_once get_template_directory() . '/core/class-queries.php';
+require_once get_template_directory() . '/core/class-project-metaboxes.php';
+
 
 
 // Adiciona suportes nativos do tema
@@ -32,6 +34,7 @@ add_action('wp_enqueue_scripts', function () {
                 }
             }
         }
+            
     ";
     wp_add_inline_script('tailwindcss', $tailwind_config, 'before');
 
