@@ -43,3 +43,34 @@ Text Domain: crossingboundaries
 .cursor-grabbing {
     cursor: grabbing;
 }
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Filter Button Active State */
+.filter-btn.active {
+    background-color: #68246D;
+    color: white;
+    border-color: #68246D;
+}
+
+/* Fade In Animation */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
