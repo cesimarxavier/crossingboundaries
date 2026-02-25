@@ -154,30 +154,24 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="flex flex-col group border-b border-gray-100 pb-8 md:border-none">
-                    <div class="mb-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-purple-100 text-purple-800 uppercase tracking-wide">Event</span><span class="text-xs text-gray-400 font-medium ml-2">Oct 15, 2026</span></div>
-                    <h3 class="font-serif font-bold text-xl text-neutral-900 mb-3 group-hover:text-durham transition-colors">
-                        <a href="#">Intercultural Workshop</a>
-                    </h3>
-                    <p class="text-sm text-gray-600 line-clamp-3 mb-4">A hybrid symposium connecting Durham and Rio.</p>
-                    <a href="#" class="text-sm font-semibold text-durham flex items-center mt-auto">Register now <i class="ph ph-arrow-right ml-2"></i></a>
-                </div>
-                <div class="flex flex-col group border-b border-gray-100 pb-8 md:border-none">
-                    <div class="mb-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-blue-100 text-blue-800 uppercase tracking-wide">Publication</span><span class="text-xs text-gray-400 font-medium ml-2">Sep 22, 2026</span></div>
-                    <h3 class="font-serif font-bold text-xl text-neutral-900 mb-3 group-hover:text-durham transition-colors">
-                        <a href="#">New Article</a>
-                    </h3>
-                    <p class="text-sm text-gray-600 line-clamp-3 mb-4">"Nanopesticides and Soil Health": Final results.</p>
-                    <a href="#" class="text-sm font-semibold text-durham flex items-center mt-auto">Read article <i class="ph ph-arrow-right ml-2"></i></a>
-                </div>
-                <div class="flex flex-col group">
-                    <div class="mb-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-green-100 text-green-800 uppercase tracking-wide">News</span><span class="text-xs text-gray-400 font-medium ml-2">Aug 10, 2026</span></div>
-                    <h3 class="font-serif font-bold text-xl text-neutral-900 mb-3 group-hover:text-durham transition-colors">
-                        <a href="#">Delegation visits UFRJ</a>
-                    </h3>
-                    <p class="text-sm text-gray-600 line-clamp-3 mb-4">Strengthening the international partnership.</p>
-                    <a href="#" class="text-sm font-semibold text-durham flex items-center mt-auto">See photos <i class="ph ph-arrow-right ml-2"></i></a>
-                </div>
+                <?php
+                // Chama o controlador para buscar os dados (Sem sujar a View com arrays e args)
+                $latest_updates = ModularPress_Queries::get_latest_updates(3);
+
+                if ($latest_updates->have_posts()) :
+                    // Faz o loop chamando o componente reutilizável de UI
+                    while ($latest_updates->have_posts()) : $latest_updates->the_post();
+
+                        get_template_part('template-parts/components/card-update-home');
+
+                    endwhile;
+                    wp_reset_postdata(); // Restaura o contexto global
+                else :
+                ?>
+                    <p class="col-span-3 text-gray-500 text-center py-8">
+                        <?php esc_html_e('No updates available at the moment.', 'crossingboundaries'); ?>
+                    </p>
+                <?php endif; ?>
             </div>
 
             <div class="mt-12 text-center md:text-right">

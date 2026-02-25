@@ -3,6 +3,7 @@ if (! defined('ABSPATH')) exit;
 
 // Carrega os módulos do Core
 require_once get_template_directory() . '/core/class-navigation.php';
+require_once get_template_directory() . '/core/class-queries.php';
 
 
 // Adiciona suportes nativos do tema
