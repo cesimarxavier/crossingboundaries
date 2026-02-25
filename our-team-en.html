@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Our Team | Researchers & Experts | Crossing Boundaries</title>
+    <title>Our Team | Project Collaborators | Crossing Boundaries</title>
     <meta name="description"
-        content="Meet the Principal Investigators, Core Team, and Extended Network of the Crossing Boundaries project.">
+        content="Meet the Project Collaborators and researchers driving the Crossing Boundaries project between Durham University and UFRJ.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,6 +33,36 @@
             }
         }
     </script>
+    <style>
+        .modal-backdrop {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal-backdrop.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body class="font-sans text-neutral-600 antialiased bg-white selection:bg-durham selection:text-white">
@@ -42,7 +72,7 @@
         id="header">
         <div class="container mx-auto px-6 h-24 flex items-center justify-between">
             <div class="flex items-center gap-6">
-                <a href="index.html" class="flex flex-col group shrink-0">
+                <a href="index_en.html" class="flex flex-col group shrink-0">
                     <span
                         class="font-serif font-black text-2xl text-durham leading-none tracking-tight group-hover:opacity-80 transition-opacity">
                         Crossing <br>Boundaries
@@ -71,8 +101,8 @@
                     class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Voices</a>
                 <a href="updates-en.html"
                     class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Updates</a>
-                <a href="#"
-                    class="text-sm font-medium uppercase text-durham underline decoration-2 underline-offset-4 transition-all">Our
+                <a href="our-team-en.html"
+                    class="text-sm font-bold uppercase text-durham underline decoration-2 underline-offset-4 transition-all">Our
                     Team</a>
 
                 <div class="ml-4 flex items-center gap-2 text-sm border-l border-gray-300 pl-6">
@@ -105,12 +135,12 @@
                 <a href="the-project-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">The
                     Project</a>
                 <a href="solutions-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Solutions</a>
-                <a href="#voices" class="text-lg font-medium text-neutral-900 hover:text-durham">Voices</a>
+                <a href="voices-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Voices</a>
                 <a href="updates-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Updates</a>
                 <a href="our-team-en.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Our Team</a>
                 <div class="flex justify-center sm:justify-start gap-4 pt-4 border-t border-gray-100">
                     <span class="font-bold text-durham">EN</span>
-                    <a href="index_pt.html" class="text-gray-400">PT</a>
+                    <a href="our-team-pt.html" class="text-gray-400">PT</a>
                 </div>
             </nav>
         </div>
@@ -138,8 +168,8 @@
                 <div class="mb-20">
                     <div class="flex items-center gap-4 mb-12">
                         <div class="h-px bg-gray-200 flex-1"></div>
-                        <span class="text-durham font-bold tracking-wider text-sm uppercase">Principal
-                            Members</span>
+                        <span class="text-durham font-bold tracking-wider text-sm uppercase">Project
+                            Collaborators</span>
                         <div class="h-px bg-gray-200 flex-1"></div>
                     </div>
 
@@ -156,10 +186,12 @@
                                 <h3 class="font-serif font-bold text-xl text-neutral-900 mb-1">Prof. Andrew Macrae</h3>
                                 <p class="text-xs font-bold text-durham uppercase tracking-wider mb-4">UFRJ •
                                     Microbiology</p>
+
                                 <p class="text-sm text-gray-600 mb-6 line-clamp-3 leading-relaxed">
                                     Current Head of International Relations at the Centre for Health Sciences, UFRJ. He
                                     leads research at the Sustainable Biotechnology and Microbial Bioinformatics Lab.
                                 </p>
+
                                 <div class="mt-auto w-full">
                                     <div class="flex flex-wrap justify-center gap-2 mb-6">
                                         <span
@@ -187,10 +219,12 @@
                                 <h3 class="font-serif font-bold text-xl text-neutral-900 mb-1">Prof. Patrick Steel</h3>
                                 <p class="text-xs font-bold text-durham uppercase tracking-wider mb-4">Durham •
                                     Chemistry</p>
+
                                 <p class="text-sm text-gray-600 mb-6 line-clamp-3 leading-relaxed">
                                     Professor in the Department of Chemistry at Durham University. His work focuses on
                                     synthetic organic chemistry and its application to biological problems.
                                 </p>
+
                                 <div class="mt-auto w-full">
                                     <div class="flex flex-wrap justify-center gap-2 mb-6">
                                         <span
@@ -219,10 +253,12 @@
                                 <h3 class="font-serif font-bold text-xl text-neutral-900 mb-1">Prof. Bruno Lima</h3>
                                 <p class="text-xs font-bold text-durham uppercase tracking-wider mb-4">IFRN • Language
                                     Studies</p>
+
                                 <p class="text-sm text-gray-600 mb-6 line-clamp-3 leading-relaxed">
                                     Full-time Professor at the Federal Institute of Rio Grande do Norte (IFRN). He holds
                                     a PhD in Language Studies and specialises in intercultural pedagogy.
                                 </p>
+
                                 <div class="mt-auto w-full">
                                     <div class="flex flex-wrap justify-center gap-2 mb-6">
                                         <span
@@ -238,68 +274,137 @@
                             </div>
                         </div>
 
-                    </div>
-                </div>
-
-                <div>
-                    <div class="flex items-center gap-4 mb-12">
-                        <div class="h-px bg-gray-200 flex-1"></div>
-                        <span class="text-gray-400 font-bold tracking-wider text-xs uppercase">Associate
-                            Members</span>
-                        <div class="h-px bg-gray-200 flex-1"></div>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="bg-white rounded-lg p-6 border border-gray-100 hover:shadow-lg transition-all cursor-pointer group text-center"
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full cursor-pointer"
                             onclick="openProfile('sarah')">
-                            <div
-                                class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-gray-100 group-hover:border-durham transition-colors">
-                                <img src="https://randomuser.me/api/portraits/women/68.jpg"
-                                    class="w-full h-full object-cover">
+                            <div class="p-8 flex flex-col items-center text-center h-full">
+                                <div
+                                    class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-neutral-50 group-hover:border-durham/20 transition-colors shadow-sm">
+                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sarah Jenkins"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="font-serif font-bold text-xl text-neutral-900 mb-1">Sarah Jenkins</h3>
+                                <p class="text-xs font-bold text-durham uppercase tracking-wider mb-4">Durham • PhD
+                                    Candidate</p>
+
+                                <p class="text-sm text-gray-600 mb-6 line-clamp-3 leading-relaxed">
+                                    Researching sustainable catalysis methods to reduce industrial waste. She helps
+                                    coordinate the student exchange programme.
+                                </p>
+
+                                <div class="mt-auto w-full">
+                                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                                        <span
+                                            class="px-2 py-1 bg-purple-50 text-durham text-[10px] font-bold uppercase rounded">Catalysis</span>
+                                        <span
+                                            class="px-2 py-1 bg-purple-50 text-durham text-[10px] font-bold uppercase rounded">Green
+                                            Chemistry</span>
+                                    </div>
+                                    <button
+                                        class="text-durham font-bold text-sm flex items-center justify-center gap-2 group-hover:gap-3 transition-all">
+                                        View Full Profile <i class="ph-bold ph-arrow-right"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <h4 class="font-bold text-neutral-900">Sarah Jenkins</h4>
-                            <p class="text-xs text-durham uppercase font-bold mb-2">Durham • PhD Candidate</p>
-                            <p class="text-xs text-gray-500 line-clamp-2">Researching sustainable catalysis and its
-                                environmental impact.</p>
                         </div>
 
-                        <div class="bg-white rounded-lg p-6 border border-gray-100 hover:shadow-lg transition-all cursor-pointer group text-center"
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full cursor-pointer"
                             onclick="openProfile('joao')">
-                            <div
-                                class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-gray-100 group-hover:border-durham transition-colors">
-                                <img src="https://randomuser.me/api/portraits/men/11.jpg"
-                                    class="w-full h-full object-cover">
+                            <div class="p-8 flex flex-col items-center text-center h-full">
+                                <div
+                                    class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-neutral-50 group-hover:border-durham/20 transition-colors shadow-sm">
+                                    <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="João Silva"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="font-serif font-bold text-xl text-neutral-900 mb-1">João Silva</h3>
+                                <p class="text-xs font-bold text-durham uppercase tracking-wider mb-4">UFRJ • Researcher
+                                </p>
+
+                                <p class="text-sm text-gray-600 mb-6 line-clamp-3 leading-relaxed">
+                                    Specialises in soil biodiversity and is currently conducting field trials for new
+                                    bioinoculant formulations in the Atlantic Forest region.
+                                </p>
+
+                                <div class="mt-auto w-full">
+                                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                                        <span
+                                            class="px-2 py-1 bg-purple-50 text-durham text-[10px] font-bold uppercase rounded">Soil
+                                            Ecology</span>
+                                        <span
+                                            class="px-2 py-1 bg-purple-50 text-durham text-[10px] font-bold uppercase rounded">Bioinoculants</span>
+                                    </div>
+                                    <button
+                                        class="text-durham font-bold text-sm flex items-center justify-center gap-2 group-hover:gap-3 transition-all">
+                                        View Full Profile <i class="ph-bold ph-arrow-right"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <h4 class="font-bold text-neutral-900">João Silva</h4>
-                            <p class="text-xs text-durham uppercase font-bold mb-2">UFRJ • Researcher</p>
-                            <p class="text-xs text-gray-500 line-clamp-2">Focused on soil biodiversity and bioinoculants
-                                in tropical climates.</p>
                         </div>
 
-                        <div class="bg-white rounded-lg p-6 border border-gray-100 hover:shadow-lg transition-all cursor-pointer group text-center"
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full cursor-pointer"
                             onclick="openProfile('ana')">
-                            <div
-                                class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-gray-100 group-hover:border-durham transition-colors">
-                                <img src="https://randomuser.me/api/portraits/women/12.jpg"
-                                    class="w-full h-full object-cover">
+                            <div class="p-8 flex flex-col items-center text-center h-full">
+                                <div
+                                    class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-neutral-50 group-hover:border-durham/20 transition-colors shadow-sm">
+                                    <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Dr Ana Sousa"
+                                        class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="font-serif font-bold text-xl text-neutral-900 mb-1">Dr Ana Sousa</h3>
+                                <p class="text-xs font-bold text-durham uppercase tracking-wider mb-4">Durham • Postdoc
+                                </p>
+
+                                <p class="text-sm text-gray-600 mb-6 line-clamp-3 leading-relaxed">
+                                    Investigating cross-cultural education barriers in STEM fields, focusing on how
+                                    language impacts scientific identity formation.
+                                </p>
+
+                                <div class="mt-auto w-full">
+                                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                                        <span
+                                            class="px-2 py-1 bg-purple-50 text-durham text-[10px] font-bold uppercase rounded">Education</span>
+                                        <span
+                                            class="px-2 py-1 bg-purple-50 text-durham text-[10px] font-bold uppercase rounded">STEM</span>
+                                    </div>
+                                    <button
+                                        class="text-durham font-bold text-sm flex items-center justify-center gap-2 group-hover:gap-3 transition-all">
+                                        View Full Profile <i class="ph-bold ph-arrow-right"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <h4 class="font-bold text-neutral-900">Ana Sousa</h4>
-                            <p class="text-xs text-durham uppercase font-bold mb-2">Durham • Postdoc</p>
-                            <p class="text-xs text-gray-500 line-clamp-2">Investigating cross-cultural education
-                                barriers in STEM fields.</p>
                         </div>
 
-                        <div class="bg-white rounded-lg p-6 border border-gray-100 hover:shadow-lg transition-all cursor-pointer group text-center"
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full cursor-pointer"
                             onclick="openProfile('alex')">
-                            <div
-                                class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-gray-100 bg-gray-50 flex items-center justify-center group-hover:border-durham transition-colors">
-                                <i class="ph-fill ph-user text-3xl text-gray-300"></i>
+                            <div class="p-8 flex flex-col items-center text-center h-full">
+                                <div
+                                    class="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-neutral-50 group-hover:border-durham/20 transition-colors shadow-sm flex items-center justify-center bg-gray-50">
+                                    <i class="ph-fill ph-user text-5xl text-gray-300"></i>
+                                </div>
+                                <h3 class="font-serif font-bold text-xl text-neutral-900 mb-1">Dr Alex Sand</h3>
+                                <p class="text-xs font-bold text-durham uppercase tracking-wider mb-4">UFRJ • Statistics
+                                </p>
+
+                                <p class="text-sm text-gray-600 mb-6 line-clamp-3 leading-relaxed">
+                                    Provides statistical support for biological experiments, ensuring data integrity and
+                                    robust analysis for the project's quantitative outputs.
+                                </p>
+
+                                <div class="mt-auto w-full">
+                                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                                        <span
+                                            class="px-2 py-1 bg-purple-50 text-durham text-[10px] font-bold uppercase rounded">Data
+                                            Analysis</span>
+                                        <span
+                                            class="px-2 py-1 bg-purple-50 text-durham text-[10px] font-bold uppercase rounded">R
+                                            Programming</span>
+                                    </div>
+                                    <button
+                                        class="text-durham font-bold text-sm flex items-center justify-center gap-2 group-hover:gap-3 transition-all">
+                                        View Full Profile <i class="ph-bold ph-arrow-right"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <h4 class="font-bold text-neutral-900">Dr. Alex Sand</h4>
-                            <p class="text-xs text-durham uppercase font-bold mb-2">UFRJ • Statistics</p>
-                            <p class="text-xs text-gray-500 line-clamp-2">Data analysis support for biological
-                                experiments.</p>
                         </div>
+
                     </div>
                 </div>
 
@@ -340,8 +445,8 @@
                 </div>
             </div>
             <div
-                class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-purple-300 gap-4">
-                <p>&copy; 2026 Durham University. All rights reserved.</p>
+                class="border-t border-purple-900/50 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-purple-300 gap-4">
+                <p>&copy; 2026 Durham University. All rights reserved. Funded by the British Council.</p>
                 <div class="flex gap-6"><a href="#" class="hover:text-white">Accessibility</a><a href="#"
                         class="hover:text-white">Privacy Policy</a></div>
             </div>
@@ -449,7 +554,7 @@
                 role: "Durham • PhD Candidate",
                 img: "https://randomuser.me/api/portraits/women/68.jpg",
                 interests: ["Catalysis", "Green Chemistry"],
-                bio: "<p>Sarah is investigating sustainable catalysis methods to reduce industrial waste. She helps coordinate the student exchange program and mentoring undergraduate students.</p>",
+                bio: "<p>Sarah is investigating sustainable catalysis methods to reduce industrial waste. She helps coordinate the student exchange programme and mentors undergraduate students.</p>",
                 pubs: ["Jenkins, S. (2024). Green Solvents in Catalysis. Journal of Cleaner Production."]
             },
             'joao': {
@@ -457,11 +562,11 @@
                 role: "UFRJ • Researcher",
                 img: "https://randomuser.me/api/portraits/men/11.jpg",
                 interests: ["Soil Ecology", "Bioinoculants"],
-                bio: "<p>João specializes in soil biodiversity and is currently conducting field trials for new bioinoculant formulations in the Atlantic Forest region.</p>",
+                bio: "<p>João specialises in soil biodiversity and is currently conducting field trials for new bioinoculant formulations in the Atlantic Forest region.</p>",
                 pubs: ["Silva, J. et al. (2025). Tropical Soil Biodiversity. Soil Biology & Biochemistry."]
             },
             'ana': {
-                name: "Ana Sousa",
+                name: "Dr Ana Sousa",
                 role: "Durham • Postdoc",
                 img: "https://randomuser.me/api/portraits/women/12.jpg",
                 interests: ["Education", "STEM"],
@@ -469,11 +574,11 @@
                 pubs: ["Sousa, A. (2024). Bilingual Science. International Journal of Science Education."]
             },
             'alex': {
-                name: "Dr. Alex Sand",
+                name: "Dr Alex Sand",
                 role: "UFRJ • Statistics",
-                img: "", // No image
+                img: "", // No image logic placeholder
                 interests: ["Data Analysis", "R Programming"],
-                bio: "<p>Dr. Sand provides statistical support for biological experiments, ensuring data integrity and robust analysis for the project's quantitative outputs.</p>",
+                bio: "<p>Dr Sand provides statistical support for biological experiments, ensuring data integrity and robust analysis for the project's quantitative outputs.</p>",
                 pubs: ["Sand, A. (2023). Statistical Models in Ecology. Ecological Modelling."]
             }
         };
@@ -491,26 +596,25 @@
             const data = teamData[key];
             if (!data) return;
 
-            // Image Handler Logic
+            // Handle image or placeholder
             if (data.img) {
                 modalImgContainer.innerHTML = `<img src="${data.img}" class="w-full h-full object-cover">`;
             } else {
                 modalImgContainer.innerHTML = `<div class="w-full h-full bg-gray-100 flex items-center justify-center"><i class="ph-fill ph-user text-5xl text-gray-300"></i></div>`;
             }
 
-            // Set Text Content Safely
             if (modalName) modalName.innerText = data.name;
             if (modalRole) modalRole.innerText = data.role;
             if (modalBio) modalBio.innerHTML = data.bio;
 
-            // Generate Tags
+            // Tags
             if (modalTags) {
                 modalTags.innerHTML = data.interests.map(tag =>
                     `<span class="px-2 py-1 bg-purple-50 text-durham text-xs font-bold uppercase rounded border border-purple-100">${tag}</span>`
                 ).join('');
             }
 
-            // Generate Publications List
+            // Publications
             if (modalPubs) {
                 if (data.pubs && data.pubs.length > 0) {
                     modalPubs.innerHTML = data.pubs.map(pub =>
@@ -521,10 +625,9 @@
                 }
             }
 
-            // Show Modal
             modal.classList.remove('hidden');
             setTimeout(() => {
-                modal.classList.add('active'); // CSS fade in
+                modal.classList.add('active');
             }, 10);
             document.body.style.overflow = 'hidden';
         }
@@ -537,7 +640,6 @@
             }, 300);
         }
 
-        // Event Listeners for Closing
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeProfile();
         });
@@ -546,7 +648,7 @@
             if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeProfile();
         });
 
-        // Mobile Menu Logic
+        // --- 3. MOBILE MENU ---
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         const icon = btn.querySelector('i');
