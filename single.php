@@ -1,641 +1,181 @@
-<!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+/**
+ * O template para exibir posts individuais (100% Autoral, Sem Plugins)
+ */
+get_header();
+?>
 
-    <title>Delegação de Durham Visita a UFRJ | Atualizações do Projeto</title>
-    <meta name="description"
-        content="Um relatório completo sobre a visita institucional dos professores da Durham University ao campus da UFRJ no Rio de Janeiro.">
+<main class="pt-24 pb-24 print:pt-0 print:pb-0" id="main-content">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        durham: {
-                            DEFAULT: '#68246D',
-                            dark: '#4E1A52',
-                            light: '#8A3E8F'
-                        },
-                        neutral: {
-                            50: '#F8F9FA',
-                            900: '#1A1A1A',
-                            600: '#4B5563'
-                        },
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Merriweather', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        /* --- ESTILOS WEB PADRÃO (WordPress Content) --- */
-        .wp-content {
-            font-family: 'Inter', sans-serif;
-            color: #374151;
-            line-height: 1.8;
-            font-size: 1.125rem;
-        }
-
-        .wp-content p {
-            margin-bottom: 1.5em;
-        }
-
-        .wp-content h2 {
-            font-family: 'Merriweather', serif;
-            color: #1A1A1A;
-            font-weight: 700;
-            font-size: 1.875rem;
-            margin-top: 2.5em;
-            margin-bottom: 1em;
-            line-height: 1.3;
-        }
-
-        .wp-content h3 {
-            font-family: 'Merriweather', serif;
-            color: #1A1A1A;
-            font-weight: 700;
-            font-size: 1.5rem;
-            margin-top: 2em;
-            margin-bottom: 0.75em;
-        }
-
-        .wp-content ul {
-            list-style-type: disc;
-            padding-left: 1.625em;
-            margin-bottom: 1.5em;
-        }
-
-        .wp-content ol {
-            list-style-type: decimal;
-            padding-left: 1.625em;
-            margin-bottom: 1.5em;
-        }
-
-        .wp-content li {
-            margin-bottom: 0.5em;
-        }
-
-        .wp-content a {
-            color: #68246D;
-            text-decoration: underline;
-            text-decoration-thickness: 2px;
-            text-underline-offset: 4px;
-            font-weight: 600;
-        }
-
-        .wp-content a:hover {
-            color: #4E1A52;
-        }
-
-        .wp-content blockquote {
-            border-left: 4px solid #68246D;
-            padding-left: 1.5em;
-            margin: 2em 0;
-            font-style: italic;
-            color: #4B5563;
-            background-color: #F9FAFB;
-            padding: 1.5em;
-            border-radius: 0 0.5rem 0.5rem 0;
-        }
-
-        .wp-content img {
-            border-radius: 0.75rem;
-            margin-top: 2em;
-            margin-bottom: 2em;
-            width: 100%;
-            height: auto;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .wp-content figure figcaption {
-            text-align: center;
-            font-size: 0.875rem;
-            color: #6B7280;
-            margin-top: 0.75em;
-        }
-
-        /* --- ESTILOS DE IMPRESSÃO (Otimização A4) --- */
-        @media print {
-            @page {
-                size: A4;
-                margin: 1.5cm 2cm;
-            }
-
-            /* Ocultar Elementos de Navegação/Interface */
-            #header,
-            #mobile-menu,
-            #related-posts,
-            #post-navigation,
-            #share-section,
-            footer,
-            .breadcrumb,
-            button {
-                display: none !important;
-            }
-
-            /* Tipografia Base para Impressão */
-            body {
-                font-family: 'Merriweather', 'Times New Roman', serif !important;
-                font-size: 11pt !important;
-                line-height: 1.5 !important;
-                color: #000 !important;
-                background: white !important;
-            }
-
-            /* Reset de Container */
-            .container {
-                max-width: 100% !important;
-                width: 100% !important;
-                padding: 0 !important;
-                margin: 0 !important;
-            }
-
-            /* --- CABEÇALHO DE IMPRESSÃO --- */
-            #print-header {
-                display: flex !important;
-                justify-content: space-between;
-                align-items: flex-end;
-                border-bottom: 3px double #000;
-                padding-bottom: 15px;
-                margin-bottom: 25px;
-            }
-
-            /* Ajuste para logos na impressão (Grisalha para economia) */
-            .print-logo {
-                height: 40px;
-                width: auto;
-                filter: grayscale(100%) contrast(150%);
-            }
-
-            /* --- CABEÇALHO DO ARTIGO --- */
-            .article-header-print {
-                text-align: left;
-                margin-bottom: 20px;
-            }
-
-            h1 {
-                font-family: 'Merriweather', serif !important;
-                font-weight: 900 !important;
-                font-size: 22pt !important;
-                line-height: 1.2 !important;
-                color: #000 !important;
-                margin-bottom: 10px !important;
-            }
-
-            .meta-data-print {
-                font-family: 'Inter', sans-serif !important;
-                font-size: 9pt !important;
-                color: #444 !important;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-                margin-bottom: 20px;
-            }
-
-            /* --- CONTEÚDO EM COLUNAS (Estilo Jornal) --- */
-            .wp-content {
-                column-count: 2;
-                column-gap: 1cm;
-                text-align: justify;
-                hyphens: auto;
-            }
-
-            /* Evitar quebras indesejadas */
-            .wp-content p,
-            .wp-content li {
-                orphans: 3;
-                widows: 3;
-            }
-
-            .wp-content h2,
-            .wp-content h3 {
-                break-after: avoid;
-                column-span: all;
-                /* Títulos ocupam as duas colunas */
-                border-bottom: 1px solid #ddd;
-                padding-bottom: 5px;
-                margin-top: 15px !important;
-                font-size: 14pt !important;
-            }
-
-            /* Imagens na Impressão */
-            .wp-content img,
-            figure {
-                max-width: 100% !important;
-                height: auto !important;
-                break-inside: avoid;
-                margin: 10px 0 !important;
-                border: 1px solid #ccc;
-                border-radius: 0 !important;
-                box-shadow: none !important;
-            }
-
-            figure figcaption {
-                font-style: italic;
-                font-size: 8pt !important;
-                text-align: left !important;
-                color: #444 !important;
-            }
-
-            /* Citações */
-            .wp-content blockquote {
-                background: none !important;
-                border-left: 2px solid #000 !important;
-                font-size: 10pt !important;
-                font-style: italic;
-                padding: 5px 10px !important;
-                margin: 10px 0 !important;
-            }
-
-            /* Links */
-            .wp-content a {
-                text-decoration: none !important;
-                color: #000 !important;
-                font-weight: bold;
-            }
-
-            /* Exibir URL apenas para links externos */
-            .wp-content a[href^="http"]:after {
-                content: " [" attr(href) "]";
-                font-size: 8pt;
-                font-weight: normal;
-            }
-
-            /* --- RODAPÉ DE IMPRESSÃO (QR CODE) --- */
-            #print-footer {
-                display: flex !important;
-                align-items: center;
-                gap: 20px;
-                margin-top: 30px;
-                padding-top: 15px;
-                border-top: 1px solid #000;
-                page-break-inside: avoid;
-            }
-
-            .qr-container img {
-                width: 80px;
-                height: 80px;
-                border: none;
-            }
-
-            .citation-info {
-                font-size: 9pt;
-                font-family: 'Inter', sans-serif;
-            }
-        }
-    </style>
-</head>
-
-<body class="font-sans text-neutral-600 antialiased bg-white selection:bg-durham selection:text-white">
-
-    <div id="print-header" class="hidden">
-        <div class="flex items-center gap-6">
-            <img src="assets/img/logo-durham-university.svg" alt="Durham University" class="print-logo">
-            <img src="assets/img/logo-ufrj.svg" alt="UFRJ" class="print-logo">
-        </div>
-        <div class="text-right">
-            <p style="font-family: 'Merriweather', serif; font-weight: bold; font-size: 10pt;">Projeto Crossing
-                Boundaries</p>
-            <p style="font-family: 'Inter', sans-serif; font-size: 8pt;">Registro de Atualizações Acadêmicas</p>
-        </div>
-    </div>
-
-    <header
-        class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-100 transition-all duration-300"
-        id="header">
-        <div class="container mx-auto px-6 h-24 flex items-center justify-between">
-            <div class="flex items-center gap-6">
-                <a href="index.html" class="flex flex-col group shrink-0">
-                    <span
-                        class="font-serif font-black text-2xl text-durham leading-none tracking-tight group-hover:opacity-80 transition-opacity">
-                        Crossing <br>Boundaries
-                    </span>
-                </a>
-                <div class="hidden md:block h-10 w-px bg-gray-300"></div>
-                <div class="hidden md:flex items-center gap-4 opacity-100">
-                    <a href="https://www.durham.ac.uk/" target="_blank" class="md:mx-5">
-                        <img src="assets/img/logo-durham-university.svg" alt="Durham University"
-                            class="h-10 w-auto object-contain md:scale-[1.25]">
-                    </a>
-                    <a href="" target="_blank" class="md:mx-6">
-                        <img src="assets/img/logo-ufrj.svg" alt="UFRJ"
-                            class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity md:scale-[1.25]">
-                    </a>
-                </div>
-            </div>
-            <nav class="hidden lg:flex items-center gap-8">
-                <a href="the-project-pt.html"
-                    class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">O
-                    Projeto</a>
-                <a href="solutions-pt.html"
-                    class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Soluções</a>
-                <a href="voices-pt.html"
-                    class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Depoimentos</a>
-                <a href="updates-pt.html"
-                    class="text-sm font-bold uppercase text-durham underline decoration-2 underline-offset-4 transition-all">Atualizações</a>
-                <a href="our-team-pt.html"
-                    class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Nosso
-                    Time</a>
-                <div class="ml-4 flex items-center gap-2 text-sm border-l border-gray-300 pl-6">
-                    <a href="single-update-en.html"
-                        class="text-gray-400 hover:text-neutral-900 transition-colors">EN</a>
-                    <span class="text-gray-300">/</span>
-                    <span class="font-bold text-durham">PT</span>
-                </div>
-            </nav>
-            <button id="mobile-menu-btn" class="lg:hidden text-neutral-900 p-2"><i
-                    class="ph ph-list text-2xl"></i></button>
-        </div>
-        <div id="mobile-menu"
-            class="hidden lg:hidden bg-white border-t border-gray-100 absolute top-24 left-0 w-full shadow-lg z-40 h-screen sm:h-auto">
-            <nav class="flex flex-col p-6 gap-6 text-center sm:text-left">
-                <a href="the-project-pt.html" class="text-lg font-medium text-neutral-900 hover:text-durham">O
-                    Projeto</a>
-                <a href="solutions-pt.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Soluções</a>
-                <a href="voices-pt.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Depoimentos</a>
-                <a href="updates-pt.html"
-                    class="text-lg font-medium text-neutral-900 hover:text-durham">Atualizações</a>
-                <a href="our-team-pt.html" class="text-lg font-medium text-neutral-900 hover:text-durham">Nosso Time</a>
-            </nav>
-        </div>
-    </header>
-
-    <main class="pt-24 pb-24 print:pt-0 print:pb-0">
+    <?php while (have_posts()) : the_post(); ?>
 
         <div class="bg-neutral-50 border-b border-gray-200 print:bg-white print:border-none print:p-0">
             <div class="container mx-auto px-6 py-16 text-center print:text-left print:p-0">
-                <div
-                    class="breadcrumb flex items-center justify-center gap-2 text-xs text-gray-500 uppercase tracking-wide font-bold mb-6">
-                    <a href="updates-pt.html" class="hover:text-durham transition-colors">Atualizações</a>
+
+                <div class="breadcrumb flex items-center justify-center gap-2 text-xs text-gray-500 uppercase tracking-wide font-bold mb-6">
+                    <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="hover:text-durham transition-colors">
+                        <?php esc_html_e('Updates', 'crossingboundaries'); ?>
+                    </a>
                     <i class="ph-bold ph-caret-right"></i>
-                    <a href="#" class="hover:text-durham transition-colors">Visita Institucional</a>
+                    <span class="text-durham">
+                        <?php
+                        $categories = get_the_category();
+                        if (! empty($categories)) {
+                            echo esc_html($categories[0]->name);
+                        }
+                        ?>
+                    </span>
                 </div>
 
-                <h1
-                    class="font-serif font-black text-4xl md:text-5xl lg:text-6xl text-neutral-900 mb-8 max-w-4xl mx-auto leading-tight print:m-0 print:text-black">
-                    Delegação de Durham Fortalece Laços com a UFRJ no Rio de Janeiro
+                <h1 class="font-serif font-black text-4xl md:text-5xl lg:text-6xl text-neutral-900 mb-8 max-w-4xl mx-auto leading-tight print:m-0 print:text-black">
+                    <?php the_title(); ?>
                 </h1>
 
-                <div
-                    class="meta-data-print flex flex-wrap justify-center items-center gap-6 text-sm text-gray-600 print:justify-start print:gap-4 print:text-xs">
-                    <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 rounded-full overflow-hidden print:hidden">
-                            <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Prof. Patrick Steel"
-                                class="w-full h-full object-cover">
-                        </div>
-                        <span class="font-medium">Por Prof. Patrick Steel</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i class="ph-bold ph-calendar-blank text-durham print:text-black"></i>
-                        <span>15 Jan 2026</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i class="ph-bold ph-tag text-durham print:text-black"></i>
-                        <span>Trabalho de Campo & Parceria</span>
-                    </div>
+                <div class="meta-data-print flex flex-wrap justify-center items-center gap-6 text-sm text-gray-600 print:justify-start print:gap-4 print:text-xs">
+                    <span class="font-bold"><?php esc_html_e('Author:', 'crossingboundaries'); ?> <?php the_author(); ?></span> |
+                    <span><time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('j M Y'); ?></time></span>
+
+                    <?php
+                    // 100% NATIVO: Buscando o dado direto do banco de dados do WP
+                    $location = get_post_meta(get_the_ID(), '_event_location', true);
+                    if (!empty($location)): ?>
+                        | <span><i class="ph-bold ph-map-pin mr-1"></i> <?php echo esc_html($location); ?></span>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
 
-        <article class="container mx-auto px-6 py-12 max-w-4xl print:px-0 print:py-0 print:max-w-none">
+        <article id="post-<?php the_ID(); ?>" <?php post_class('container mx-auto px-6 py-12 max-w-4xl print:max-w-none print:p-0'); ?>>
 
-            <figure class="mb-12 print:mb-6">
-                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=90"
-                    alt="Delegação de Durham reunida com representantes da UFRJ no Parque Tecnológico"
-                    class="w-full h-auto rounded-xl shadow-lg print:shadow-none print:rounded-none print:grayscale">
-                <figcaption class="text-center text-sm text-gray-500 mt-4 italic">
-                    Delegação reunida no Parque Tecnológico da UFRJ. Foto: Arquivo.
-                </figcaption>
-            </figure>
+            <?php if (has_post_thumbnail()) : ?>
+                <figure class="mb-12 print:mb-4">
+                    <?php the_post_thumbnail('full', ['class' => 'w-full h-auto rounded-xl shadow-lg print:rounded-none print:shadow-none print:grayscale']); ?>
+                    <?php
+                    $caption = get_the_post_thumbnail_caption();
+                    if ($caption) : ?>
+                        <figcaption class="text-center text-sm text-gray-500 mt-4 italic">
+                            <?php echo wp_kses_post($caption); ?>
+                        </figcaption>
+                    <?php endif; ?>
+                </figure>
+            <?php endif; ?>
 
             <div class="wp-content">
-                <p><strong>Rio de Janeiro, Brasil</strong> – A última semana marcou um momento significativo no projeto
-                    <em>Crossing Boundaries</em>, com a chegada de uma delegação da Durham University à Universidade
-                    Federal do Rio de Janeiro (UFRJ) para uma série de reuniões estratégicas e visitas técnicas.
-                </p>
-
-                <p>O objetivo principal desta visita institucional foi alinhar as metas pedagógicas para o próximo
-                    semestre e conhecer pessoalmente a infraestrutura disponível para a turma brasileira de estudantes.
-                </p>
-
-                <h2>Encurtando Distâncias</h2>
-                <p>Embora ferramentas de colaboração online como Zoom e Slack tenham sido fundamentais para lançar este
-                    projeto, a presença física continua sendo um catalisador poderoso para a confiança e o entendimento
-                    mútuo. Como observou o Prof. Andrew Macrae durante a plenária de abertura:</p>
-
-                <blockquote>
-                    "As ferramentas digitais constroem pontes, mas a conexão humana constrói as fundações. Ver os
-                    laboratórios onde nossos alunos testarão os bioinoculantes nos permite adaptar melhor os protocolos
-                    experimentais desenvolvidos em Durham."
-                </blockquote>
-
-                <h3>Principais Resultados da Visita</h3>
-                <p>Durante a agenda de três dias, a equipe focou em várias áreas chave:</p>
-                <ul>
-                    <li><strong>Harmonização de Segurança:</strong> Estabelecimento de um protocolo unificado de
-                        segurança que respeita as regulamentações do Reino Unido e do Brasil.</li>
-                    <li><strong>Design Curricular:</strong> Finalização do "Módulo Intercultural COIL" que será
-                        ministrado conjuntamente no próximo período.</li>
-                    <li><strong>Levantamento de Campo:</strong> Visita à reserva da Mata Atlântica onde as amostras de
-                        solo serão coletadas.</li>
-                </ul>
-
-                <figure>
-                    <img src="https://images.unsplash.com/photo-1581093458791-9f302e6d8359?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                        alt="Pesquisadores analisando amostras" class="print:grayscale">
-                    <figcaption>Pesquisadores analisando amostras no Bio-lab.</figcaption>
-                </figure>
-
-                <h2>Próximos Passos</h2>
-                <p>A delegação retorna ao Reino Unido com um Memorando de Entendimento (MoU) assinado para a próxima
-                    fase do projeto, que inclui uma visita recíproca de acadêmicos da UFRJ a Durham ainda este ano.</p>
-
-                <p>Convidamos a comunidade acadêmica a acompanhar o progresso dos <a href="#">experimentos piloto</a>
-                    que devem começar no próximo mês.</p>
+                <?php the_content(); ?>
             </div>
 
             <div id="print-footer" class="hidden">
                 <div class="qr-container">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://crossingboundaries.ac.uk/update/durham-visit"
-                        alt="Escaneie para ler online">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo urlencode(get_permalink()); ?>" alt="Scan to read online">
                 </div>
                 <div class="citation-info">
-                    <p><strong>Escaneie para ler online e acessar materiais suplementares.</strong></p>
-                    <p>Steel, P. (2026). <em>Delegação de Durham Fortalece Laços com a UFRJ</em>. Atualizações do
-                        Projeto Crossing Boundaries.</p>
-                    <p>URL: crossingboundaries.ac.uk/update/durham-visit</p>
+                    <p><strong><?php esc_html_e('Scan to read online & access supplementary materials.', 'crossingboundaries'); ?></strong></p>
+                    <p><?php the_author_meta('last_name'); ?>, <?php echo substr(get_the_author_meta('first_name'), 0, 1); ?>. (<?php echo get_the_date('Y'); ?>). <em><?php the_title(); ?></em>. Crossing Boundaries Project Updates.</p>
+                    <p>URL: <?php echo esc_html(get_permalink()); ?></p>
                 </div>
             </div>
 
-            <div id="share-section"
-                class="border-t border-gray-200 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="flex gap-2">
-                    <span
-                        class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Internacional</span>
-                    <span
-                        class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">UFRJ</span>
-                    <span
-                        class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Durham</span>
+            <div id="share-section" class="border-t border-gray-200 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex flex-wrap gap-2">
+                    <?php
+                    $tags = get_the_tags();
+                    if ($tags) {
+                        foreach ($tags as $tag) {
+                            echo '<a href="' . esc_url(get_tag_link($tag->term_id)) . '" class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide hover:bg-durham hover:text-white transition-colors">' . esc_html($tag->name) . '</a>';
+                        }
+                    }
+                    ?>
                 </div>
                 <div class="flex items-center gap-4 text-sm font-bold text-gray-600">
-                    <span>Compartilhe esta atualização:</span>
-                    <a href="#" class="hover:text-durham transition-colors"><i
-                            class="ph-fill ph-linkedin-logo text-xl"></i></a>
-                    <a href="#" class="hover:text-durham transition-colors"><i
-                            class="ph-fill ph-twitter-logo text-xl"></i></a>
-                    <a href="#" class="hover:text-durham transition-colors"><i
-                            class="ph-fill ph-envelope text-xl"></i></a>
+                    <span><?php esc_html_e('Share this update:', 'crossingboundaries'); ?></span>
+                    <?php
+                    $share_url = urlencode(get_permalink());
+                    $share_title = urlencode(get_the_title());
+                    ?>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $share_url; ?>&title=<?php echo $share_title; ?>" target="_blank" rel="noopener" class="hover:text-durham transition-colors" title="Share on LinkedIn">
+                        <i class="ph-fill ph-linkedin-logo text-2xl"></i>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?url=<?php echo $share_url; ?>&text=<?php echo $share_title; ?>" target="_blank" rel="noopener" class="hover:text-durham transition-colors" title="Share on X (Twitter)">
+                        <i class="ph-fill ph-x-logo text-xl"></i>
+                    </a>
                 </div>
             </div>
 
             <div id="post-navigation" class="grid grid-cols-2 gap-4 mt-12 pt-12 border-t border-gray-200">
-                <a href="#" class="group text-left">
-                    <span
-                        class="block text-xs font-bold text-gray-400 uppercase mb-1 group-hover:text-durham">Atualização
-                        Anterior</span>
-                    <span class="font-serif font-bold text-lg text-neutral-900 group-hover:underline">Sucesso na Reunião
-                        Virtual de Kick-off</span>
-                </a>
-                <a href="#" class="group text-right">
-                    <span class="block text-xs font-bold text-gray-400 uppercase mb-1 group-hover:text-durham">Próxima
-                        Atualização</span>
-                    <span class="font-serif font-bold text-lg text-neutral-900 group-hover:underline">Novo Financiamento
-                        Garantido para 2026</span>
-                </a>
+                <div class="text-left">
+                    <?php
+                    $prev_post = get_previous_post();
+                    if (!empty($prev_post)): ?>
+                        <a href="<?php echo get_permalink($prev_post->ID); ?>" class="group block">
+                            <span class="block text-xs font-bold text-gray-400 uppercase mb-1 group-hover:text-durham"><i class="ph-bold ph-arrow-left"></i> <?php esc_html_e('Previous Update', 'crossingboundaries'); ?></span>
+                            <span class="font-serif font-bold text-lg text-neutral-900 group-hover:underline line-clamp-2"><?php echo esc_html($prev_post->post_title); ?></span>
+                        </a>
+                    <?php endif; ?>
+                </div>
+
+                <div class="text-right">
+                    <?php
+                    $next_post = get_next_post();
+                    if (!empty($next_post)): ?>
+                        <a href="<?php echo get_permalink($next_post->ID); ?>" class="group block">
+                            <span class="block text-xs font-bold text-gray-400 uppercase mb-1 group-hover:text-durham"><?php esc_html_e('Next Update', 'crossingboundaries'); ?> <i class="ph-bold ph-arrow-right"></i></span>
+                            <span class="font-serif font-bold text-lg text-neutral-900 group-hover:underline line-clamp-2"><?php echo esc_html($next_post->post_title); ?></span>
+                        </a>
+                    <?php endif; ?>
+                </div>
             </div>
 
         </article>
 
-        <section id="related-posts" class="bg-neutral-50 border-t border-gray-200 py-16">
-            <div class="container mx-auto px-6">
-                <h3 class="font-serif font-bold text-2xl text-neutral-900 mb-8">Atualizações Relacionadas</h3>
+    <?php endwhile; ?>
 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <article
-                        class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all group flex flex-col h-full">
-                        <div class="h-48 overflow-hidden relative">
-                            <span
-                                class="absolute top-4 left-4 bg-blue-50 text-blue-700 backdrop-blur text-xs font-bold px-3 py-1 rounded shadow-sm uppercase tracking-wide z-10">Publicação</span>
-                            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col">
-                            <div class="flex items-center gap-2 text-xs text-gray-400 mb-3">02 Dez 2025</div>
-                            <h3
-                                class="font-serif font-bold text-lg text-neutral-900 mb-2 group-hover:text-durham transition-colors">
-                                <a href="#">Novo Artigo: Nanopesticidas</a>
-                            </h3>
-                        </div>
-                    </article>
-
-                    <article
-                        class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all group flex flex-col h-full">
-                        <div class="h-48 overflow-hidden relative">
-                            <span
-                                class="absolute top-4 left-4 bg-green-50 text-green-700 backdrop-blur text-xs font-bold px-3 py-1 rounded shadow-sm uppercase tracking-wide z-10">Trabalho
-                                de Campo</span>
-                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col">
-                            <div class="flex items-center gap-2 text-xs text-gray-400 mb-3">20 Nov 2025</div>
-                            <h3
-                                class="font-serif font-bold text-lg text-neutral-900 mb-2 group-hover:text-durham transition-colors">
-                                <a href="#">Coleta de Amostras na Reserva Biológica</a>
-                            </h3>
-                        </div>
-                    </article>
-
-                    <article
-                        class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all group flex flex-col h-full">
-                        <div class="h-48 overflow-hidden relative">
-                            <span
-                                class="absolute top-4 left-4 bg-purple-50 text-durham backdrop-blur text-xs font-bold px-3 py-1 rounded shadow-sm uppercase tracking-wide z-10">Evento</span>
-                            <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col">
-                            <div class="flex items-center gap-2 text-xs text-gray-400 mb-3">10 Out 2025</div>
-                            <h3
-                                class="font-serif font-bold text-lg text-neutral-900 mb-2 group-hover:text-durham transition-colors">
-                                <a href="#">Workshop COIL: Melhores Práticas</a>
-                            </h3>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-durham-dark border-t border-purple-900/50 pt-12 pb-8">
+    <section id="related-posts" class="bg-neutral-50 border-t border-gray-200 py-16">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-12 mb-12 text-white">
-                <div class="md:col-span-1">
-                    <span class="font-serif font-bold text-xl leading-tight block mb-4">Crossing <br>Boundaries</span>
-                    <p class="text-sm text-purple-200 mb-6">Conectando Durham e Brasil para um futuro sustentável.</p>
-                    <div class="flex gap-4">
-                        <a href="#" class="text-purple-200 hover:text-white transition-colors"><i
-                                class="ph ph-x-logo text-xl"></i></a>
-                        <a href="#" class="text-purple-200 hover:text-white transition-colors"><i
-                                class="ph ph-linkedin-logo text-xl"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-purple-100">Links Rápidos</h4>
-                    <ul class="space-y-2 text-sm text-purple-200">
-                        <li><a href="the-project-pt.html" class="hover:text-white transition-colors">O Projeto</a></li>
-                        <li><a href="solutions-pt.html" class="hover:text-white transition-colors">Soluções</a></li>
-                        <li><a href="our-team-pt.html" class="hover:text-white transition-colors">Nosso Time</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-purple-100">Contato</h4>
-                    <ul class="space-y-3 text-sm text-purple-200">
-                        <li class="flex items-start gap-3"><i class="ph ph-envelope-simple text-lg"></i> <a
-                                href="mailto:contact@crossingboundaries.ac.uk"
-                                class="hover:text-white underline">contact@crossingboundaries.ac.uk</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div
-                class="border-t border-purple-900/50 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-purple-300 gap-4">
-                <p>&copy; 2026 Durham University. Todos os direitos reservados.</p>
-                <div class="flex gap-6"><a href="#" class="hover:text-white">Acessibilidade</a><a href="#"
-                        class="hover:text-white">Política de Privacidade</a></div>
+            <h3 class="font-serif font-bold text-2xl text-neutral-900 mb-8"><?php esc_html_e('Related Updates', 'crossingboundaries'); ?></h3>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <?php
+                $related_args = array(
+                    'category__in'   => wp_get_post_categories(get_the_ID()),
+                    'post__not_in'   => array(get_the_ID()),
+                    'posts_per_page' => 3,
+                    'orderby'        => 'date'
+                );
+
+                $related_query = new WP_Query($related_args);
+
+                if ($related_query->have_posts()) :
+                    while ($related_query->have_posts()) : $related_query->the_post();
+                ?>
+                        <article class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all group flex flex-col h-full">
+                            <a href="<?php the_permalink(); ?>" class="block h-48 overflow-hidden relative bg-gray-100">
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <?php the_post_thumbnail('medium_large', ['class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-700']); ?>
+                                <?php else: ?>
+                                    <div class="w-full h-full flex items-center justify-center text-gray-300"><i class="ph-duotone ph-image text-4xl"></i></div>
+                                <?php endif; ?>
+                            </a>
+                            <div class="p-6 flex-1 flex flex-col">
+                                <div class="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                                    <i class="ph-bold ph-calendar-blank"></i> <?php echo get_the_date('d M Y'); ?>
+                                </div>
+                                <h3 class="font-serif font-bold text-lg text-neutral-900 mb-2 group-hover:text-durham transition-colors line-clamp-2">
+                                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                </h3>
+                            </div>
+                        </article>
+                <?php
+                    endwhile;
+                    wp_reset_postdata();
+                else :
+                    echo '<p class="text-gray-500 italic">' . esc_html__('No related updates found.', 'crossingboundaries') . '</p>';
+                endif;
+                ?>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <script>
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        const icon = btn.querySelector('i');
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            if (menu.classList.contains('hidden')) {
-                icon.classList.remove('ph-x');
-                icon.classList.add('ph-list');
-            } else {
-                icon.classList.remove('ph-list');
-                icon.classList.add('ph-x');
-            }
-        });
-    </script>
-</body>
+</main>
 
-</html>
+<?php get_footer(); ?>

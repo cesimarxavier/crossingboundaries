@@ -1,3 +1,8 @@
+<?php
+
+$url_theme = get_template_directory_uri();
+
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="scroll-smooth">
 
@@ -28,9 +33,9 @@
         content="A transatlantic collaboration focused on scientific innovation and intercultural dialogue.">
     <meta property="twitter:image" content="https://www.crossingboundaries.ac.uk/assets/social-share-en.jpg">
 
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="<?php echo $url_theme ?>assets/img/favicon.png">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<?php echo $url_theme . '' ?>style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
