@@ -99,15 +99,10 @@
             </div>
 
             <nav class="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
-                <a href="<?php echo esc_url(home_url('/the-project')); ?>" class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">The Project</a>
-                <a href="<?php echo esc_url(home_url('/updates')); ?>" class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Updates</a>
-                <a href="<?php echo esc_url(home_url('/our-team')); ?>" class="text-sm font-medium uppercase text-neutral-900 hover:text-durham hover:underline decoration-2 underline-offset-4 transition-all">Our Team</a>
 
-                <div class="ml-4 flex items-center gap-2 text-sm border-l border-gray-300 pl-6">
-                    <span class="font-bold text-durham">EN</span>
-                    <span class="text-gray-300">/</span>
-                    <a href="#" class="text-gray-400 hover:text-neutral-900 transition-colors">PT</a>
-                </div>
+                <?php ModularPress_Navigation::render_desktop_menu(); ?>
+                <?php ModularPress_Navigation::render_language_switcher(false); ?>
+
             </nav>
 
             <button id="mobile-menu-btn" class="lg:hidden text-neutral-900 p-2 focus:outline-none focus:ring-2 focus:ring-durham rounded-md">
@@ -120,10 +115,17 @@
                 <div class="flex justify-center gap-6 mb-4 border-b border-gray-100 pb-4 sm:hidden">
                     <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo-durham-university.svg" alt="Durham" class="h-10 w-auto object-contain">
                     <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo-ufrj.svg" alt="UFRJ" class="h-10 w-auto object-contain opacity-80">
+                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/british-council-1.svg" alt="UFRJ" class="h-10 w-auto object-contain opacity-80">
                 </div>
-                <a href="<?php echo esc_url(home_url('/the-project')); ?>" class="text-lg font-medium text-neutral-900 hover:text-durham">The Project</a>
-                <a href="<?php echo esc_url(home_url('/updates')); ?>" class="text-lg font-medium text-neutral-900 hover:text-durham">Updates</a>
-                <a href="<?php echo esc_url(home_url('/our-team')); ?>" class="text-lg font-medium text-neutral-900 hover:text-durham">Our Team</a>
+
+                <?php
+
+                /*** carregando do menu versão mobile */
+
+                ModularPress_Navigation::render_mobile_menu();
+                ModularPress_Navigation::render_language_switcher(true);
+
+                ?>
             </nav>
         </div>
     </header>

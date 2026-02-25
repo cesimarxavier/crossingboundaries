@@ -1,6 +1,10 @@
 <?php
 if (! defined('ABSPATH')) exit;
 
+// Carrega os módulos do Core
+require_once get_template_directory() . '/core/class-navigation.php';
+
+
 // Adiciona suportes nativos do tema
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
