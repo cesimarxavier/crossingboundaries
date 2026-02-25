@@ -13,7 +13,7 @@ add_action('after_setup_theme', function () {
     add_theme_support('menus');
 });
 
-/*
+
 // Carrega os scripts e estilos no <head>
 add_action('wp_enqueue_scripts', function () {
     // Phosphor Icons
@@ -37,6 +37,15 @@ add_action('wp_enqueue_scripts', function () {
 
     // Fontes do Google
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap', [], null);
-});
 
-*/
+    // Lógica Condicional de Impressão
+    if (is_single()) {
+        wp_enqueue_style(
+            'crossingboundaries-print', // ID do estilo
+            get_template_directory_uri() . '/assets/css/print-article.css', // Caminho do arquivo
+            [], // Dependências
+            '1.0.0', // Versão
+            'print' //
+        );
+    }
+});

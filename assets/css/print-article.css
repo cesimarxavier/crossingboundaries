@@ -1,0 +1,157 @@
+/* Configuração da Página A4 */
+@page {
+    size: A4;
+    margin: 1.5cm 2cm;
+}
+
+/* Reset Base de Tipografia para Papel */
+body {
+    font-family: 'Merriweather', 'Times New Roman', serif !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+    color: #000 !important;
+    background: white !important;
+}
+
+/* Esconder Elementos de Tela (Fallback caso o Tailwind falhe) */
+#header,
+#mobile-menu,
+#related-posts,
+#post-navigation,
+#share-section,
+footer,
+.breadcrumb,
+button {
+    display: none !important;
+}
+
+/* Container Reset */
+.container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* --- CABEÇALHO DE IMPRESSÃO --- */
+#print-header {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px double #000;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.print-logo {
+    height: 40px;
+    width: auto;
+    filter: grayscale(100%) contrast(150%);
+}
+
+/* --- TÍTULO E META DADOS --- */
+h1 {
+    font-family: 'Merriweather', serif !important;
+    font-weight: 900 !important;
+    font-size: 22pt !important;
+    line-height: 1.2 !important;
+    color: #000 !important;
+    margin-bottom: 10px !important;
+}
+
+.meta-data-print {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 9pt !important;
+    color: #444 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+}
+
+/* --- COLUNAS DE TEXTO (Estilo Jornal/Artigo Acadêmico) --- */
+.wp-content {
+    column-count: 2;
+    column-gap: 1cm;
+    text-align: justify;
+    hyphens: auto;
+}
+
+.wp-content p,
+.wp-content li {
+    orphans: 3;
+    widows: 3;
+}
+
+.wp-content h2,
+.wp-content h3 {
+    break-after: avoid;
+    column-span: all;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-top: 15px !important;
+    font-size: 14pt !important;
+}
+
+/* Imagens */
+.wp-content img,
+figure {
+    max-width: 100% !important;
+    height: auto !important;
+    break-inside: avoid;
+    margin: 10px 0 !important;
+    border: 1px solid #ccc;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+figure figcaption {
+    font-style: italic;
+    font-size: 8pt !important;
+    text-align: left !important;
+    color: #444 !important;
+}
+
+/* Blockquotes */
+.wp-content blockquote {
+    background: none !important;
+    border-left: 2px solid #000 !important;
+    font-size: 10pt !important;
+    font-style: italic;
+    padding: 5px 10px !important;
+    margin: 10px 0 !important;
+}
+
+/* Links em papel */
+.wp-content a {
+    text-decoration: none !important;
+    color: #000 !important;
+    font-weight: bold;
+}
+
+.wp-content a[href^="http"]:after {
+    content: " [" attr(href) "]";
+    font-size: 8pt;
+    font-weight: normal;
+}
+
+/* --- RODAPÉ DE IMPRESSÃO (QR CODE) --- */
+#print-footer {
+    display: flex !important;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #000;
+    page-break-inside: avoid;
+}
+
+.qr-container img {
+    width: 80px;
+    height: 80px;
+    border: none;
+}
+
+.citation-info {
+    font-size: 9pt;
+    font-family: 'Inter', sans-serif;
+}
