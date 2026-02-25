@@ -6,13 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php wp_title('|', true, 'right'); ?> Crossing Boundaries</title>
 
-    <meta name="description" content="An innovative collaboration between Durham University and UFRJ. Students united to solve global SDG challenges through science and intercultural dialogue.">
+    <meta name="description"
+        content="An innovative collaboration between Durham University and UFRJ. Students united to solve global SDG challenges through science and intercultural dialogue.">
+    <meta name="keywords"
+        content="COIL, UFRJ, Durham University, SDGs, Sustainability, Chemistry, Intercultural Education, Science, Brazil, UK">
+    <meta name="author" content="Durham University & UFRJ">
+    <meta name="robots" content="index, follow">
 
-    <link rel="icon" type="image/png" href="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/favicon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.crossingboundaries.ac.uk/en">
+    <meta property="og:title" content="Crossing Boundaries | Science Beyond Borders">
+    <meta property="og:description"
+        content="Discover how students from Brazil and the UK are bridging chemistry and culture to solve real-world UN challenges.">
+    <meta property="og:image" content="https://www.crossingboundaries.ac.uk/assets/social-share-en.jpg">
+    <meta property="og:locale" content="en_GB">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.crossingboundaries.ac.uk/en">
+    <meta property="twitter:title" content="Crossing Boundaries | Durham & UFRJ">
+    <meta property="twitter:description"
+        content="A transatlantic collaboration focused on scientific innovation and intercultural dialogue.">
+    <meta property="twitter:image" content="https://www.crossingboundaries.ac.uk/assets/social-share-en.jpg">
+
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=FN129iTWt9DpGIWOEP3rUgmk8VQ7-FhIACLRuY_Dpi2clcsxLmvanEm20-ECYe4MCvGEGwl6nY4CWmf9qPzMs4CrBfPEiPx8SwtuIlGsgfs" charset="UTF-8"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -43,44 +67,6 @@
             }
         }
     </script>
-
-    <style>
-        .skip-to-content {
-            position: absolute;
-            top: -999px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #68246D;
-            color: white;
-            padding: 1rem;
-            z-index: 100;
-        }
-
-        .skip-to-content:focus {
-            top: 0;
-        }
-
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .image-overlay {
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(104, 36, 109, 0.9) 100%);
-        }
-
-        .cursor-grab {
-            cursor: grab;
-        }
-
-        .cursor-grabbing {
-            cursor: grabbing;
-        }
-    </style>
 
     <?php wp_head(); ?>
 </head>
