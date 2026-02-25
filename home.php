@@ -16,8 +16,12 @@ get_header(); ?>
                 </span>
                 <h1 class="font-serif font-bold text-4xl md:text-5xl text-white mb-4">
                     <?php
-                    // Mostra o título da página definida nas opções do WP como "Página de Posts"
-                    single_post_title();
+                    $blog_page_id = get_option('page_for_posts');
+                    if ($blog_page_id) {
+                        echo esc_html(get_the_title($blog_page_id));
+                    } else {
+                        esc_html_e('Latest Updates', 'crossingboundaries');
+                    }
                     ?>
                 </h1>
                 <p class="text-purple-100 text-lg font-light leading-relaxed">
@@ -38,7 +42,7 @@ get_header(); ?>
                     </a>
 
                     <?php
-                    // Pega todas as categorias que têm posts
+                    // Filtros Nativos por Categoria
                     $categories = get_categories(array('hide_empty' => true));
                     foreach ($categories as $category) {
                         $is_active = is_category($category->term_id) ? 'bg-durham text-white border-durham' : 'text-gray-600 border-gray-200 hover:border-durham hover:text-durham';
@@ -53,11 +57,13 @@ get_header(); ?>
                     <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
                         <input type="text" name="s" placeholder="<?php esc_attr_e('Search updates...', 'crossingboundaries'); ?>" value="<?php echo get_search_query(); ?>"
                             class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-durham focus:ring-1 focus:ring-durham transition-all">
-                        <input type="hidden" name="post_type" value="post" /> <button type="submit" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-durham">
+                        <input type="hidden" name="post_type" value="post" />
+                        <button type="submit" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-durham transition-colors">
                             <i class="ph-bold ph-magnifying-glass"></i>
                         </button>
                     </form>
                 </div>
+
             </div>
         </div>
     </section>
@@ -71,31 +77,30 @@ get_header(); ?>
                     <?php while (have_posts()) : the_post(); ?>
                         <article id="post-<?php the_ID(); ?>" <?php post_class('bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full'); ?>>
 
-                            <div class="h-56 overflow-hidden relative bg-gray-100">
+                            <a href="<?php the_permalink(); ?>" class="block h-56 overflow-hidden relative bg-gray-100">
                                 <?php
-                                // Pegando a primeira categoria para a tag
                                 $categories = get_the_category();
                                 if (! empty($categories)) {
+                                    // A lógica de cores que criamos na classe ModularPress_Queries pode ser usada aqui se desejar, mas usaremos uma neutra padrão por agora.
                                     echo '<span class="absolute top-4 left-4 bg-white/90 backdrop-blur text-xs font-bold text-gray-800 px-3 py-1 rounded shadow-sm uppercase tracking-wide z-10">' . esc_html($categories[0]->name) . '</span>';
                                 }
 
                                 if (has_post_thumbnail()) {
                                     the_post_thumbnail('large', ['class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-700']);
                                 } else {
-                                    // Placeholder caso não tenha imagem
                                     echo '<div class="w-full h-full flex items-center justify-center text-gray-300"><i class="ph-duotone ph-image text-5xl"></i></div>';
                                 }
                                 ?>
-                            </div>
+                            </a>
 
                             <div class="p-6 flex-1 flex flex-col">
                                 <div class="flex items-center gap-2 text-xs text-gray-400 mb-3">
                                     <i class="ph-bold ph-calendar-blank"></i> <?php echo get_the_date('d M Y'); ?>
 
                                     <?php
-                                    // Exemplo de como usar um custom field (ACF) para "Localização", se existir
-                                    $location = get_field('event_location');
-                                    if ($location): ?>
+                                    // Localização (Metabox Nativo)
+                                    $location = get_post_meta(get_the_ID(), '_event_location', true);
+                                    if (!empty($location)): ?>
                                         <span>•</span>
                                         <span><?php echo esc_html($location); ?></span>
                                     <?php endif; ?>
@@ -106,7 +111,7 @@ get_header(); ?>
                                 </h3>
 
                                 <div class="text-sm text-gray-600 line-clamp-3 mb-4 flex-1">
-                                    <?php the_excerpt(); ?>
+                                    <?php echo wp_trim_words(get_the_excerpt(), 20, '...'); ?>
                                 </div>
 
                                 <a href="<?php the_permalink(); ?>" class="text-sm font-bold text-durham flex items-center mt-auto group/link">
@@ -121,11 +126,12 @@ get_header(); ?>
 
                 <div class="mt-16 flex justify-center">
                     <?php
+                    // Renderiza a navegação de páginas (1 2 3 ... Próxima) com classes para o CSS estilizar
                     the_posts_pagination(array(
                         'mid_size'  => 2,
-                        'prev_text' => '<i class="ph-bold ph-caret-left mr-1"></i> ' . __('Previous', 'crossingboundaries'),
-                        'next_text' => __('Next', 'crossingboundaries') . ' <i class="ph-bold ph-caret-right ml-1"></i>',
-                        'class'     => 'pagination-links flex items-center gap-2' // Precisaremos de um pequeno CSS auxiliar para isso ficar 100% igual ao Tailwind
+                        'prev_text' => '<i class="ph-bold ph-caret-left"></i> ' . __('Previous', 'crossingboundaries'),
+                        'next_text' => __('Next', 'crossingboundaries') . ' <i class="ph-bold ph-caret-right"></i>',
+                        'screen_reader_text' => __('Posts navigation', 'crossingboundaries'),
                     ));
                     ?>
                 </div>
@@ -135,8 +141,11 @@ get_header(); ?>
                     <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 text-gray-400 mb-6">
                         <i class="ph-duotone ph-article text-4xl"></i>
                     </div>
-                    <h2 class="font-serif font-bold text-2xl text-neutral-900 mb-4"><?php esc_html_e('No updates found', 'crossingboundaries'); ?></h2>
-                    <p class="text-gray-500"><?php esc_html_e('Check back later for new publications and events.', 'crossingboundaries'); ?></p>
+                    <h2 class="font-serif font-bold text-2xl text-neutral-900 mb-4"><?php esc_html_e('No updates found.', 'crossingboundaries'); ?></h2>
+                    <p class="text-gray-500 mb-8"><?php esc_html_e('We could not find any posts matching your criteria.', 'crossingboundaries'); ?></p>
+                    <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="text-durham font-bold underline hover:text-durham-dark">
+                        <?php esc_html_e('Clear filters and view all updates', 'crossingboundaries'); ?>
+                    </a>
                 </div>
             <?php endif; ?>
 

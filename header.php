@@ -19,7 +19,7 @@ $url_theme = get_template_directory_uri();
     <meta name="robots" content="index, follow">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.crossingboundaries.ac.uk/en">
+    <meta property="og:url" content="https://www.crossingboundaries.uk/en">
     <meta property="og:title" content="Crossing Boundaries | Science Beyond Borders">
     <meta property="og:description"
         content="Discover how students from Brazil and the UK are bridging chemistry and culture to solve real-world UN challenges.">
@@ -33,9 +33,9 @@ $url_theme = get_template_directory_uri();
         content="A transatlantic collaboration focused on scientific innovation and intercultural dialogue.">
     <meta property="twitter:image" content="https://www.crossingboundaries.ac.uk/assets/social-share-en.jpg">
 
-    <link rel="icon" type="image/png" href="<?php echo $url_theme ?>assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="<?php echo $url_theme ?>/assets/img/favicon.png">
 
-    <link rel="stylesheet" href="<?php echo $url_theme . '' ?>style.css">
+    <link rel="stylesheet" href="<?php echo $url_theme ?>/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -93,13 +93,13 @@ $url_theme = get_template_directory_uri();
                 <div class="hidden md:block h-10 w-px bg-gray-300"></div>
                 <div class="hidden md:flex items-center gap-4 opacity-100">
                     <a href="https://www.durham.ac.uk/" target="_blank" class="md:mr-2" title="Durham University">
-                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo-durham-university.svg" alt="Durham University" class="h-8 w-auto object-contain md:scale-[1]">
+                        <img src="<?php echo $url_theme ?>/assets/img/logo-durham-university.svg" alt="Durham University" class="h-8 w-auto object-contain md:scale-[1]">
                     </a>
                     <a href="https://ufrj.br/" target="_blank" class="md:mr-2" title="Federal University of Rio de Janeiro">
-                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo-ufrj.svg" alt="UFRJ" class="h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity md:scale-[1]">
+                        <img src="<?php echo $url_theme ?>/assets/img/logo-ufrj.svg" alt="UFRJ" class="h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity md:scale-[1]">
                     </a>
                     <a href="https://www.britishcouncil.org/" target="_blank" class="md:mr-2" title="British Council">
-                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/british-council-1.svg" alt="British Council" class="h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity md:scale-[1]">
+                        <img src="<?php echo $url_theme ?>/assets/img/british-council-1.svg" alt="British Council" class="h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity md:scale-[1]">
                     </a>
                 </div>
             </div>
@@ -119,9 +119,9 @@ $url_theme = get_template_directory_uri();
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute top-24 left-0 w-full shadow-lg z-40 h-screen sm:h-auto">
             <nav class="flex flex-col p-6 gap-6 text-center sm:text-left">
                 <div class="flex justify-center gap-6 mb-4 border-b border-gray-100 pb-4 sm:hidden">
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo-durham-university.svg" alt="Durham" class="h-10 w-auto object-contain">
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo-ufrj.svg" alt="UFRJ" class="h-10 w-auto object-contain opacity-80">
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/british-council-1.svg" alt="UFRJ" class="h-10 w-auto object-contain opacity-80">
+                    <img src="<?php echo $url_theme ?>/assets/img/logo-durham-university.svg" alt="Durham" class="h-10 w-auto object-contain">
+                    <img src="<?php echo $url_theme ?>/assets/img/logo-ufrj.svg" alt="UFRJ" class="h-10 w-auto object-contain opacity-80">
+                    <img src="<?php echo $url_theme ?>/assets/img/british-council-1.svg" alt="UFRJ" class="h-10 w-auto object-contain opacity-80">
                 </div>
 
                 <?php
