@@ -6,7 +6,7 @@ require_once get_template_directory() . '/core/class-navigation.php';
 require_once get_template_directory() . '/core/class-queries.php';
 require_once get_template_directory() . '/core/class-project-metaboxes.php';
 require_once get_template_directory() . '/core/class-theme-init.php';
-require_once get_template_directory() . '/core/class-team-module.php';
+require_once get_template_directory() . '/core/class-member-module.php';
 
 
 
