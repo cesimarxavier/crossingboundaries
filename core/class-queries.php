@@ -52,4 +52,4 @@ class ModularPress_Queries
             'order'          => 'ASC'
         ]);
     }
-
+}
