@@ -14,4 +14,15 @@ add_action('wp_enqueue_scripts', function () {
         [],
         wp_get_theme()->get('Version') // Cache buster baseado na versão do tema
     );
+
+    // Lógica Condicional de Impressão
+    if (is_single()) {
+        wp_enqueue_style(
+            'crossingboundaries-print', // ID do estilo
+            get_template_directory_uri() . '/assets/css/print-article.css', // Caminho do arquivo
+            [], // Dependências
+            '1.0.0', // Versão
+            'print' //
+        );
+    }
 });
