@@ -37,18 +37,19 @@ class ModularPress_Queries
 
         return 'bg-gray-100 text-gray-800'; // Default fallback
     }
-}
 
 
-/**
+    /**
      * Busca os membros da equipe.
      * @param int $count Quantidade (-1 para todos)
      * @return WP_Query
      */
-    public static function get_team_members($count = -1) {
+    public static function get_team_members($count = -1)
+    {
         return new WP_Query([
             'post_type'      => 'team',
             'posts_per_page' => $count,
             'order'          => 'ASC'
         ]);
     }
+}
