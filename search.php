@@ -2,6 +2,7 @@
 
 /**
  * Template para exibir a página de Resultados de Busca
+ * Mantém o design exato do template search-en.html original
  */
 get_header(); ?>
 
@@ -16,7 +17,7 @@ get_header(); ?>
             <div class="relative">
                 <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
                     <input type="text" name="s" id="main-search" value="<?php echo get_search_query(); ?>"
-                        class="w-full pl-14 pr-32 py-5 rounded-xl border-2 border-gray-200 text-lg focus:outline-none focus:border-durham focus:ring-4 focus:ring-durham/10 transition-all shadow-sm font-medium text-neutral-800"
+                        class="w-full pl-14 pr-32 py-5 rounded-xl border-2 border-gray-200 text-lg focus:outline-none focus:border-durham focus:ring-4 focus:ring-durham/10 transition-all shadow-sm placeholder-gray-400 font-medium text-neutral-900"
                         placeholder="<?php esc_attr_e('Type to search again...', 'crossingboundaries'); ?>">
                     <input type="hidden" name="post_type" value="post" />
 
@@ -53,16 +54,15 @@ get_header(); ?>
                 <div id="results-container" class="space-y-4">
 
                     <?php
-                    // Início do The Loop
                     while (have_posts()) : the_post();
 
-                        // Captura a categoria para exibir o badge dinâmico
+                        // Captura a categoria do post para aplicar a cor do badge corretamente
                         $categories = get_the_category();
                         $cat_name = !empty($categories) ? esc_html($categories[0]->name) : __('Update', 'crossingboundaries');
                         $cat_slug = !empty($categories) ? strtolower($categories[0]->slug) : '';
 
-                        // Lógica de cores baseada no slug da categoria
-                        $badge_class = 'bg-gray-100 text-gray-700'; // Padrão
+                        // Lógica de cores baseada no template original
+                        $badge_class = 'bg-gray-100 text-gray-700'; // Default
                         if (in_array($cat_slug, ['event', 'evento', 'events'])) {
                             $badge_class = 'bg-orange-100 text-orange-700';
                         } elseif (in_array($cat_slug, ['publication', 'publicacao', 'publicacoes'])) {
@@ -75,12 +75,13 @@ get_header(); ?>
                             $badge_class = 'bg-yellow-100 text-yellow-800';
                         }
                     ?>
-                        <article class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-durham/30 transition-all flex flex-col md:flex-row gap-5 items-start fade-in">
+
+                        <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-durham/30 transition-all flex flex-col md:flex-row gap-5 items-start fade-in">
 
                             <div class="shrink-0 pt-1">
-                                <a href="<?php echo !empty($categories) ? esc_url(get_category_link($categories[0]->term_id)) : '#'; ?>" class="inline-block px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-widest w-28 text-center <?php echo esc_attr($badge_class); ?> hover:opacity-80 transition-opacity">
+                                <span class="inline-block px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-widest w-28 text-center <?php echo esc_attr($badge_class); ?>">
                                     <?php echo $cat_name; ?>
-                                </a>
+                                </span>
                             </div>
 
                             <div class="flex-1">
@@ -89,9 +90,9 @@ get_header(); ?>
                                         <?php the_title(); ?>
                                     </a>
                                 </h3>
-                                <div class="text-sm text-gray-600 mb-3 leading-relaxed line-clamp-2">
+                                <p class="text-sm text-gray-600 mb-3 leading-relaxed line-clamp-2">
                                     <?php echo wp_trim_words(get_the_excerpt(), 25, '...'); ?>
-                                </div>
+                                </p>
                                 <div class="text-xs text-gray-400 font-medium flex items-center gap-2">
                                     <i class="ph-bold ph-calendar-blank"></i> <?php echo get_the_date('d M, Y'); ?>
                                 </div>
@@ -103,7 +104,8 @@ get_header(); ?>
                                 </a>
                             </div>
 
-                        </article>
+                        </div>
+
                     <?php endwhile; ?>
 
                 </div>
@@ -115,7 +117,7 @@ get_header(); ?>
                         'prev_text' => '<i class="ph-bold ph-caret-left"></i>',
                         'next_text' => '<i class="ph-bold ph-caret-right"></i>',
                         'class'     => 'pagination-links flex items-center gap-2',
-                        'screen_reader_text' => ' ' // Remove o texto "Navegação de posts" visualmente
+                        'screen_reader_text' => ' '
                     ));
                     ?>
                 </div>
