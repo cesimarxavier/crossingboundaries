@@ -183,6 +183,59 @@
         </div>
     </section>
 
+    <section id="team" class="py-24 bg-neutral-50 border-t border-gray-200">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-serif font-bold text-3xl text-neutral-900 mb-12">
+                <?php esc_html_e('Minds Behind the Project', 'crossingboundaries'); ?>
+            </h2>
+
+            <div class="flex flex-wrap justify-center gap-12 mb-12">
+                <?php
+                // Puxa 4 membros da equipe (ou mude para 5, 6, conforme desejar)
+                $team_query = ModularPress_Queries::get_team_members(4);
+
+                if ($team_query->have_posts()) :
+                    while ($team_query->have_posts()) : $team_query->the_post();
+
+                        // Busca Cargo e Imagem de forma nativa
+                        $role    = get_post_meta(get_the_ID(), '_team_role', true);
+                        // O tamanho 'thumbnail' é perfeito aqui, pois a imagem é pequena (w-24 = 96px)
+                        $img_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
+                ?>
+
+                        <div class="flex flex-col items-center group">
+                            <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md mb-4 group-hover:border-durham transition-colors flex items-center justify-center bg-gray-100">
+                                <?php if ($img_url) : ?>
+                                    <img src="<?php echo esc_url($img_url); ?>" alt="<?php the_title_attribute(); ?>" class="w-full h-full object-cover">
+                                <?php else : ?>
+                                    <i class="ph-fill ph-user text-4xl text-gray-300"></i>
+                                <?php endif; ?>
+                            </div>
+
+                            <h4 class="font-bold text-neutral-900"><?php the_title(); ?></h4>
+
+                            <?php if ($role) : ?>
+                                <span class="text-xs text-gray-500 uppercase font-medium mt-1">
+                                    <?php echo esc_html($role); ?>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+
+                <?php
+                    endwhile;
+                    wp_reset_postdata(); // Restaura o contexto da página Home
+                endif;
+                ?>
+            </div>
+
+            <a href="<?php echo esc_url(home_url('/our-team')); ?>" class="inline-block border-b border-durham text-durham font-semibold hover:text-durham-dark pb-1 transition-colors">
+                <?php esc_html_e('Meet the full team & curricula', 'crossingboundaries'); ?>
+            </a>
+        </div>
+    </section>
+
+    <?php
+    /**
     <section id="time" class="py-24 bg-neutral-50 border-t border-gray-200">
         <div class="container mx-auto px-6 text-center">
             <h2 class="font-serif font-bold text-3xl text-neutral-900 mb-12">Minds Behind the Project</h2>
@@ -219,6 +272,8 @@
             </a>
         </div>
     </section>
+     */
+    ?>
 
 </main>
 
