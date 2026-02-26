@@ -1,0 +1,14 @@
+{
+  "name": "modularpress-scaffold",
+  "version": "1.0.0",
+  "description": "Scaffold modular para temas WordPress com Tailwind e CDD.",
+  "scripts": {
+    "generate": "node scaffold.js",
+    "dev:site": "npx tailwindcss -i ./src/style.css -o ./assets/css/style.min.css --watch",
+    "dev:admin": "npx tailwindcss -c ./tailwind.admin.config.js -i ./src/admin-input.css -o ./assets/css/admin-style.min.css --watch",
+    "build": "npx tailwindcss -i ./src/style.css -o ./assets/css/style.min.css --minify && npx tailwindcss -c ./tailwind.admin.config.js -i ./src/admin-input.css -o ./assets/css/admin-style.min.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
