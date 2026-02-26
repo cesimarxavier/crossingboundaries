@@ -9,37 +9,22 @@ $url_theme = get_template_directory_uri();
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php wp_title('|', true, 'right'); ?> Crossing Boundaries</title>
 
-    <meta name="description"
-        content="An innovative collaboration between Durham University and UFRJ. Students united to solve global SDG challenges through science and intercultural dialogue.">
-    <meta name="keywords"
-        content="COIL, UFRJ, Durham University, SDGs, Sustainability, Chemistry, Intercultural Education, Science, Brazil, UK">
-    <meta name="author" content="Durham University & UFRJ">
-    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href="<?php echo $url_theme; ?>/assets/img/favicon.png">
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.crossingboundaries.uk/en">
-    <meta property="og:title" content="Crossing Boundaries | Science Beyond Borders">
-    <meta property="og:description"
-        content="Discover how students from Brazil and the UK are bridging chemistry and culture to solve real-world UN challenges.">
-    <meta property="og:image" content="https://www.crossingboundaries.ac.uk/assets/social-share-en.jpg">
-    <meta property="og:locale" content="en_GB">
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.crossingboundaries.ac.uk/en">
-    <meta property="twitter:title" content="Crossing Boundaries | Durham & UFRJ">
-    <meta property="twitter:description"
-        content="A transatlantic collaboration focused on scientific innovation and intercultural dialogue.">
-    <meta property="twitter:image" content="https://www.crossingboundaries.ac.uk/assets/social-share-en.jpg">
-
-    <link rel="icon" type="image/png" href="<?php echo $url_theme ?>/assets/img/favicon.png">
-
-    <link rel="stylesheet" href="<?php echo $url_theme ?>/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <?php wp_head(); ?>
+    <?php
+    /**
+     * O gancho wp_head() é obrigatório.
+     * É aqui que o WordPress e os plugins vão injetar:
+     * - A tag <title> correta da página
+     * - O script do Tailwind e ícones (que configuramos no functions.php)
+     * - As tags de SEO (Meta description, Open Graph, Twitter Cards)
+     */
+    wp_head();
+    ?>
 </head>
 
 <body <?php body_class('font-sans text-neutral-600 antialiased bg-white selection:bg-durham selection:text-white'); ?>>
