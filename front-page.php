@@ -1,4 +1,24 @@
-<?php get_header(); ?>
+<?php
+get_header();
+
+// 1. DESCUBRE O IDIOMA ATUAL (Olhando para a URL ?lang=pt)
+$current_lang = (isset($_GET['lang']) && $_GET['lang'] === 'pt') ? '_pt' : '_en';
+
+$id = get_the_ID();
+
+// 2. PUXA OS DADOS COM O SUFIXO DINÂMICO
+$hero_label = get_post_meta($id, '_home_hero_label' . $current_lang, true);
+$hero_title = get_post_meta($id, '_home_hero_title' . $current_lang, true);
+$hero_desc  = get_post_meta($id, '_home_hero_desc' . $current_lang, true);
+
+$about_label   = get_post_meta($id, '_home_about_label' . $current_lang, true);
+$about_title   = get_post_meta($id, '_home_about_title' . $current_lang, true);
+$about_content = get_post_meta($id, '_home_about_content' . $current_lang, true);
+
+// A imagem não tem idioma, então não usa o sufixo dinâmico
+$about_img = get_post_meta($id, '_home_about_img', true) ?: get_template_directory_uri() . '/assets/img/placeholder-about.jpg';
+
+?>
 
 <main id="main-content">
     <section class="relative h-[90vh] min-h-[600px] flex items-center">
@@ -191,8 +211,8 @@
 
             <div class="flex flex-wrap justify-center gap-12 mb-12">
                 <?php
-                // Puxa 4 membros da equipe (ou mude para 5, 6, conforme desejar)
-                $team_query = ModularPress_Queries::get_team_members(4);
+                // Puxa 6 membros da equipe (ou mude para 5, 6, conforme desejar)
+                $team_query = ModularPress_Queries::get_team_members(6);
 
                 if ($team_query->have_posts()) :
                     while ($team_query->have_posts()) : $team_query->the_post();

@@ -2,7 +2,10 @@
 
 $url_theme = get_template_directory_uri();
 
+// Descobre qual idioma está ativo agora para pintar de roxo
+$active_lang = (isset($_GET['lang']) && $_GET['lang'] === 'pt') ? 'pt' : 'en';
 ?>
+
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="scroll-smooth">
 
@@ -27,10 +30,12 @@ $url_theme = get_template_directory_uri();
     ?>
 </head>
 
+
+
 <body <?php body_class('font-sans text-neutral-600 antialiased bg-white selection:bg-durham selection:text-white'); ?>>
     <?php wp_body_open(); ?>
 
-    <a href="#main-content" class="skip-to-content rounded-b-lg font-bold shadow-lg">Skip to main content</a>
+    <a href="#main-content" class="skip-to-content rounded-b-lg font-bold shadow-lg hidden">Skip to main content</a>
 
     <header class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-gray-100 transition-all duration-300" id="header">
         <div class="container mx-auto px-6 h-24 flex items-center justify-between">

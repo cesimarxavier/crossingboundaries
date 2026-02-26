@@ -7,7 +7,8 @@ require_once get_template_directory() . '/core/class-queries.php';
 require_once get_template_directory() . '/core/class-project-metaboxes.php';
 require_once get_template_directory() . '/core/class-theme-init.php';
 require_once get_template_directory() . '/core/class-member-module.php';
-
+// Módulo da Página Inicial (Meta Boxes)
+require_once get_template_directory() . '/core/class-home-module.php';
 
 
 // Adiciona suportes nativos do tema
