@@ -211,16 +211,22 @@ $about_img = get_post_meta($id, '_home_about_img', true) ?: get_template_directo
 
             <div class="flex flex-wrap justify-center gap-12 mb-12">
                 <?php
-                // Puxa 6 membros da equipe (ou mude para 5, 6, conforme desejar)
-                $team_query = ModularPress_Queries::get_team_members(6);
+                // QUERY DIRETA E EXPLÍCITA (À prova de falhas)
+                $team_args = array(
+                    'post_type'      => 'member', // Puxando o novo CPT
+                    'posts_per_page' => 4,
+                    'post_status'    => 'publish',
+                    'orderby'        => 'date',
+                    'order'          => 'DESC'
+                );
+                $team_query = new WP_Query($team_args);
 
                 if ($team_query->have_posts()) :
                     while ($team_query->have_posts()) : $team_query->the_post();
 
-                        // Busca Cargo e Imagem de forma nativa
-                        $role    = get_post_meta(get_the_ID(), '_team_role', true);
-                        // O tamanho 'thumbnail' é perfeito aqui, pois a imagem é pequena (w-24 = 96px)
-                        $img_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
+                        $member_id = get_the_ID();
+                        $role      = get_post_meta($member_id, '_member_role', true);
+                        $img_url   = get_the_post_thumbnail_url($member_id, 'thumbnail');
                 ?>
 
                         <div class="flex flex-col items-center group">
@@ -243,7 +249,10 @@ $about_img = get_post_meta($id, '_home_about_img', true) ?: get_template_directo
 
                 <?php
                     endwhile;
-                    wp_reset_postdata(); // Restaura o contexto da página Home
+                    wp_reset_postdata();
+                else :
+                    // MENSAGEM DE DEBUG: Se cair aqui, sabemos que a query rodou, mas não achou nada no banco!
+                    echo '<p class="text-gray-500 italic w-full">Nenhum membro encontrado. Verifique se estão publicados no menu "Members" e se possuem um idioma atribuído (caso o Polylang esteja ativo).</p>';
                 endif;
                 ?>
             </div>
