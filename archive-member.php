@@ -147,70 +147,81 @@ get_header();
     </section>
 </main>
 
-<div id="profile-modal" class="fixed inset-0 z-[100] hidden modal-backdrop bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative modal-content flex flex-col md:flex-row overflow-hidden">
+<div id="profile-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name" class="fixed inset-0 z-[100] hidden modal-backdrop bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 md:p-6">
 
-        <button onclick="closeProfile()" class="absolute top-4 right-4 z-50 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center text-gray-500 hover:text-durham transition-colors shadow-sm">
-            <i class="ph-bold ph-x text-xl"></i>
+    <div class="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[95vh] overflow-y-auto relative modal-content flex flex-col md:flex-row">
+
+        <button onclick="closeProfile()" aria-label="Close profile" class="absolute top-6 right-6 z-50 text-gray-400 hover:text-gray-800 transition-colors">
+            <i class="ph ph-x text-2xl" aria-hidden="true"></i>
         </button>
 
-        <div class="md:w-1/3 bg-neutral-50 p-8 flex flex-col items-center text-center border-r border-gray-100">
-            <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-white shadow-lg mb-6" id="modal-img-container"></div>
-            <h3 id="modal-name" class="font-serif font-bold text-2xl text-neutral-900 mb-2 leading-tight"></h3>
-            <p id="modal-role" class="text-sm font-bold text-durham uppercase tracking-wider mb-6"></p>
+        <div class="md:w-1/3 bg-neutral-50 p-8 md:p-12 flex flex-col items-center text-center border-r border-gray-100">
 
-            <div class="w-full text-left">
-                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3"><?php esc_html_e('Research Interests', 'crossingboundaries'); ?></p>
-                <div id="modal-tags" class="flex flex-col gap-2"></div>
+            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-sm mb-6 bg-white" id="modal-img-container"></div>
+
+            <h3 id="modal-name" class="font-serif font-bold text-3xl text-neutral-900 mb-2 leading-tight"></h3>
+
+            <div id="modal-role" class="text-xs font-bold text-durham uppercase tracking-widest mb-10 text-center leading-relaxed"></div>
+
+            <div class="w-full text-left mt-4">
+                <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4">Research Interests</p>
+                <div id="modal-tags" class="flex flex-col gap-3"></div>
             </div>
 
-            <div id="modal-social-links" class="mt-8 pt-8 border-t border-gray-200 w-full flex justify-center gap-4 hidden">
-                <a id="modal-linkedin" href="#" target="_blank" class="text-gray-400 hover:text-durham text-2xl transition-colors hidden"><i class="ph-fill ph-linkedin-logo"></i></a>
-                <a id="modal-email" href="#" class="text-gray-400 hover:text-durham text-2xl transition-colors hidden"><i class="ph-fill ph-envelope-simple"></i></a>
-                <a id="modal-lattes" href="#" target="_blank" class="text-gray-400 hover:text-durham text-2xl transition-colors hidden"><i class="ph-bold ph-graduation-cap"></i></a>
+            <div id="modal-social-links" class="mt-10 pt-8 border-t border-gray-200 w-full flex justify-center gap-5 hidden">
+                <a id="modal-linkedin" href="#" target="_blank" class="text-gray-400 hover:text-durham text-2xl transition-colors hidden"><i class="ph-fill ph-linkedin-logo" aria-hidden="true"></i></a>
+                <a id="modal-email" href="#" class="text-gray-400 hover:text-durham text-2xl transition-colors hidden"><i class="ph-fill ph-envelope-simple" aria-hidden="true"></i></a>
+                <a id="modal-lattes" href="#" target="_blank" class="text-gray-400 hover:text-durham text-2xl transition-colors hidden"><i class="ph-bold ph-graduation-cap" aria-hidden="true"></i></a>
             </div>
         </div>
 
-        <div class="md:w-2/3 p-8 md:p-12 overflow-y-auto">
-            <div class="mb-8">
-                <h4 class="font-serif font-bold text-xl text-neutral-900 mb-4 border-b border-gray-100 pb-2"><?php esc_html_e('Biography', 'crossingboundaries'); ?></h4>
-                <div id="modal-bio" class="prose prose-sm text-gray-600 leading-relaxed space-y-4"></div>
+        <div class="md:w-2/3 p-8 md:p-12 lg:p-16 overflow-y-auto">
+            <div class="mb-10">
+                <h4 class="font-serif font-bold text-2xl text-neutral-900 mb-6 border-b border-gray-100 pb-4"><?php esc_html_e('Biography', 'crossingboundaries'); ?></h4>
+                <div id="modal-bio" class="text-base text-gray-600 leading-relaxed space-y-5"></div>
             </div>
+
             <div>
-                <h4 class="font-serif font-bold text-xl text-neutral-900 mb-4 border-b border-gray-100 pb-2"><?php esc_html_e('Selected Publications', 'crossingboundaries'); ?></h4>
-                <ul id="modal-pubs" class="space-y-4 text-sm text-gray-600"></ul>
+                <h4 class="font-serif font-bold text-2xl text-neutral-900 mb-6 border-b border-gray-100 pb-4"><?php esc_html_e('Selected Publications', 'crossingboundaries'); ?></h4>
+                <ul id="modal-pubs" class="space-y-4 text-sm text-gray-600 leading-relaxed"></ul>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // Carrega os dados gerados pelo PHP
     const teamData = <?php echo wp_json_encode($js_team_data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
     const modal = document.getElementById('profile-modal');
+    let lastFocusedElement;
 
     function openProfile(key) {
         const data = teamData[key];
         if (!data) return;
 
+        lastFocusedElement = document.activeElement;
+
         document.getElementById('modal-img-container').innerHTML = data.img ? `<img src="${data.img}" class="w-full h-full object-cover">` : `<div class="w-full h-full bg-gray-100 flex items-center justify-center"><i class="ph-fill ph-user text-5xl text-gray-300"></i></div>`;
         document.getElementById('modal-name').innerText = data.name;
-        document.getElementById('modal-role').innerText = data.role;
+
+        // Formata o cargo quebrando linha se tiver o bullet (•), igual ao print
+        let roleHtml = data.role.replace(' • ', '<br>•<br>');
+        document.getElementById('modal-role').innerHTML = roleHtml;
+
         document.getElementById('modal-bio').innerHTML = data.bio;
 
-        // CORREÇÃO VISUAL: Agora imprime as tags empilhadas apenas com a fonte em roxo (sem o box cinza)
-        document.getElementById('modal-tags').innerHTML = data.interests.map(tag => `<span class="text-durham text-xs font-bold uppercase tracking-wider">${tag}</span>`).join('');
+        // Renderiza as tags EXATAMENTE como no design da direita (Texto limpo, roxo, sem background)
+        document.getElementById('modal-tags').innerHTML = data.interests.map(tag => `<span class="text-durham text-xs font-bold uppercase tracking-wider block">${tag}</span>`).join('');
 
-        document.getElementById('modal-pubs').innerHTML = (data.pubs && data.pubs.length > 0) ? data.pubs.map(pub => `<li class="pl-4 border-l-2 border-durham/30 leading-snug">${pub}</li>`).join('') : '<li class="text-gray-400 italic"><?php esc_html_e('No publications listed.', 'crossingboundaries'); ?></li>';
+        // Renderiza as publicações sem a borda lateral grossa (mais clean)
+        document.getElementById('modal-pubs').innerHTML = (data.pubs && data.pubs.length > 0) ? data.pubs.map(pub => `<li class="pl-0">${pub}</li>`).join('') : '<li class="text-gray-400 italic"><?php esc_html_e('No publications listed.', 'crossingboundaries'); ?></li>';
 
-        // LÓGICA DAS REDES SOCIAIS
+        // Redes Sociais
         const sLinkedin = document.getElementById('modal-linkedin');
         const sEmail = document.getElementById('modal-email');
         const sLattes = document.getElementById('modal-lattes');
         const sContainer = document.getElementById('modal-social-links');
 
         let hasSocial = false;
-
         if (data.social && data.social.linkedin) {
             sLinkedin.href = data.social.linkedin;
             sLinkedin.classList.remove('hidden');
@@ -218,7 +229,6 @@ get_header();
         } else {
             sLinkedin.classList.add('hidden');
         }
-
         if (data.social && data.social.email) {
             sEmail.href = data.social.email.startsWith('mailto:') ? data.social.email : 'mailto:' + data.social.email;
             sEmail.classList.remove('hidden');
@@ -226,7 +236,6 @@ get_header();
         } else {
             sEmail.classList.add('hidden');
         }
-
         if (data.social && data.social.lattes) {
             sLattes.href = data.social.lattes;
             sLattes.classList.remove('hidden');
@@ -244,6 +253,7 @@ get_header();
         modal.classList.remove('hidden');
         setTimeout(() => {
             modal.classList.add('active');
+            modal.querySelector('button[aria-label="Close profile"]').focus();
         }, 10);
         document.body.style.overflow = 'hidden';
     }
@@ -253,6 +263,7 @@ get_header();
         setTimeout(() => {
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+            if (lastFocusedElement) lastFocusedElement.focus();
         }, 300);
     }
 
