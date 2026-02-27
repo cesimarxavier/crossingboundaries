@@ -171,4 +171,97 @@ get_header();
             </div>
         </div>
 
-        <div class="md:w-2/3 p-8 md:p-12 overflow-y
+        <div class="md:w-2/3 p-8 md:p-12 overflow-y-auto">
+            <div class="mb-8">
+                <h4 class="font-serif font-bold text-xl text-neutral-900 mb-4 border-b border-gray-100 pb-2"><?php esc_html_e('Biography', 'crossingboundaries'); ?></h4>
+                <div id="modal-bio" class="prose prose-sm text-gray-600 leading-relaxed space-y-4"></div>
+            </div>
+            <div>
+                <h4 class="font-serif font-bold text-xl text-neutral-900 mb-4 border-b border-gray-100 pb-2"><?php esc_html_e('Selected Publications', 'crossingboundaries'); ?></h4>
+                <ul id="modal-pubs" class="space-y-4 text-sm text-gray-600"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Carrega os dados gerados pelo PHP
+    const teamData = <?php echo wp_json_encode($js_team_data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?>;
+    const modal = document.getElementById('profile-modal');
+
+    function openProfile(key) {
+        const data = teamData[key];
+        if (!data) return;
+
+        document.getElementById('modal-img-container').innerHTML = data.img ? `<img src="${data.img}" class="w-full h-full object-cover">` : `<div class="w-full h-full bg-gray-100 flex items-center justify-center"><i class="ph-fill ph-user text-5xl text-gray-300"></i></div>`;
+        document.getElementById('modal-name').innerText = data.name;
+        document.getElementById('modal-role').innerText = data.role;
+        document.getElementById('modal-bio').innerHTML = data.bio;
+
+        // CORREÇÃO VISUAL: Agora imprime as tags empilhadas apenas com a fonte em roxo (sem o box cinza)
+        document.getElementById('modal-tags').innerHTML = data.interests.map(tag => `<span class="text-durham text-xs font-bold uppercase tracking-wider">${tag}</span>`).join('');
+
+        document.getElementById('modal-pubs').innerHTML = (data.pubs && data.pubs.length > 0) ? data.pubs.map(pub => `<li class="pl-4 border-l-2 border-durham/30 leading-snug">${pub}</li>`).join('') : '<li class="text-gray-400 italic"><?php esc_html_e('No publications listed.', 'crossingboundaries'); ?></li>';
+
+        // LÓGICA DAS REDES SOCIAIS
+        const sLinkedin = document.getElementById('modal-linkedin');
+        const sEmail = document.getElementById('modal-email');
+        const sLattes = document.getElementById('modal-lattes');
+        const sContainer = document.getElementById('modal-social-links');
+
+        let hasSocial = false;
+
+        if (data.social && data.social.linkedin) {
+            sLinkedin.href = data.social.linkedin;
+            sLinkedin.classList.remove('hidden');
+            hasSocial = true;
+        } else {
+            sLinkedin.classList.add('hidden');
+        }
+
+        if (data.social && data.social.email) {
+            sEmail.href = data.social.email.startsWith('mailto:') ? data.social.email : 'mailto:' + data.social.email;
+            sEmail.classList.remove('hidden');
+            hasSocial = true;
+        } else {
+            sEmail.classList.add('hidden');
+        }
+
+        if (data.social && data.social.lattes) {
+            sLattes.href = data.social.lattes;
+            sLattes.classList.remove('hidden');
+            hasSocial = true;
+        } else {
+            sLattes.classList.add('hidden');
+        }
+
+        if (hasSocial) {
+            sContainer.classList.remove('hidden');
+        } else {
+            sContainer.classList.add('hidden');
+        }
+
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProfile() {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }, 300);
+    }
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeProfile();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeProfile();
+    });
+</script>
+
+<?php get_footer(); ?>
