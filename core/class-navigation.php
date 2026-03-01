@@ -63,14 +63,7 @@ class ModularPress_Navigation
     {
         // Se o Polylang estiver ativo, puxa dinamicamente
         if (function_exists('pll_the_languages')) {
-            $languages = pll_the_languages(
-                [
-                    'show_flags'   => 0, // 0 = Texto, 1 = Bandeiras
-                    'show_names'   => 1, // Exibe "English" ou "Português" (ou as siglas EN/PT se você editou no painel)
-                    'hide_current' => 0, // Mantém os dois visíveis
-                    'echo'         => 1
-                ]
-            );
+            $languages = pll_the_languages(['raw' => 1]);
 
             // Layout Desktop
             if (!$is_mobile) {
