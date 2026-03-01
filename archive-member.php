@@ -8,6 +8,10 @@ get_header();
 ?>
 
 <style>
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
     .modal-backdrop {
         opacity: 0;
         pointer-events: none;
@@ -147,15 +151,15 @@ get_header();
     </section>
 </main>
 
-<div id="profile-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name" class="fixed inset-0 z-[100] hidden modal-backdrop bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 md:p-6">
+<div id="profile-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name" class="fixed inset-0 z-[100] modal-backdrop bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
 
-    <div class="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[95vh] overflow-y-auto relative modal-content flex flex-col md:flex-row">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative modal-content flex flex-col md:flex-row overflow-hidden">
 
-        <button onclick="closeProfile()" aria-label="Close profile" class="absolute top-6 right-6 z-50 text-gray-400 hover:text-gray-800 transition-colors">
+        <button onclick="closeProfile()" aria-label="Close profile" class="absolute top-4 right-4 z-50 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center text-gray-500 hover:text-durham transition-colors shadow-sm">
             <i class="ph ph-x text-2xl" aria-hidden="true"></i>
         </button>
 
-        <div class="md:w-1/3 bg-neutral-50 p-8 md:p-12 flex flex-col items-center text-center border-r border-gray-100">
+        <div class="md:w-1/3 bg-neutral-50 p-8 flex flex-col items-center text-center border-r border-gray-100">
 
             <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-sm mb-6 bg-white" id="modal-img-container"></div>
 
@@ -175,7 +179,7 @@ get_header();
             </div>
         </div>
 
-        <div class="md:w-2/3 p-8 md:p-12 lg:p-16 overflow-y-auto">
+        <div class="md:w-2/3 p-8 md:p-12 overflow-y-auto">
             <div class="mb-10">
                 <h4 class="font-serif font-bold text-2xl text-neutral-900 mb-6 border-b border-gray-100 pb-4"><?php esc_html_e('Biography', 'crossingboundaries'); ?></h4>
                 <div id="modal-bio" class="text-base text-gray-600 leading-relaxed space-y-5"></div>

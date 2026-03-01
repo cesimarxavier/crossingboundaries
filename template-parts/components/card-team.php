@@ -38,7 +38,7 @@ $card_tags = array_slice($interests, 0, 2); // Limita a 2 tags para não quebrar
         <div class="mt-auto w-full">
             <div class="flex flex-wrap justify-center gap-2 mb-6">
                 <?php foreach ($card_tags as $tag): ?>
-                    <span class="px-2 py-1 bg-purple-50 text-durham text-[10px] font-bold uppercase rounded border border-purple-100"><?php echo esc_html($tag); ?></span>
+                    <span class="px-4 py-1 bg-purple-50 text-durham text-[10px] font-bold uppercase rounded border border-purple-100"><?php echo esc_html($tag); ?></span>
                 <?php endforeach; ?>
             </div>
             <button class="text-durham font-bold text-sm flex items-center justify-center gap-2 group-hover:gap-3 transition-all">
