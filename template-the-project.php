@@ -219,7 +219,7 @@ function get_safe_json_meta($post_id, $meta_key)
 
         <section class="py-24 bg-neutral-50 border-t border-gray-200">
             <div class="container mx-auto px-6">
-                <div class="bg-durham-dark rounded-3xl p-10 md:p-16 relative overflow-hidden shadow-2xl">
+                <div class="bg-durham-dark rounded-2xl p-10 md:p-16 relative overflow-hidden shadow-2xl">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
                     <div class="absolute bottom-0 left-0 w-48 h-48 bg-purple-500/20 rounded-full blur-2xl -ml-10 -mb-10"></div>
 
