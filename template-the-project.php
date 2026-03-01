@@ -5,27 +5,45 @@
  * Description: Template customizado para a página de Metodologia e Contexto.
  */
 
-get_header(); ?>
+get_header();
+
+?>
 
 <main id="main-content">
     <?php while (have_posts()) : the_post();
 
+        $id = get_the_ID();
+
         // --- BUSCANDO OS DADOS NATIVOS DO BANCO ---
-        $hero_subtitle = get_post_meta(get_the_ID(), '_hero_subtitle', true);
+        $hero_subtitle = get_post_meta($id, '_hero_subtitle', true);
+
+        // Puxando os dados (COIL & Pedagogical)
+        $pedagogical_title = get_post_meta($id, '_pedagogical_title', true) ?: 'The Pedagogical Approach';
+        $coil_title        = get_post_meta($id, '_coil_title', true) ?: 'What is COIL?';
+        $coil_description  = get_post_meta($id, '_coil_description', true);
+
+        // Puxando os dados (Intersection)
+        $intersection_title    = get_post_meta($id, '_intersection_title', true);
+        $intersection_text     = get_post_meta($id, '_intersection_text', true);
+        $intersection_btn_text = get_post_meta($id, '_intersection_btn_text', true);
+        $intersection_btn_link = get_post_meta($id, '_intersection_btn_link', true);
 
         // As Três Áreas (Array)
-        $context_blocks = get_post_meta(get_the_ID(), '_context_blocks', true) ?: [];
+        $context_blocks = get_post_meta($id, '_context_blocks', true) ?: [];
 
         // Linha do Tempo (Array de Semanas, Título, Texto e Imagens)
-        $timeline = get_post_meta(get_the_ID(), '_project_timeline', true) ?: [];
+        $timeline = get_post_meta($id, '_project_timeline', true) ?: [];
 
         // Áreas de Atividade
-        $areas_title = get_post_meta(get_the_ID(), '_areas_title', true) ?: __('Areas of Activity & Research', 'crossingboundaries');
-        $areas_subtitle = get_post_meta(get_the_ID(), '_areas_subtitle', true);
-        $research_areas = get_post_meta(get_the_ID(), '_research_areas', true) ?: [];
+        $areas_title = get_post_meta($id, '_areas_title', true) ?: __('Areas of Activity & Research', 'crossingboundaries');
+        $areas_subtitle = get_post_meta($id, '_areas_subtitle', true);
+        $research_areas = get_post_meta($id, '_research_areas', true) ?: [];
 
         // Manifesto COIL (HTML)
-        $coil_manifesto = get_post_meta(get_the_ID(), '_coil_manifesto', true);
+        $coil_manifesto = get_post_meta($id, '_coil_manifesto', true);
+        // JSON Decoding Seguro na hora de ler!
+        $raw_intersection_grid = get_post_meta($id, '_intersection_grid', true);
+        $intersection_grid     = json_decode($raw_intersection_grid, true) ?: [];
     ?>
 
         <section class="relative bg-durham-dark py-32 flex items-center justify-center overflow-hidden">
@@ -87,8 +105,8 @@ get_header(); ?>
         <section class="py-24 bg-neutral-50 border-t border-gray-200 relative overflow-hidden timeline-line">
             <div class="container mx-auto px-6 relative z-10">
                 <div class="max-w-4xl mx-auto text-center mb-24">
-                    <span class="text-durham font-bold tracking-wider text-sm uppercase block mb-4"><?php pll_e('The Pedagogical Approach', 'crossingboundaries'); ?></span>
-                    <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-6"><?php pll_e('What is COIL?', 'crossingboundaries'); ?></h2>
+                    <span class="text-durham font-bold tracking-wider text-sm uppercase block mb-4"><?php esc_html('The Pedagogical Approach'); ?></span>
+                    <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-6"><?php esc_html('What is COIL?'); ?></h2>
                     <p class="text-lg text-gray-600 leading-relaxed mb-8 max-w-2xl mx-auto">
 
                         <strong><?php pll_e('Collaborative Online International Learning', 'crossingboundaries'); ?></strong>
@@ -142,41 +160,42 @@ get_header(); ?>
             </div>
         </section>
 
-        <section class="py-24 bg-white border-t border-gray-200">
+        <section class="py-24 bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-4"><?php echo ($areas_title); ?></h2>
-                    <?php if ($areas_subtitle): ?>
-                        <p class="text-lg text-gray-600 max-w-2xl mx-auto"><?php echo ($areas_subtitle); ?></p>
-                    <?php endif; ?>
-                </div>
+                <div class="bg-durham-dark rounded-2xl p-10 md:p-16 relative overflow-hidden shadow-2xl">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
+                    <div class="absolute bottom-0 left-0 w-48 h-48 bg-purple-500/20 rounded-full blur-2xl -ml-10 -mb-10"></div>
 
-                <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    <?php foreach ($research_areas as $area) : ?>
-                        <div class="p-8 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md hover:border-durham transition-all group">
-                            <div class="flex items-center gap-4 mb-6">
-                                <div class="w-12 h-12 rounded-full bg-purple-50 text-durham flex items-center justify-center text-2xl group-hover:bg-durham group-hover:text-white transition-colors">
-                                    <i class="ph-fill <?php echo esc_attr($area['icon'] ?: 'ph-flask'); ?>"></i>
-                                </div>
-                                <h3 class="font-serif font-bold text-xl text-neutral-900"><?php echo ($area['title']); ?></h3>
-                            </div>
-                            <p class="text-gray-600 mb-4 text-sm leading-relaxed"><?php echo ($area['description']); ?></p>
+                    <div class="relative z-10 flex flex-col md:flex-row gap-12 items-center">
+                        <div class="md:w-1/2 text-white">
+                            <h2 class="font-serif font-bold text-3xl mb-6"><?php echo esc_html($intersection_title); ?></h2>
+                            <p class="text-purple-100 text-lg leading-relaxed mb-8">
+                                <?php echo esc_html($intersection_text); ?>
+                            </p>
+                            <a href="<?php echo esc_url($intersection_btn_link); ?>" class="inline-flex items-center bg-white text-durham font-bold px-8 py-3 rounded-lg hover:bg-purple-50 transition-colors shadow-md">
+                                <?php echo esc_html($intersection_btn_text); ?> <i class="ph-bold ph-arrow-right ml-2" aria-hidden="true"></i>
+                            </a>
+                        </div>
 
-                            <ul class="space-y-2 text-sm text-gray-500">
+                        <div class="md:w-1/2 w-full">
+                            <div class="grid grid-cols-2 gap-4">
                                 <?php
-                                // Separa os itens da lista por quebra de linha
-                                $bullets = explode("\n", $area['bullets']);
-                                foreach ($bullets as $bullet):
-                                    if (trim($bullet) !== ''):
+                                $count = 0;
+                                foreach ($intersection_grid as $item):
+                                    // Adiciona a classe 'mt-8' nos itens pares para fazer aquele efeito zig-zag do seu design
+                                    $margin_class = ($count % 2 !== 0) ? 'mt-8' : '';
                                 ?>
-                                        <li class="flex items-start gap-2"><i class="ph-bold ph-check text-durham mt-0.5"></i> <?php echo (trim($bullet)); ?></li>
+                                    <div class="bg-white/10 backdrop-blur border border-white/10 p-6 rounded-xl text-center <?php echo $margin_class; ?>">
+                                        <i class="ph-fill <?php echo esc_attr($item['icon'] ?? 'ph-flask'); ?> text-3xl text-purple-200 mb-2" aria-hidden="true"></i>
+                                        <h4 class="text-white font-bold text-sm"><?php echo esc_html($item['title'] ?? ''); ?></h4>
+                                    </div>
                                 <?php
-                                    endif;
+                                    $count++;
                                 endforeach;
                                 ?>
-                            </ul>
+                            </div>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
         </section>

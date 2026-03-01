@@ -2,9 +2,60 @@
 
 /**
  * Módulo Nativo de Meta Boxes para a Página "The Project"
+ * Arquitetura modular baseada em Array (A prova de bugs de JSON)
  */
 class ModularPress_Project_MetaBoxes
 {
+    private $config = [
+        // 1. HERO
+        'project_hero_meta' => [
+            'title'  => '1. Hero & Contexto',
+            'fields' => [
+                ['id' => '_hero_subtitle', 'label' => 'Subtítulo do Hero', 'type' => 'textarea', 'default' => '']
+            ]
+        ],
+
+        // 2. THE PEDAGOGICAL APPROACH & COIL
+        'project_coil_meta' => [
+            'title'  => '2. The Pedagogical Approach & COIL',
+            'fields' => [
+                ['id' => '_pedagogical_title', 'label' => 'Título (The Pedagogical Approach)', 'type' => 'text', 'default' => 'The Pedagogical Approach'],
+                ['id' => '_coil_title', 'label' => 'Título (What is COIL?)', 'type' => 'text', 'default' => 'What is COIL?'],
+                ['id' => '_coil_description', 'label' => 'Descrição do COIL (Texto visível na página)', 'type' => 'wysiwyg', 'default' => '<p>Collaborative Online International Learning is a methodology that connects classrooms in different countries, creating a shared environment where knowledge is co-constructed through cultural diversity.</p>'],
+                ['id' => '_coil_manifesto', 'label' => 'Manifesto COIL (Conteúdo oculto do Modal)', 'type' => 'wysiwyg', 'default' => '']
+            ]
+        ],
+
+        // 3. TIMELINE
+        'project_timeline_meta' => [
+            'title'  => '3. Linha do Tempo (Timeline)',
+            'fields' => [
+                ['id' => '_project_timeline', 'label' => 'Linha do Tempo (Edite em JSON)', 'type' => 'json', 'default' => "[\n  {\n    \"weeks\": \"Weeks 1-2\",\n    \"title\": \"Connection\",\n    \"description\": \"Texto aqui\",\n    \"caption\": \"Foto\",\n    \"images\": [\"URL_DA_FOTO\"]\n  }\n]"]
+            ]
+        ],
+
+        // 4. RESEARCH AREAS
+        'project_areas_meta' => [
+            'title'  => '4. Áreas de Atuação (Research Areas)',
+            'fields' => [
+                ['id' => '_areas_title', 'label' => 'Título da Seção', 'type' => 'text', 'default' => 'Research Areas'],
+                ['id' => '_areas_subtitle', 'label' => 'Subtítulo', 'type' => 'textarea', 'default' => ''],
+                ['id' => '_research_areas', 'label' => 'Blocos de Áreas (Edite em JSON)', 'type' => 'json', 'default' => "[\n  {\n    \"icon\": \"ph-flask\",\n    \"title\": \"Scientific Innovation\",\n    \"description\": \"Descrição\",\n    \"bullets\": \"Item 1\\nItem 2\"\n  },\n  {\n    \"icon\": \"ph-translate\",\n    \"title\": \"Internationalisation\",\n    \"description\": \"Descrição\",\n    \"bullets\": \"Item 1\"\n  },\n  {\n    \"icon\": \"ph-users\",\n    \"title\": \"Social Impact\",\n    \"description\": \"Descrição\",\n    \"bullets\": \"Item 1\"\n  }\n]"]
+            ]
+        ],
+
+        // 5. INTERSECTION OF KNOWLEDGE (NOVO)
+        'project_intersection_meta' => [
+            'title'  => '5. The Intersection of Knowledge',
+            'fields' => [
+                ['id' => '_intersection_title', 'label' => 'Título Principal', 'type' => 'text', 'default' => 'The Intersection of Knowledge'],
+                ['id' => '_intersection_text', 'label' => 'Texto / Descrição', 'type' => 'textarea', 'default' => 'The project transcends pure chemistry. We incorporate researchers from Applied Linguistics and Education to monitor the process.'],
+                ['id' => '_intersection_btn_text', 'label' => 'Texto do Botão', 'type' => 'text', 'default' => 'Meet our Researchers'],
+                ['id' => '_intersection_btn_link', 'label' => 'Link do Botão', 'type' => 'url', 'default' => '/our-team/'],
+                ['id' => '_intersection_grid', 'label' => 'Grid de 4 Ícones (Edite em JSON)', 'type' => 'json', 'default' => "[\n  {\"icon\": \"ph-flask\", \"title\": \"Hard Science\"},\n  {\"icon\": \"ph-translate\", \"title\": \"Culture\"},\n  {\"icon\": \"ph-globe\", \"title\": \"Sustainability\"},\n  {\"icon\": \"ph-student\", \"title\": \"Education\"}\n]"]
+            ]
+        ]
+    ];
 
     public function __construct()
     {
@@ -14,101 +65,82 @@ class ModularPress_Project_MetaBoxes
 
     public function add_boxes()
     {
-        // Aplica o metabox APENAS nas páginas que usam o template "template-the-project.php"
         global $post;
-        if (empty($post) || get_page_template_slug($post->ID) !== 'template-the-project.php') {
-            return;
-        }
+        if (empty($post) || get_page_template_slug($post->ID) !== 'template-the-project.php') return;
 
-        add_meta_box('project_hero_meta', '1. Hero & Configurações', [$this, 'render_hero'], 'page', 'normal', 'high');
-        add_meta_box('project_coil_meta', '2. Manifesto COIL', [$this, 'render_coil'], 'page', 'normal', 'default');
-        add_meta_box('project_timeline_meta', '3. Linha do Tempo (Timeline)', [$this, 'render_timeline'], 'page', 'normal', 'default');
-        add_meta_box('project_areas_meta', '4. Áreas de Atuação', [$this, 'render_areas'], 'page', 'normal', 'default');
+        foreach ($this->config as $box_id => $box) {
+            add_meta_box($box_id, $box['title'], [$this, 'render_metabox'], 'page', 'normal', 'high', ['fields' => $box['fields']]);
+        }
     }
 
-    // 1. HERÓI E CONTEXTO
-    public function render_hero($post)
+    public function render_metabox($post, $metabox)
     {
         wp_nonce_field('save_project_data', 'project_data_nonce');
-        $subtitle = get_post_meta($post->ID, '_hero_subtitle', true);
+        $fields = $metabox['args']['fields'];
 
-        echo '<p><label><strong>Subtítulo do Hero:</strong></label><br>';
-        echo '<textarea name="hero_subtitle" style="width:100%; height:60px;">' . esc_textarea($subtitle) . '</textarea></p>';
-        echo '<p class="description">As 3 caixas laterais do "Contexto" podem ser gerenciadas preenchendo o array no código ou via ACF posteriormente. Para este setup nativo, recomendamos manter estático no template se não mudar com frequência.</p>';
+        echo '<div style="padding: 10px 0;">';
+        foreach ($fields as $field) {
+            $value = get_post_meta($post->ID, $field['id'], true);
+            if (empty($value) && !empty($field['default'])) {
+                $value = $field['default'];
+            }
+
+            echo '<div style="margin-bottom: 20px;">';
+            echo '<label for="' . esc_attr($field['id']) . '" style="font-weight:bold; display:block; margin-bottom:8px;">' . esc_html($field['label']) . '</label>';
+
+            switch ($field['type']) {
+                case 'text':
+                    echo '<input type="text" id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" value="' . esc_attr($value) . '" style="width:100%;">';
+                    break;
+                case 'url':
+                    echo '<input type="url" id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" value="' . esc_url($value) . '" style="width:100%;">';
+                    break;
+                case 'textarea':
+                    echo '<textarea id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" style="width:100%; height:80px;">' . esc_textarea($value) . '</textarea>';
+                    break;
+                case 'json':
+                    // Tipo JSON salva e exibe como string pura no painel. Assim nunca perde formatação!
+                    echo '<textarea id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" style="width:100%; height:250px; font-family: monospace; background:#f0f0f1; padding: 10px;">' . esc_textarea($value) . '</textarea>';
+                    break;
+                case 'wysiwyg':
+                    wp_editor($value, $field['id'], ['textarea_name' => $field['id'], 'textarea_rows' => 8, 'media_buttons' => false]);
+                    break;
+            }
+            echo '</div>';
+        }
+        echo '</div>';
     }
 
-    // 2. TEXTO RICO DO MODAL COIL
-    public function render_coil($post)
-    {
-        $manifesto = get_post_meta($post->ID, '_coil_manifesto', true);
-        echo '<p>Este texto aparecerá no Modal ao clicar em "Read full methodological manifesto".</p>';
-
-        // Usa o editor nativo do WordPress!
-        wp_editor($manifesto, 'coil_manifesto', [
-            'textarea_name' => 'coil_manifesto',
-            'media_buttons' => false,
-            'textarea_rows' => 10,
-        ]);
-    }
-
-    // 3. LINHA DO TEMPO (Repetidor em formato JSON simplificado)
-    public function render_timeline($post)
-    {
-        $timeline = get_post_meta($post->ID, '_project_timeline', true) ?: [];
-        // Converte o array para JSON formatado para que o administrador possa editar facilmente
-        $json_timeline = empty($timeline) ? "[\n  {\n    \"weeks\": \"Weeks 1-2\",\n    \"title\": \"Connection\",\n    \"description\": \"Texto aqui\",\n    \"caption\": \"Foto\",\n    \"images\": [\"URL_DA_FOTO\"]\n  }\n]" : wp_json_encode($timeline, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-
-        echo '<p><strong>Edite a Linha do Tempo em formato JSON.</strong></p>';
-        echo '<p class="description">Cole as URLs das imagens na matriz "images". Envie as fotos pelo menu Mídia do WP e copie as URLs.</p>';
-        echo '<textarea name="project_timeline" style="width:100%; height:300px; font-family: monospace; background:#f0f0f1;">' . esc_textarea($json_timeline) . '</textarea>';
-    }
-
-    // 4. ÁREAS DE ATUAÇÃO
-    public function render_areas($post)
-    {
-        $title = get_post_meta($post->ID, '_areas_title', true);
-        $subtitle = get_post_meta($post->ID, '_areas_subtitle', true);
-        $areas = get_post_meta($post->ID, '_research_areas', true) ?: [];
-
-        $json_areas = empty($areas) ? "[\n  {\n    \"icon\": \"ph-flask\",\n    \"title\": \"Natural Sciences\",\n    \"description\": \"Descrição\",\n    \"bullets\": \"Item 1\\nItem 2\"\n  }\n]" : wp_json_encode($areas, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-
-        echo '<p><label><strong>Título da Seção:</strong></label><br>';
-        echo '<input type="text" name="areas_title" value="' . esc_attr($title) . '" style="width:100%;"></p>';
-
-        echo '<p><label><strong>Subtítulo:</strong></label><br>';
-        echo '<textarea name="areas_subtitle" style="width:100%; height:60px;">' . esc_textarea($subtitle) . '</textarea></p>';
-
-        echo '<hr><p><strong>Blocos de Áreas (Edite em JSON):</strong></p>';
-        echo '<textarea name="research_areas" style="width:100%; height:300px; font-family: monospace; background:#f0f0f1;">' . esc_textarea($json_areas) . '</textarea>';
-    }
-
-    // SALVAMENTO NATIVO
     public function save_data($post_id)
     {
         if (!isset($_POST['project_data_nonce']) || !wp_verify_nonce($_POST['project_data_nonce'], 'save_project_data')) return;
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
         if (!current_user_can('edit_page', $post_id)) return;
 
-        // Salva Textos Simples
-        if (isset($_POST['hero_subtitle'])) update_post_meta($post_id, '_hero_subtitle', sanitize_textarea_field($_POST['hero_subtitle']));
-        if (isset($_POST['areas_title'])) update_post_meta($post_id, '_areas_title', sanitize_text_field($_POST['areas_title']));
-        if (isset($_POST['areas_subtitle'])) update_post_meta($post_id, '_areas_subtitle', sanitize_textarea_field($_POST['areas_subtitle']));
+        foreach ($this->config as $box) {
+            foreach ($box['fields'] as $field) {
+                if (!isset($_POST[$field['id']])) continue;
 
-        // Salva HTML (Manifesto COIL)
-        if (isset($_POST['coil_manifesto'])) update_post_meta($post_id, '_coil_manifesto', wp_kses_post(wp_unslash($_POST['coil_manifesto'])));
+                $raw_value = wp_unslash($_POST[$field['id']]);
 
-        // Salva Arrays (Timeline e Áreas) decodificando o JSON do painel
-        if (isset($_POST['project_timeline'])) {
-            $timeline = json_decode(wp_unslash($_POST['project_timeline']), true);
-            if (json_last_error() === JSON_ERROR_NONE) {
-                update_post_meta($post_id, '_project_timeline', $timeline);
-            }
-        }
-
-        if (isset($_POST['research_areas'])) {
-            $areas = json_decode(wp_unslash($_POST['research_areas']), true);
-            if (json_last_error() === JSON_ERROR_NONE) {
-                update_post_meta($post_id, '_research_areas', $areas);
+                switch ($field['type']) {
+                    case 'text':
+                        update_post_meta($post_id, $field['id'], sanitize_text_field($raw_value));
+                        break;
+                    case 'url':
+                        update_post_meta($post_id, $field['id'], esc_url_raw($raw_value));
+                        break;
+                    case 'textarea':
+                        update_post_meta($post_id, $field['id'], sanitize_textarea_field($raw_value));
+                        break;
+                    case 'json':
+                        // Salva o JSON como String! Isso resolve o bug do texto sumir.
+                        update_post_meta($post_id, $field['id'], $raw_value);
+                        break;
+                    case 'wysiwyg':
+                        update_post_meta($post_id, $field['id'], wp_kses_post($raw_value));
+                        break;
+                }
             }
         }
     }
