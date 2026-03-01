@@ -184,27 +184,33 @@ function get_safe_json_meta($post_id, $meta_key)
                     <?php endif; ?>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
                     <?php foreach ($research_areas as $area) : ?>
-                        <div class="bg-neutral-50 p-8 md:p-10 rounded-2xl shadow-sm border border-gray-100 text-center hover:border-durham/30 transition-colors">
-                            <div class="w-16 h-16 rounded-full bg-purple-100 text-durham flex items-center justify-center mx-auto mb-6">
-                                <i class="ph-fill <?php echo esc_attr($area['icon'] ?? 'ph-flask'); ?> text-3xl" aria-hidden="true"></i>
+                        <div class="p-8 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md hover:border-durham transition-all group">
+
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 rounded-full bg-purple-50 text-durham flex items-center justify-center text-2xl group-hover:bg-durham group-hover:text-white transition-colors">
+                                    <i class="ph-fill <?php echo esc_attr($area['icon'] ?? 'ph-flask'); ?>" aria-hidden="true"></i>
+                                </div>
+                                <h3 class="font-serif font-bold text-xl text-neutral-900"><?php echo esc_html($area['title'] ?? ''); ?></h3>
                             </div>
-                            <h4 class="font-serif font-bold text-xl text-neutral-900 mb-4"><?php echo esc_html($area['title'] ?? ''); ?></h4>
-                            <p class="text-sm text-gray-600 leading-relaxed mb-6"><?php echo esc_html($area['description'] ?? ''); ?></p>
+
+                            <p class="text-gray-600 mb-4 text-sm leading-relaxed"><?php echo esc_html($area['description'] ?? ''); ?></p>
 
                             <?php if (!empty($area['bullets'])): ?>
-                                <ul class="text-sm text-gray-500 list-disc text-left pl-4 inline-block space-y-2">
+                                <ul class="space-y-2 text-sm text-gray-500">
                                     <?php
                                     $bullets = explode("\n", $area['bullets']);
                                     foreach ($bullets as $bullet):
                                         if (trim($bullet) !== '') {
-                                            echo '<li>' . esc_html(trim($bullet)) . '</li>';
+                                            // Adicionado o ícone de check do seu layout
+                                            echo '<li class="flex items-start gap-2"><i class="ph-bold ph-check text-durham mt-0.5" aria-hidden="true"></i> ' . esc_html(trim($bullet)) . '</li>';
                                         }
                                     endforeach;
                                     ?>
                                 </ul>
                             <?php endif; ?>
+
                         </div>
                     <?php endforeach; ?>
                 </div>
