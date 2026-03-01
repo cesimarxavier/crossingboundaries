@@ -63,7 +63,14 @@ class ModularPress_Navigation
     {
         // Se o Polylang estiver ativo, puxa dinamicamente
         if (function_exists('pll_the_languages')) {
-            $languages = pll_the_languages(['raw' => 1]);
+            $languages = pll_the_languages(
+                [
+                    'show_flags'   => 0, // 0 = Texto, 1 = Bandeiras
+                    'show_names'   => 1, // Exibe "English" ou "Português" (ou as siglas EN/PT se você editou no painel)
+                    'hide_current' => 0, // Mantém os dois visíveis
+                    'echo'         => 1
+                ]
+            );
 
             // Layout Desktop
             if (!$is_mobile) {
@@ -92,13 +99,6 @@ class ModularPress_Navigation
                     }
                 }
                 echo '</div>';
-            }
-        } else {
-            // Fallback Estático se o Polylang não estiver instalado ainda
-            if (!$is_mobile) {
-                echo '<div class="ml-4 flex items-center gap-2 text-sm border-l border-gray-300 pl-6"><span class="font-bold text-durham">EN</span><span class="text-gray-300">/</span><a href="#" class="text-gray-400 hover:text-neutral-900 transition-colors">PT</a></div>';
-            } else {
-                echo '<div class="flex justify-center sm:justify-start gap-4 pt-4 border-t border-gray-100"><span class="font-bold text-durham">EN</span><a href="#" class="text-gray-400">PT</a></div>';
             }
         }
     }

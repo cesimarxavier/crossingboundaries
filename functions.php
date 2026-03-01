@@ -31,3 +31,18 @@ add_action('pre_get_posts', function ($query) {
         $query->set('posts_per_page', -1); // -1 exibe todos na mesma página (sem paginação)
     }
 });
+
+/**
+ * Registra os textos fixos do tema no Polylang
+ */
+add_action('init', function () {
+    if (function_exists('pll_register_string')) {
+        pll_register_string('Theme', 'Minds Behind the Project', 'Crossing Boundaries');
+        pll_register_string('Theme', 'Meet the full team & curricula', 'Crossing Boundaries');
+        pll_register_string('Theme', 'Project Collaborators', 'Crossing Boundaries');
+        pll_register_string('Theme', 'View Full Profile', 'Crossing Boundaries');
+        pll_register_string('Theme', 'Biography', 'Crossing Boundaries');
+        pll_register_string('Theme', 'Selected Publications', 'Crossing Boundaries');
+        pll_register_string('Theme', 'Research Interests', 'Crossing Boundaries');
+    }
+});

@@ -51,7 +51,7 @@ get_header();
                 <?php post_type_archive_title('', true); ?>
             </h1>
             <p class="text-purple-100 text-lg max-w-2xl mx-auto font-light leading-relaxed">
-                <?php esc_html_e('Meet the academic leaders and dedicated researchers from Durham University and UFRJ bridging science and culture.', 'crossingboundaries'); ?>
+                <?php pll_e('Meet the academic leaders and dedicated researchers from Durham University and UFRJ bridging science and culture.', 'crossingboundaries'); ?>
             </p>
         </div>
     </section>
@@ -61,7 +61,7 @@ get_header();
 
             <div class="flex items-center gap-4 mb-12">
                 <div class="h-px bg-gray-200 flex-1"></div>
-                <span class="text-durham font-bold tracking-wider text-sm uppercase"><?php esc_html_e('Project Collaborators', 'crossingboundaries'); ?></span>
+                <span class="text-durham font-bold tracking-wider text-sm uppercase"><?php pll_e('Project Collaborators', 'crossingboundaries'); ?></span>
                 <div class="h-px bg-gray-200 flex-1"></div>
             </div>
 
@@ -129,7 +129,7 @@ get_header();
                                         <?php endforeach; ?>
                                     </div>
                                     <button class="text-durham font-bold text-sm flex items-center justify-center gap-2 group-hover:gap-3 transition-all">
-                                        <?php esc_html_e('View Full Profile', 'crossingboundaries'); ?> <i class="ph-bold ph-arrow-right"></i>
+                                        <?php pll_e('View Full Profile', 'crossingboundaries'); ?> <i class="ph-bold ph-arrow-right"></i>
                                     </button>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@ get_header();
                 <?php
                     endwhile;
                 else :
-                    echo '<p class="text-center text-gray-500 col-span-3">' . esc_html__('No members found.', 'crossingboundaries') . '</p>';
+                    echo '<p class="text-center text-gray-500 col-span-3">' . pll_e('No members found.', 'crossingboundaries') . '</p>';
                 endif;
                 ?>
             </div>
@@ -181,12 +181,12 @@ get_header();
 
         <div class="md:w-2/3 p-8 md:p-12 overflow-y-auto">
             <div class="mb-10">
-                <h4 class="font-serif font-bold text-2xl text-neutral-900 mb-6 border-b border-gray-100 pb-4"><?php esc_html_e('Biography', 'crossingboundaries'); ?></h4>
+                <h4 class="font-serif font-bold text-2xl text-neutral-900 mb-6 border-b border-gray-100 pb-4"><?php pll_e('Biography', 'crossingboundaries'); ?></h4>
                 <div id="modal-bio" class="text-base text-gray-600 leading-relaxed space-y-5"></div>
             </div>
 
             <div>
-                <h4 class="font-serif font-bold text-2xl text-neutral-900 mb-6 border-b border-gray-100 pb-4"><?php esc_html_e('Selected Publications', 'crossingboundaries'); ?></h4>
+                <h4 class="font-serif font-bold text-2xl text-neutral-900 mb-6 border-b border-gray-100 pb-4"><?php pll_e('Selected Publications', 'crossingboundaries'); ?></h4>
                 <ul id="modal-pubs" class="space-y-4 text-sm text-gray-600 leading-relaxed"></ul>
             </div>
         </div>
@@ -217,7 +217,7 @@ get_header();
         document.getElementById('modal-tags').innerHTML = data.interests.map(tag => `<span class="text-durham text-xs font-bold uppercase tracking-wider block">${tag}</span>`).join('');
 
         // Renderiza as publicações sem a borda lateral grossa (mais clean)
-        document.getElementById('modal-pubs').innerHTML = (data.pubs && data.pubs.length > 0) ? data.pubs.map(pub => `<li class="pl-0">${pub}</li>`).join('') : '<li class="text-gray-400 italic"><?php esc_html_e('No publications listed.', 'crossingboundaries'); ?></li>';
+        document.getElementById('modal-pubs').innerHTML = (data.pubs && data.pubs.length > 0) ? data.pubs.map(pub => `<li class="pl-0">${pub}</li>`).join('') : '<li class="text-gray-400 italic"><?php pll_e('No publications listed.', 'crossingboundaries'); ?></li>';
 
         // Redes Sociais
         const sLinkedin = document.getElementById('modal-linkedin');
