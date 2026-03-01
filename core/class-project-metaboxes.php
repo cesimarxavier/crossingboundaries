@@ -2,22 +2,33 @@
 
 /**
  * Módulo Nativo de Meta Boxes para a Página "The Project"
- * Arquitetura modular corrigida para compatibilidade de tipos (Array vs String)
+ * Arquitetura revisada e numerada conforme a estrutura oficial da página
  */
 class ModularPress_Project_MetaBoxes
 {
     private $config = [
         // 1. HERO
         'project_hero_meta' => [
-            'title'  => '1. Hero & Contexto',
+            'title'  => '1. Hero',
             'fields' => [
+                ['id' => '_hero_header', 'label' => 'Header / Tag (ex: Institutional Vision)', 'type' => 'text', 'default' => 'Institutional Vision'],
+                ['id' => '_hero_title', 'label' => 'Título do Hero (Deixe em branco para usar o título padrão da página)', 'type' => 'text', 'default' => ''],
                 ['id' => '_hero_subtitle', 'label' => 'Subtítulo do Hero', 'type' => 'textarea', 'default' => '']
             ]
         ],
 
-        // 2. THE PEDAGOGICAL APPROACH & COIL
+        // 2. CONTEXT & MOTIVATION
+        'project_context_meta' => [
+            'title'  => '2. Context & Motivation',
+            'fields' => [
+                ['id' => '_context_title', 'label' => 'Título da Seção', 'type' => 'text', 'default' => 'Context and Motivation'],
+                ['id' => '_context_blocks', 'label' => 'Blocos da barra lateral (Edite em JSON: icon, title, description)', 'type' => 'json', 'default' => "[\n  {\n    \"icon\": \"ph-flask\",\n    \"title\": \"Bloco 1\",\n    \"description\": \"Descricao 1\"\n  }\n]"]
+            ]
+        ],
+
+        // 3. THE PEDAGOGICAL APPROACH & COIL
         'project_coil_meta' => [
-            'title'  => '2. The Pedagogical Approach & COIL',
+            'title'  => '3. The Pedagogical Approach & COIL',
             'fields' => [
                 ['id' => '_pedagogical_title', 'label' => 'Título (The Pedagogical Approach)', 'type' => 'text', 'default' => 'The Pedagogical Approach'],
                 ['id' => '_coil_title', 'label' => 'Título (What is COIL?)', 'type' => 'text', 'default' => 'What is COIL?'],
@@ -26,9 +37,9 @@ class ModularPress_Project_MetaBoxes
             ]
         ],
 
-        // 3. TIMELINE
+        // 3.1 TIMELINE
         'project_timeline_meta' => [
-            'title'  => '3. Linha do Tempo (Timeline)',
+            'title'  => '3.1 Linha do Tempo (Timeline)',
             'fields' => [
                 ['id' => '_project_timeline', 'label' => 'Linha do Tempo (Edite em JSON)', 'type' => 'json', 'default' => "[\n  {\n    \"weeks\": \"Weeks 1-2\",\n    \"title\": \"Connection\",\n    \"description\": \"Texto aqui\",\n    \"caption\": \"Foto\",\n    \"images\": [\"URL_DA_FOTO\"]\n  }\n]"]
             ]
@@ -36,15 +47,15 @@ class ModularPress_Project_MetaBoxes
 
         // 4. RESEARCH AREAS
         'project_areas_meta' => [
-            'title'  => '4. Áreas de Atuação (Research Areas)',
+            'title'  => '4. Research Areas (Áreas de Atuação)',
             'fields' => [
-                ['id' => '_areas_title', 'label' => 'Título da Seção', 'type' => 'text', 'default' => 'Research Areas'],
+                ['id' => '_areas_title', 'label' => 'Título da Seção', 'type' => 'text', 'default' => 'Areas of Activity & Research'],
                 ['id' => '_areas_subtitle', 'label' => 'Subtítulo', 'type' => 'textarea', 'default' => ''],
-                ['id' => '_research_areas', 'label' => 'Blocos de Áreas (Edite em JSON)', 'type' => 'json', 'default' => "[\n  {\n    \"icon\": \"ph-flask\",\n    \"title\": \"Scientific Innovation\",\n    \"description\": \"Descrição\",\n    \"bullets\": \"Item 1\\nItem 2\"\n  },\n  {\n    \"icon\": \"ph-translate\",\n    \"title\": \"Internationalisation\",\n    \"description\": \"Descrição\",\n    \"bullets\": \"Item 1\"\n  },\n  {\n    \"icon\": \"ph-users\",\n    \"title\": \"Social Impact\",\n    \"description\": \"Descrição\",\n    \"bullets\": \"Item 1\"\n  }\n]"]
+                ['id' => '_research_areas', 'label' => 'Blocos de Áreas (Edite em JSON: icon, title, description, bullets)', 'type' => 'json', 'default' => "[\n  {\n    \"icon\": \"ph-flask\",\n    \"title\": \"Scientific Innovation\",\n    \"description\": \"Descrição\",\n    \"bullets\": \"Item 1\\nItem 2\"\n  }\n]"]
             ]
         ],
 
-        // 5. INTERSECTION OF KNOWLEDGE
+        // 5. THE INTERSECTION OF KNOWLEDGE
         'project_intersection_meta' => [
             'title'  => '5. The Intersection of Knowledge',
             'fields' => [
@@ -52,7 +63,8 @@ class ModularPress_Project_MetaBoxes
                 ['id' => '_intersection_text', 'label' => 'Texto / Descrição', 'type' => 'textarea', 'default' => 'The project transcends pure chemistry. We incorporate researchers from Applied Linguistics and Education to monitor the process.'],
                 ['id' => '_intersection_btn_text', 'label' => 'Texto do Botão', 'type' => 'text', 'default' => 'Meet our Researchers'],
                 ['id' => '_intersection_btn_link', 'label' => 'Link do Botão', 'type' => 'url', 'default' => '/our-team/'],
-                ['id' => '_intersection_grid', 'label' => 'Grid de 4 Ícones (Edite em JSON)', 'type' => 'json', 'default' => "[\n  {\"icon\": \"ph-flask\", \"title\": \"Hard Science\"},\n  {\"icon\": \"ph-translate\", \"title\": \"Culture\"},\n  {\"icon\": \"ph-globe\", \"title\": \"Sustainability\"},\n  {\"icon\": \"ph-student\", \"title\": \"Education\"}\n]"]
+                // Adicionada explicitamente a instrução do JSON com a lista de ícones e títulos
+                ['id' => '_intersection_grid', 'label' => 'Lista de Ícones da Grelha (Edite em JSON: icon, title)', 'type' => 'json', 'default' => "[\n  {\n    \"icon\": \"ph-flask\", \n    \"title\": \"Hard Science\"\n  },\n  {\n    \"icon\": \"ph-translate\", \n    \"title\": \"Culture\"\n  },\n  {\n    \"icon\": \"ph-globe\", \n    \"title\": \"Sustainability\"\n  },\n  {\n    \"icon\": \"ph-student\", \n    \"title\": \"Education\"\n  }\n]"]
             ]
         ]
     ];
@@ -75,7 +87,6 @@ class ModularPress_Project_MetaBoxes
 
     public function render_metabox($post, $metabox)
     {
-        // Garante que o nonce só seja impresso uma vez para evitar lixo HTML
         static $nonce_printed = false;
         if (!$nonce_printed) {
             wp_nonce_field('save_project_data', 'project_data_nonce');
@@ -108,7 +119,6 @@ class ModularPress_Project_MetaBoxes
                     wp_editor($value, $field['id'], ['textarea_name' => $field['id'], 'textarea_rows' => 8, 'media_buttons' => false]);
                     break;
                 case 'json':
-                    // CORREÇÃO CRÍTICA: Se o dado legado vier do banco como Array, converte para String antes de exibir!
                     if (is_array($value)) {
                         $value = wp_json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
                     }
@@ -129,7 +139,6 @@ class ModularPress_Project_MetaBoxes
         foreach ($this->config as $box) {
             foreach ($box['fields'] as $field) {
                 if (!isset($_POST[$field['id']])) continue;
-
                 $raw_value = wp_unslash($_POST[$field['id']]);
 
                 switch ($field['type']) {
@@ -146,7 +155,6 @@ class ModularPress_Project_MetaBoxes
                         update_post_meta($post_id, $field['id'], wp_kses_post($raw_value));
                         break;
                     case 'json':
-                        // Salvamos estritamente como String. Se o cliente esquecer a vírgula, ele não perde o texto.
                         update_post_meta($post_id, $field['id'], $raw_value);
                         break;
                 }

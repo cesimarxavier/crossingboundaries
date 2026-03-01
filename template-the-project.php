@@ -8,7 +8,7 @@
 get_header();
 
 // ==========================================
-// FUNÇÃO HELPER PARA LER OS JSONS COM SEGURANÇA
+// FUNÇÃO HELPER PARA LER OS JSONS
 // ==========================================
 function get_safe_json_meta($post_id, $meta_key)
 {
@@ -27,46 +27,46 @@ function get_safe_json_meta($post_id, $meta_key)
 
         $id = get_the_ID();
 
-        // 1. HERÓI
+        // 1. HERO
+        $hero_header   = get_post_meta($id, '_hero_header', true) ?: 'Institutional Vision';
+        // Se o gestor não preencher um título customizado no Hero, usamos o título oficial da página
+        $hero_title    = get_post_meta($id, '_hero_title', true) ?: get_the_title();
         $hero_subtitle = get_post_meta($id, '_hero_subtitle', true);
 
-        // 2. PEDAGOGICAL APPROACH & COIL
+        // 2. CONTEXT & MOTIVATION
+        $context_title  = get_post_meta($id, '_context_title', true) ?: 'Context and Motivation';
+        $context_blocks = get_safe_json_meta($id, '_context_blocks');
+
+        // 3. PEDAGOGICAL APPROACH & COIL
         $pedagogical_title = get_post_meta($id, '_pedagogical_title', true) ?: 'The Pedagogical Approach';
         $coil_title        = get_post_meta($id, '_coil_title', true) ?: 'What is COIL?';
         $coil_description  = get_post_meta($id, '_coil_description', true);
         $coil_manifesto    = get_post_meta($id, '_coil_manifesto', true);
 
-        // 3. RESEARCH AREAS (Contexto e Motivação)
-        $areas_title    = get_post_meta($id, '_areas_title', true) ?: 'Context and Motivation';
+        // 3.1 TIMELINE
+        $timeline = get_safe_json_meta($id, '_project_timeline');
+
+        // 4. RESEARCH AREAS
+        $areas_title    = get_post_meta($id, '_areas_title', true) ?: 'Areas of Activity & Research';
         $areas_subtitle = get_post_meta($id, '_areas_subtitle', true);
         $research_areas = get_safe_json_meta($id, '_research_areas');
 
-        // 4. INTERSECTION OF KNOWLEDGE
+        // 5. INTERSECTION OF KNOWLEDGE
         $intersection_title    = get_post_meta($id, '_intersection_title', true);
         $intersection_text     = get_post_meta($id, '_intersection_text', true);
         $intersection_btn_text = get_post_meta($id, '_intersection_btn_text', true);
         $intersection_btn_link = get_post_meta($id, '_intersection_btn_link', true);
         $intersection_grid     = get_safe_json_meta($id, '_intersection_grid');
-
-        // 5. TIMELINE
-        $timeline = get_safe_json_meta($id, '_project_timeline');
     ?>
 
         <section class="relative bg-durham-dark py-32 flex items-center justify-center overflow-hidden">
             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff33_1px,transparent_1px)] [background-size:20px_20px]"></div>
             <div class="container mx-auto px-6 relative z-10 text-center">
                 <span class="inline-block py-1.5 px-4 rounded-full border border-white/20 text-purple-100 text-xs font-bold uppercase tracking-widest mb-6">
-                    <?php
-                    // Se o Polylang estiver ativo, tenta traduzir. Senão exibe o padrão.
-                    if (function_exists('pll_e')) {
-                        pll_e('Institutional Vision');
-                    } else {
-                        echo 'Institutional Vision';
-                    }
-                    ?>
+                    <?php echo esc_html($hero_header); ?>
                 </span>
                 <h1 class="font-serif font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
-                    <?php the_title(); ?>
+                    <?php echo esc_html($hero_title); ?>
                 </h1>
                 <?php if ($hero_subtitle) : ?>
                     <p class="text-lg md:text-xl text-purple-100 max-w-2xl mx-auto font-light leading-relaxed">
@@ -82,44 +82,27 @@ function get_safe_json_meta($post_id, $meta_key)
 
                     <div class="lg:w-1/2">
                         <h2 class="font-serif font-bold text-3xl text-neutral-900 mb-8 border-l-4 border-durham pl-6">
-                            <?php echo esc_html($areas_title); ?>
+                            <?php echo esc_html($context_title); ?>
                         </h2>
-                        <?php if ($areas_subtitle): ?>
-                            <p class="text-lg text-gray-600 mb-8 leading-relaxed"><?php echo esc_html($areas_subtitle); ?></p>
-                        <?php endif; ?>
-
                         <div class="prose prose-lg text-neutral-600 leading-relaxed text-justify">
-                            <?php the_content(); // Usa o editor principal do WordPress 
-                            ?>
+                            <?php the_content(); ?>
                         </div>
                     </div>
 
                     <div class="lg:w-1/2 grid gap-6">
-                        <?php foreach ($research_areas as $block) : ?>
+                        <?php foreach ($context_blocks as $block) : ?>
                             <div class="bg-neutral-50 p-8 rounded-xl border border-gray-100 hover:border-durham/30 transition-colors shadow-sm">
-                                <div class="flex items-start gap-5">
-                                    <div class="w-12 h-12 rounded-full bg-purple-100 text-durham flex items-center justify-center shrink-0 mt-1">
-                                        <i class="ph-fill <?php echo esc_attr($block['icon'] ?? 'ph-flask'); ?> text-2xl" aria-hidden="true"></i>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-purple-100 text-durham flex items-center justify-center shrink-0 mt-1">
+                                        <i class="ph-fill <?php echo esc_attr($block['icon'] ?? 'ph-flask'); ?> text-xl" aria-hidden="true"></i>
                                     </div>
                                     <div>
                                         <h4 class="font-serif font-bold text-neutral-900 text-lg mb-2">
                                             <?php echo esc_html($block['title'] ?? ''); ?>
                                         </h4>
-                                        <p class="text-sm text-gray-600 leading-relaxed mb-3">
+                                        <p class="text-sm text-gray-600 leading-relaxed">
                                             <?php echo esc_html($block['description'] ?? ''); ?>
                                         </p>
-                                        <?php if (!empty($block['bullets'])): ?>
-                                            <ul class="text-sm text-gray-500 list-disc pl-4 space-y-1">
-                                                <?php
-                                                $bullets = explode("\n", $block['bullets']);
-                                                foreach ($bullets as $bullet):
-                                                    if (trim($bullet) !== '') {
-                                                        echo '<li>' . esc_html(trim($bullet)) . '</li>';
-                                                    }
-                                                endforeach;
-                                                ?>
-                                            </ul>
-                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -136,21 +119,20 @@ function get_safe_json_meta($post_id, $meta_key)
                 <div class="max-w-4xl mx-auto text-center mb-24">
                     <span class="text-durham font-bold tracking-wider text-sm uppercase block mb-4"><?php echo esc_html($pedagogical_title); ?></span>
                     <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-6"><?php echo esc_html($coil_title); ?></h2>
-
                     <div class="text-lg text-gray-600 leading-relaxed mb-10 max-w-3xl mx-auto prose prose-p:font-medium">
                         <?php echo wp_kses_post($coil_description); ?>
                     </div>
 
-                    <button id="open-coil-modal" class="inline-flex items-center px-8 py-3 bg-white border border-durham text-durham font-bold rounded-full hover:bg-durham hover:text-white transition-all text-sm uppercase tracking-wide shadow-sm hover:shadow-md">
-                        <?php
-                        if (function_exists('pll_e')) {
-                            pll_e('Read full methodological manifesto');
-                        } else {
-                            echo 'Read full methodological manifesto';
-                        }
-                        ?>
-                        <i class="ph-bold ph-plus-circle ml-2 text-xl" aria-hidden="true"></i>
-                    </button>
+                    <?php if ($coil_manifesto) : ?>
+                        <button id="open-coil-modal" class="inline-flex items-center px-8 py-3 bg-white border border-durham text-durham font-bold rounded-full hover:bg-durham hover:text-white transition-all text-sm uppercase tracking-wide shadow-sm hover:shadow-md">
+                            <?php if (function_exists('pll_e')) {
+                                pll_e('Read full methodological manifesto');
+                            } else {
+                                echo 'Read full methodological manifesto';
+                            } ?>
+                            <i class="ph-bold ph-plus-circle ml-2 text-xl" aria-hidden="true"></i>
+                        </button>
+                    <?php endif; ?>
                 </div>
 
                 <div class="max-w-5xl mx-auto space-y-12 md:space-y-24 relative">
@@ -159,7 +141,6 @@ function get_safe_json_meta($post_id, $meta_key)
                         $is_even = ($index % 2 === 0);
                     ?>
                         <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16 relative">
-
                             <div class="md:w-1/2 <?php echo $is_even ? 'md:text-right order-2 md:order-1 pl-12 md:pl-0' : 'order-2 md:order-3 pl-12 md:pl-0'; ?>">
                                 <div class="inline-block bg-white border border-gray-200 px-4 py-1.5 rounded-full text-xs font-bold text-durham mb-4 shadow-sm tracking-wider uppercase">
                                     <?php echo esc_html($step['weeks'] ?? ''); ?>
@@ -188,14 +169,49 @@ function get_safe_json_meta($post_id, $meta_key)
                                     </figure>
                                 <?php endif; ?>
                             </div>
-
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
         </section>
 
-        <section class="py-24 bg-white">
+        <section class="py-24 bg-white border-t border-gray-200">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 max-w-3xl mx-auto">
+                    <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-6"><?php echo esc_html($areas_title); ?></h2>
+                    <?php if ($areas_subtitle): ?>
+                        <p class="text-lg text-gray-600 leading-relaxed"><?php echo esc_html($areas_subtitle); ?></p>
+                    <?php endif; ?>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <?php foreach ($research_areas as $area) : ?>
+                        <div class="bg-neutral-50 p-8 md:p-10 rounded-2xl shadow-sm border border-gray-100 text-center hover:border-durham/30 transition-colors">
+                            <div class="w-16 h-16 rounded-full bg-purple-100 text-durham flex items-center justify-center mx-auto mb-6">
+                                <i class="ph-fill <?php echo esc_attr($area['icon'] ?? 'ph-flask'); ?> text-3xl" aria-hidden="true"></i>
+                            </div>
+                            <h4 class="font-serif font-bold text-xl text-neutral-900 mb-4"><?php echo esc_html($area['title'] ?? ''); ?></h4>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6"><?php echo esc_html($area['description'] ?? ''); ?></p>
+
+                            <?php if (!empty($area['bullets'])): ?>
+                                <ul class="text-sm text-gray-500 list-disc text-left pl-4 inline-block space-y-2">
+                                    <?php
+                                    $bullets = explode("\n", $area['bullets']);
+                                    foreach ($bullets as $bullet):
+                                        if (trim($bullet) !== '') {
+                                            echo '<li>' . esc_html(trim($bullet)) . '</li>';
+                                        }
+                                    endforeach;
+                                    ?>
+                                </ul>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-neutral-50 border-t border-gray-200">
             <div class="container mx-auto px-6">
                 <div class="bg-durham-dark rounded-3xl p-10 md:p-16 relative overflow-hidden shadow-2xl">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
@@ -270,7 +286,7 @@ function get_safe_json_meta($post_id, $meta_key)
 </div>
 
 <script>
-    // Controle do Modal COIL
+    // Controle do Modal COIL e Galeria
     const coilModal = document.getElementById('coil-modal');
     const openCoilBtn = document.getElementById('open-coil-modal');
     const closeCoilBtn = document.getElementById('coil-modal-close');
@@ -279,20 +295,15 @@ function get_safe_json_meta($post_id, $meta_key)
         function toggleCoilModal() {
             coilModal.classList.toggle('hidden');
             document.body.style.overflow = coilModal.classList.contains('hidden') ? '' : 'hidden';
-            if (!coilModal.classList.contains('hidden')) {
-                closeCoilBtn.focus();
-            }
+            if (!coilModal.classList.contains('hidden')) closeCoilBtn.focus();
         }
         openCoilBtn.addEventListener('click', toggleCoilModal);
         closeCoilBtn.addEventListener('click', toggleCoilModal);
-
-        // Fecha se clicar no fundo fora do painel branco
         coilModal.addEventListener('click', (e) => {
             if (e.target === coilModal) toggleCoilModal();
         });
     }
 
-    // Controle da Galeria / Lightbox
     const images = Array.from(document.querySelectorAll('.lightbox-trigger'));
     const imgModal = document.getElementById('image-modal');
     const modalImg = document.getElementById('modal-image');
@@ -314,25 +325,20 @@ function get_safe_json_meta($post_id, $meta_key)
 
         function closeImgModal() {
             imgModal.classList.add('hidden');
-            if (!coilModal || coilModal.classList.contains('hidden')) {
-                document.body.style.overflow = '';
-            }
+            if (!coilModal || coilModal.classList.contains('hidden')) document.body.style.overflow = '';
         }
 
         function showNext() {
-            currentIndex = (currentIndex + 1) % images.length;
-            openImgModal(currentIndex);
+            openImgModal((currentIndex + 1) % images.length);
         }
 
         function showPrev() {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            openImgModal(currentIndex);
+            openImgModal((currentIndex - 1 + images.length) % images.length);
         }
 
         images.forEach((img, index) => {
             img.addEventListener('click', () => openImgModal(index));
         });
-
         closeImgBtn.addEventListener('click', closeImgModal);
         nextBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -342,12 +348,10 @@ function get_safe_json_meta($post_id, $meta_key)
             e.stopPropagation();
             showPrev();
         });
-
         imgModal.addEventListener('click', (e) => {
             if (e.target === imgModal || e.target.parentElement === imgModal) closeImgModal();
         });
 
-        // Navegação via teclado
         document.addEventListener('keydown', (e) => {
             if (!imgModal.classList.contains('hidden')) {
                 if (e.key === 'Escape') closeImgModal();
