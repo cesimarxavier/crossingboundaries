@@ -44,5 +44,26 @@ add_action('init', function () {
         pll_register_string('Theme', 'Biography', 'Crossing Boundaries');
         pll_register_string('Theme', 'Selected Publications', 'Crossing Boundaries');
         pll_register_string('Theme', 'Research Interests', 'Crossing Boundaries');
+
+        // --- 1. CABEÇALHO: UPDATES ---
+        pll_register_string('Tag Updates', 'RESEARCH CHRONICLE', 'Crossing Boundaries - Updates');
+        pll_register_string('Título Updates', 'Updates', 'Crossing Boundaries - Updates');
+        pll_register_string('Descrição Updates', 'A continuous archive of scientific developments, field expeditions, and scholarly dissemination resulting from the Durham-UFRJ intercultural partnership.', 'Crossing Boundaries - Updates', true);
+
+        // --- 2. CABEÇALHO: MEMBERS ---
+        pll_register_string('Título Members', 'Members', 'Crossing Boundaries - Equipe');
+        pll_register_string('Descrição Members', 'Meet the academic leaders and dedicated researchers from Durham University and UFRJ bridging science and culture.', 'Crossing Boundaries - Equipe', true);
+
+        // --- 3. BLOCO ESTÁTICO: INTERSECTION OF KNOWLEDGE ---
+        // (Nota: Se este bloco já estiver a vir daquele Meta Box do "The Project", não precisa disto. Mas se for fixo no layout, use estas strings!)
+        pll_register_string('Título Intersection', 'The Intersection of Knowledge', 'Crossing Boundaries - Interseção');
+        pll_register_string('Texto Intersection', 'The project transcends pure chemistry. We incorporate researchers from Applied Linguistics and Education to monitor the process.', 'Crossing Boundaries - Interseção', true);
+        pll_register_string('Botão Intersection', 'Meet our Researchers', 'Crossing Boundaries - Interseção');
+
+        // Ícones do Grid da Interseção (se forem estáticos)
+        pll_register_string('Grid Hard Science', 'Hard Science', 'Crossing Boundaries - Interseção');
+        pll_register_string('Grid Culture', 'Culture', 'Crossing Boundaries - Interseção');
+        pll_register_string('Grid Sustainability', 'Sustainability', 'Crossing Boundaries - Interseção');
+        pll_register_string('Grid Education', 'Education', 'Crossing Boundaries - Interseção');
     }
 });
