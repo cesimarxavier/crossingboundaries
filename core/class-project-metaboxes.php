@@ -2,7 +2,7 @@
 
 /**
  * Módulo Nativo de Meta Boxes para a Página "The Project"
- * Arquitetura modular baseada em Array (A prova de bugs de JSON)
+ * Arquitetura modular corrigida para compatibilidade de tipos (Array vs String)
  */
 class ModularPress_Project_MetaBoxes
 {
@@ -21,8 +21,8 @@ class ModularPress_Project_MetaBoxes
             'fields' => [
                 ['id' => '_pedagogical_title', 'label' => 'Título (The Pedagogical Approach)', 'type' => 'text', 'default' => 'The Pedagogical Approach'],
                 ['id' => '_coil_title', 'label' => 'Título (What is COIL?)', 'type' => 'text', 'default' => 'What is COIL?'],
-                ['id' => '_coil_description', 'label' => 'Descrição do COIL (Texto visível na página)', 'type' => 'wysiwyg', 'default' => '<p>Collaborative Online International Learning is a methodology that connects classrooms in different countries, creating a shared environment where knowledge is co-constructed through cultural diversity.</p>'],
-                ['id' => '_coil_manifesto', 'label' => 'Manifesto COIL (Conteúdo oculto do Modal)', 'type' => 'wysiwyg', 'default' => '']
+                ['id' => '_coil_description', 'label' => 'Descrição do COIL', 'type' => 'wysiwyg', 'default' => '<p>Collaborative Online International Learning is a methodology that connects classrooms in different countries, creating a shared environment where knowledge is co-constructed through cultural diversity.</p>'],
+                ['id' => '_coil_manifesto', 'label' => 'Manifesto COIL (Conteúdo do Modal)', 'type' => 'wysiwyg', 'default' => '']
             ]
         ],
 
@@ -44,7 +44,7 @@ class ModularPress_Project_MetaBoxes
             ]
         ],
 
-        // 5. INTERSECTION OF KNOWLEDGE (NOVO)
+        // 5. INTERSECTION OF KNOWLEDGE
         'project_intersection_meta' => [
             'title'  => '5. The Intersection of Knowledge',
             'fields' => [
@@ -75,10 +75,16 @@ class ModularPress_Project_MetaBoxes
 
     public function render_metabox($post, $metabox)
     {
-        wp_nonce_field('save_project_data', 'project_data_nonce');
-        $fields = $metabox['args']['fields'];
+        // Garante que o nonce só seja impresso uma vez para evitar lixo HTML
+        static $nonce_printed = false;
+        if (!$nonce_printed) {
+            wp_nonce_field('save_project_data', 'project_data_nonce');
+            $nonce_printed = true;
+        }
 
+        $fields = $metabox['args']['fields'];
         echo '<div style="padding: 10px 0;">';
+
         foreach ($fields as $field) {
             $value = get_post_meta($post->ID, $field['id'], true);
             if (empty($value) && !empty($field['default'])) {
@@ -98,12 +104,15 @@ class ModularPress_Project_MetaBoxes
                 case 'textarea':
                     echo '<textarea id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" style="width:100%; height:80px;">' . esc_textarea($value) . '</textarea>';
                     break;
-                case 'json':
-                    // Tipo JSON salva e exibe como string pura no painel. Assim nunca perde formatação!
-                    echo '<textarea id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" style="width:100%; height:250px; font-family: monospace; background:#f0f0f1; padding: 10px;">' . esc_textarea($value) . '</textarea>';
-                    break;
                 case 'wysiwyg':
                     wp_editor($value, $field['id'], ['textarea_name' => $field['id'], 'textarea_rows' => 8, 'media_buttons' => false]);
+                    break;
+                case 'json':
+                    // CORREÇÃO CRÍTICA: Se o dado legado vier do banco como Array, converte para String antes de exibir!
+                    if (is_array($value)) {
+                        $value = wp_json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                    }
+                    echo '<textarea id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" style="width:100%; height:250px; font-family: monospace; background:#f0f0f1; padding: 10px;">' . esc_textarea($value) . '</textarea>';
                     break;
             }
             echo '</div>';
@@ -133,12 +142,12 @@ class ModularPress_Project_MetaBoxes
                     case 'textarea':
                         update_post_meta($post_id, $field['id'], sanitize_textarea_field($raw_value));
                         break;
-                    case 'json':
-                        // Salva o JSON como String! Isso resolve o bug do texto sumir.
-                        update_post_meta($post_id, $field['id'], $raw_value);
-                        break;
                     case 'wysiwyg':
                         update_post_meta($post_id, $field['id'], wp_kses_post($raw_value));
+                        break;
+                    case 'json':
+                        // Salvamos estritamente como String. Se o cliente esquecer a vírgula, ele não perde o texto.
+                        update_post_meta($post_id, $field['id'], $raw_value);
                         break;
                 }
             }

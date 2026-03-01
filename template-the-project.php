@@ -105,12 +105,10 @@ get_header();
         <section class="py-24 bg-neutral-50 border-t border-gray-200 relative overflow-hidden timeline-line">
             <div class="container mx-auto px-6 relative z-10">
                 <div class="max-w-4xl mx-auto text-center mb-24">
-                    <span class="text-durham font-bold tracking-wider text-sm uppercase block mb-4"><?php esc_html('The Pedagogical Approach'); ?></span>
-                    <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-6"><?php esc_html('What is COIL?'); ?></h2>
+                    <span class="text-durham font-bold tracking-wider text-sm uppercase block mb-4"><?php echo ($pedagogical_title); ?></span>
+                    <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-6"><?php echo ($coil_title); ?></h2>
                     <p class="text-lg text-gray-600 leading-relaxed mb-8 max-w-2xl mx-auto">
-
-                        <strong><?php pll_e('Collaborative Online International Learning', 'crossingboundaries'); ?></strong>
-                        <?php pll_e('is a methodology that connects classrooms in different countries', 'crossingboundaries'); ?>
+                        <strong><?php ($coil_description); ?>
                     </p>
                     <button id="open-coil-modal" class="inline-flex items-center px-6 py-2 border border-durham text-durham font-bold rounded-full hover:bg-durham hover:text-white transition-all text-sm uppercase tracking-wide">
                         <?php pll_e('Read full methodological manifesto', 'crossingboundaries'); ?> <i class="ph-bold ph-plus-circle ml-2 text-lg"></i>
