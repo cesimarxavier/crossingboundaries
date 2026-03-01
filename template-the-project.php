@@ -32,15 +32,15 @@ get_header(); ?>
             <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff33_1px,transparent_1px)] [background-size:20px_20px]"></div>
             <div class="container mx-auto px-6 relative z-10 text-center">
                 <span class="inline-block py-1.5 px-4 rounded-full border border-white/20 text-purple-100 text-xs font-bold uppercase tracking-widest mb-6">
-                    <?php pll_e_e('Institutional Vision', 'crossingboundaries'); ?>
+                    <?php pll_e('Institutional Vision', 'crossingboundaries'); ?>
                 </span>
                 <h1 class="font-serif font-bold text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
-                    <?php the_title(); // Ex: Methodology & Strategic Objectives 
+                    <?php the_title();
                     ?>
                 </h1>
                 <?php if ($hero_subtitle) : ?>
                     <p class="text-lg md:text-xl text-purple-100 max-w-2xl mx-auto font-light leading-relaxed">
-                        <?php echo pll_e($hero_subtitle); ?>
+                        <?php echo ($hero_subtitle); ?>
                     </p>
                 <?php endif; ?>
             </div>
@@ -52,7 +52,7 @@ get_header(); ?>
 
                     <div class="lg:w-1/2">
                         <h2 class="font-serif font-bold text-3xl text-neutral-900 mb-8 border-l-4 border-durham pl-6">
-                            <?php pll_e_e('Context and Motivation', 'crossingboundaries'); ?>
+                            <?php pll_e('Context and Motivation', 'crossingboundaries'); ?>
                         </h2>
                         <div class="prose prose-lg text-neutral-600 leading-relaxed text-justify">
                             <?php the_content(); // Usa o editor principal do WordPress 
@@ -87,13 +87,15 @@ get_header(); ?>
         <section class="py-24 bg-neutral-50 border-t border-gray-200 relative overflow-hidden timeline-line">
             <div class="container mx-auto px-6 relative z-10">
                 <div class="max-w-4xl mx-auto text-center mb-24">
-                    <span class="text-durham font-bold tracking-wider text-sm uppercase block mb-4"><?php pll_e_e('The Pedagogical Approach', 'crossingboundaries'); ?></span>
-                    <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-6"><?php pll_e_e('What is COIL?', 'crossingboundaries'); ?></h2>
+                    <span class="text-durham font-bold tracking-wider text-sm uppercase block mb-4"><?php pll_e('The Pedagogical Approach', 'crossingboundaries'); ?></span>
+                    <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-6"><?php pll_e('What is COIL?', 'crossingboundaries'); ?></h2>
                     <p class="text-lg text-gray-600 leading-relaxed mb-8 max-w-2xl mx-auto">
-                        <strong>Collaborative Online International Learning</strong> is a methodology that connects classrooms in different countries...
+
+                        <strong><?php pll_e('Collaborative Online International Learning', 'crossingboundaries'); ?></strong>
+                        <?php pll_e('is a methodology that connects classrooms in different countries', 'crossingboundaries'); ?>
                     </p>
                     <button id="open-coil-modal" class="inline-flex items-center px-6 py-2 border border-durham text-durham font-bold rounded-full hover:bg-durham hover:text-white transition-all text-sm uppercase tracking-wide">
-                        <?php pll_e_e('Read full methodological manifesto', 'crossingboundaries'); ?> <i class="ph-bold ph-plus-circle ml-2 text-lg"></i>
+                        <?php pll_e('Read full methodological manifesto', 'crossingboundaries'); ?> <i class="ph-bold ph-plus-circle ml-2 text-lg"></i>
                     </button>
                 </div>
 
@@ -107,10 +109,10 @@ get_header(); ?>
 
                             <div class="md:w-1/2 <?php echo $is_even ? 'md:text-right order-2 md:order-1 pl-20 md:pl-0' : 'order-2 md:order-3'; ?>">
                                 <div class="inline-block bg-white border border-gray-200 px-3 py-1 rounded-full text-xs font-bold text-durham mb-3 shadow-sm">
-                                    <?php echo pll_e($step['weeks']); ?>
+                                    <?php echo ($step['weeks']); ?>
                                 </div>
-                                <h3 class="font-serif font-bold text-2xl text-neutral-900 mb-3"><?php echo pll_e($step['title']); ?></h3>
-                                <p class="text-gray-600 leading-relaxed"><?php echo pll_e($step['description']); ?></p>
+                                <h3 class="font-serif font-bold text-2xl text-neutral-900 mb-3"><?php echo ($step['title']); ?></h3>
+                                <p class="text-gray-600 leading-relaxed"><?php echo ($step['description']); ?></p>
                             </div>
 
                             <div class="absolute left-0 md:left-1/2 w-full md:w-auto flex justify-start md:justify-center pl-6 md:pl-0 order-1 md:order-2 pointer-events-none">
@@ -129,7 +131,7 @@ get_header(); ?>
                                     </div>
 
                                     <?php if (!empty($step['caption'])): ?>
-                                        <figcaption class="text-[10px] text-gray-400 mt-2 text-center uppercase tracking-wide"><?php echo pll_e($step['caption']); ?></figcaption>
+                                        <figcaption class="text-[10px] text-gray-400 mt-2 text-center uppercase tracking-wide"><?php echo ($step['caption']); ?></figcaption>
                                     <?php endif; ?>
                                 </figure>
                             </div>
@@ -143,9 +145,9 @@ get_header(); ?>
         <section class="py-24 bg-white border-t border-gray-200">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-4"><?php echo pll_e($areas_title); ?></h2>
+                    <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-4"><?php echo ($areas_title); ?></h2>
                     <?php if ($areas_subtitle): ?>
-                        <p class="text-lg text-gray-600 max-w-2xl mx-auto"><?php echo pll_e($areas_subtitle); ?></p>
+                        <p class="text-lg text-gray-600 max-w-2xl mx-auto"><?php echo ($areas_subtitle); ?></p>
                     <?php endif; ?>
                 </div>
 
@@ -156,9 +158,9 @@ get_header(); ?>
                                 <div class="w-12 h-12 rounded-full bg-purple-50 text-durham flex items-center justify-center text-2xl group-hover:bg-durham group-hover:text-white transition-colors">
                                     <i class="ph-fill <?php echo esc_attr($area['icon'] ?: 'ph-flask'); ?>"></i>
                                 </div>
-                                <h3 class="font-serif font-bold text-xl text-neutral-900"><?php echo pll_e($area['title']); ?></h3>
+                                <h3 class="font-serif font-bold text-xl text-neutral-900"><?php echo ($area['title']); ?></h3>
                             </div>
-                            <p class="text-gray-600 mb-4 text-sm leading-relaxed"><?php echo pll_e($area['description']); ?></p>
+                            <p class="text-gray-600 mb-4 text-sm leading-relaxed"><?php echo ($area['description']); ?></p>
 
                             <ul class="space-y-2 text-sm text-gray-500">
                                 <?php
@@ -167,7 +169,7 @@ get_header(); ?>
                                 foreach ($bullets as $bullet):
                                     if (trim($bullet) !== ''):
                                 ?>
-                                        <li class="flex items-start gap-2"><i class="ph-bold ph-check text-durham mt-0.5"></i> <?php echo pll_e(trim($bullet)); ?></li>
+                                        <li class="flex items-start gap-2"><i class="ph-bold ph-check text-durham mt-0.5"></i> <?php echo (trim($bullet)); ?></li>
                                 <?php
                                     endif;
                                 endforeach;
