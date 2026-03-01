@@ -1,44 +1,70 @@
 <?php
 get_header();
+
+// ==========================================
+// FUNÇÃO HELPER PARA LER OS JSONS COM SEGURANÇA
+// ==========================================
+function get_safe_json_meta($post_id, $meta_key)
+{
+    $data = get_post_meta($post_id, $meta_key, true);
+    if (is_string($data)) {
+        $decoded = json_decode($data, true);
+        return is_array($decoded) ? $decoded : [];
+    }
+    return is_array($data) ? $data : [];
+}
+
 ?>
 
 <main id="main-content">
     <?php while (have_posts()) : the_post();
+
+        // O Polylang já cuida do ID correto para cada idioma!
         $id = get_the_ID();
 
-        // Lendo os dados do Hero
-        $hero_title    = get_post_meta($id, '_home_hero_title', true) ?: get_the_title();
-        $hero_subtitle = get_post_meta($id, '_home_hero_subtitle', true);
-        $hero_bg       = get_post_meta($id, '_home_hero_bg', true);
+        // 1. DADOS DO HERO
+        $hero_tag   = get_post_meta($id, '_home_hero_tag', true) ?: 'Interdisciplinary Project';
+        $hero_title = get_post_meta($id, '_home_hero_title', true) ?: 'Crossing Boundaries: <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-white">Uniting Cultures</span> for Sustainability.';
+        $hero_desc  = get_post_meta($id, '_home_hero_desc', true) ?: 'An innovative collaboration between Durham University and UFRJ, bringing students together to solve global SDG challenges through COIL methodology.';
+        $hero_bg    = get_post_meta($id, '_home_hero_bg', true) ?: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80';
 
-        // Lendo os dados do About
-        $about_tag      = get_post_meta($id, '_home_about_tag', true);
-        $about_title    = get_post_meta($id, '_home_about_title', true);
-        $about_text     = get_post_meta($id, '_home_about_text', true);
-        $about_img      = get_post_meta($id, '_home_about_img', true);
-        $about_btn_text = get_post_meta($id, '_home_about_btn_text', true);
-        $about_btn_link = get_post_meta($id, '_home_about_btn_link', true);
+        // 2. DADOS DO ABOUT
+        $about_tag     = get_post_meta($id, '_home_about_tag', true) ?: 'About the Initiative';
+        $about_title   = get_post_meta($id, '_home_about_title', true) ?: 'Preparing the Next Generation of Scientists';
+        $about_content = get_post_meta($id, '_home_about_content', true);
+        $about_img     = get_post_meta($id, '_home_about_img', true) ?: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+
+        // 3. METHODOLOGY
+        $method_tag      = get_post_meta($id, '_home_methodology_tag', true) ?: 'Methodology';
+        $method_title    = get_post_meta($id, '_home_methodology_title', true) ?: 'The Project Explained';
+        $method_blocks   = get_safe_json_meta($id, '_home_methodology_blocks');
+        $method_btn_link = get_post_meta($id, '_home_methodology_btn_link', true) ?: home_url('/the-project');
+
+        // 4. OUTCOMES (Context)
+        $outcomes_tag       = get_post_meta($id, '_home_outcomes_tag', true) ?: 'Outcomes';
+        $outcomes_title     = get_post_meta($id, '_home_outcomes_title', true) ?: 'Context and <br>Motivation';
+        $outcomes_desc      = get_post_meta($id, '_home_outcomes_desc', true);
+        $outcomes_btn_label = get_post_meta($id, '_home_outcomes_btn_label', true) ?: 'See Solutions in Practice';
+        $outcomes_btn_link  = get_post_meta($id, '_home_outcomes_btn_link', true) ?: home_url('/solutions');
+        $outcomes_blocks    = get_safe_json_meta($id, '_home_outcomes_blocks');
     ?>
-
 
         <section class="relative h-[90vh] min-h-[600px] flex items-center">
             <div class="absolute inset-0 z-0">
-                <img src="<?php echo $hero_bg ?  esc_url($hero_bg)  : ''; ?>" alt="Students collaborating" class="w-full h-full object-cover">
+                <img src="<?php echo esc_url($hero_bg); ?>" alt="Hero Background" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-r from-neutral-900/90 via-neutral-900/60 to-transparent"></div>
             </div>
 
             <div class="container mx-auto px-6 relative z-10 pt-20">
                 <div class="max-w-2xl animate-fade-in-up">
                     <span class="inline-block py-1 px-3 rounded-full border text-xs font-bold uppercase tracking-wider mb-6 bg-white/10 text-white border-white/20">
-                        Interdisciplinary Project
+                        <?php echo esc_html($hero_tag); ?>
                     </span>
                     <h1 class="font-serif font-black text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">
-                        <?php echo esc_html($hero_title); ?>
+                        <?php echo wp_kses_post($hero_title); ?>
                     </h1>
                     <p class="text-lg md:text-xl text-gray-200 mb-8 font-light leading-relaxed max-w-lg">
-                        <?php if ($hero_subtitle): ?>
-                            <?php echo esc_html($hero_subtitle); ?>
-                        <?php endif; ?>
+                        <?php echo esc_html($hero_desc); ?>
                     </p>
                 </div>
             </div>
@@ -50,42 +76,107 @@ get_header();
             </div>
         </section>
 
-        <section class="py-24 bg-white relative">
+        <section id="about" class="py-24 bg-white relative">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col lg:flex-row gap-16 items-center">
-
                     <div class="lg:w-1/2">
-                        <span class="text-durham font-bold tracking-wider text-sm uppercase block mb-4">
+                        <span class="text-durham font-bold tracking-wider text-sm uppercase mb-3 block">
                             <?php echo esc_html($about_tag); ?>
                         </span>
-                        <h2 class="font-serif font-bold text-4xl text-neutral-900 mb-6">
+                        <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-6">
                             <?php echo esc_html($about_title); ?>
                         </h2>
-
-                        <div class="prose prose-lg text-neutral-600 leading-relaxed mb-8">
-                            <?php echo wp_kses_post($about_text); ?>
+                        <div class="prose prose-lg text-gray-600 mb-8">
+                            <?php
+                            // Fallback de texto caso esteja vazio no painel
+                            if ($about_content) {
+                                echo wp_kses_post($about_content);
+                            } else {
+                                echo '<p>The <strong>Crossing Boundaries</strong> project is not merely about chemistry or biology; it is fundamentally about <strong>internationalisation</strong>.</p><p>Our mission is to democratise the global experience, ensuring that the new generation of Brazilian and British scientists develops critical intercultural competencies. By connecting research laboratories across virtual and physical borders, we prepare students not only to execute experiments but to lead diverse global teams in solving the greatest challenges of the 21st century.</p>';
+                            }
+                            ?>
                         </div>
+                        <div class="flex items-center gap-4">
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo-durham-university.svg" class="h-8 opacity-70 grayscale">
+                            <div class="w-px h-6 bg-gray-300"></div>
+                            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo-ufrj.svg" class="h-8 opacity-70 grayscale">
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 relative">
+                        <div class="absolute -top-4 -left-4 w-24 h-24 bg-purple-50 rounded-tl-3xl z-0"></div>
+                        <img src="<?php echo esc_url($about_img); ?>" alt="About the Initiative" class="relative z-10 rounded-xl shadow-xl w-full object-cover aspect-[4/3]">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <?php if ($about_btn_text && $about_btn_link): ?>
-                            <a href="<?php echo esc_url($about_btn_link); ?>" class="inline-flex items-center px-8 py-3 bg-durham text-white font-bold rounded-full hover:bg-durham-light transition-colors shadow-md">
-                                <?php echo esc_html($about_btn_text); ?> <i class="ph-bold ph-arrow-right ml-2 text-xl" aria-hidden="true"></i>
-                            </a>
-                        <?php endif; ?>
+        <section class="py-24 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <span class="text-durham font-bold tracking-wider text-sm uppercase block mb-4"><?php echo esc_html($method_tag); ?></span>
+                <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mb-16"><?php echo esc_html($method_title); ?></h2>
+
+                <div class="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-16">
+                    <?php foreach ($method_blocks as $block): ?>
+                        <div class="relative group">
+                            <div class="w-20 h-20 mx-auto bg-neutral-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-purple-50 group-hover:scale-110 transition-all border border-gray-100 shadow-sm">
+                                <i class="ph-duotone <?php echo esc_attr($block['icon'] ?? 'ph-desktop'); ?> text-4xl text-durham"></i>
+                            </div>
+                            <h4 class="font-serif font-bold text-xl mb-3"><?php echo esc_html($block['title'] ?? ''); ?></h4>
+                            <p class="text-sm text-gray-600"><?php echo esc_html($block['description'] ?? ''); ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <a href="<?php echo esc_url($method_btn_link); ?>" class="inline-flex items-center gap-2 border-2 border-durham text-durham font-bold px-8 py-3 rounded-full hover:bg-durham hover:text-white transition-colors uppercase tracking-wide text-sm">
+                    <?php if (function_exists('pll_e')) {
+                        pll_e('Read full methodological manifesto');
+                    } else {
+                        echo 'Read full methodological manifesto';
+                    } ?>
+                </a>
+            </div>
+        </section>
+
+        <section id="context" class="py-24 bg-neutral-50 border-t border-gray-100 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-white -skew-x-12 translate-x-20 hidden lg:block shadow-sm"></div>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    <div class="lg:w-1/2">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="w-8 h-1 bg-durham rounded-full"></span>
+                            <span class="text-durham font-bold tracking-wider text-sm uppercase"><?php echo esc_html($outcomes_tag); ?></span>
+                        </div>
+                        <h2 class="font-serif font-bold text-4xl lg:text-5xl text-neutral-900 mb-6 leading-tight">
+                            <?php echo wp_kses_post($outcomes_title); ?>
+                        </h2>
+                        <div class="prose prose-lg text-gray-600 leading-relaxed text-justify mb-8">
+                            <?php
+                            if ($outcomes_desc) {
+                                echo wp_kses_post($outcomes_desc);
+                            } else {
+                                echo '<p>The complexity of contemporary challenges demands a reshaping of how new scientists are trained. Problems such as food security and soil contamination do not respect geopolitical borders.</p><p>Our actions aim for concrete outcomes in Transnational Education (TNE), creating learning ecosystems that benefit institutions and societies bidirectionally.</p>';
+                            }
+                            ?>
+                        </div>
+                        <a href="<?php echo esc_url($outcomes_btn_link); ?>" class="inline-flex items-center bg-durham text-white px-8 py-3 rounded-full font-bold shadow-md hover:bg-durham-dark transition-colors">
+                            <?php echo esc_html($outcomes_btn_label); ?> <i class="ph-bold ph-arrow-right ml-2"></i>
+                        </a>
                     </div>
 
-                    <div class="lg:w-1/2 w-full">
-                        <?php if ($about_img): ?>
-                            <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-                                <img src="<?php echo esc_url($about_img); ?>" alt="About the Initiative" class="w-full h-auto object-cover aspect-[4/3]">
-                                <div class="absolute inset-0 border border-white/20 rounded-2xl"></div>
+                    <div class="lg:w-1/2 flex flex-col gap-5 w-full">
+                        <?php foreach ($outcomes_blocks as $block): ?>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100 flex gap-6 items-start shadow-sm hover:shadow-md hover:border-durham/30 transition-all group">
+                                <div class="w-14 h-14 rounded-full bg-purple-50 text-durham flex items-center justify-center shrink-0 group-hover:bg-durham group-hover:text-white transition-colors">
+                                    <i class="ph-fill <?php echo esc_attr($block['icon'] ?? 'ph-flask'); ?> text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-serif font-bold text-xl text-neutral-900 mb-2"><?php echo esc_html($block['title'] ?? ''); ?></h3>
+                                    <p class="text-sm text-gray-600"><?php echo esc_html($block['description'] ?? ''); ?></p>
+                                </div>
                             </div>
-                        <?php else: ?>
-                            <div class="bg-neutral-100 rounded-2xl aspect-[4/3] flex items-center justify-center text-gray-400 border-2 border-dashed border-gray-300">
-                                <span>Upload an image in the painel</span>
-                            </div>
-                        <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -190,6 +281,7 @@ get_header();
             </a>
         </div>
     </section>
+
 </main>
 
 <?php get_footer(); ?>
