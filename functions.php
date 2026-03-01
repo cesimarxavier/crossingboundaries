@@ -17,3 +17,17 @@ add_action('after_setup_theme', function () {
     add_theme_support('post-thumbnails');
     add_theme_support('menus');
 });
+
+
+/**
+ * Altera a consulta principal da página de Arquivo de Membros
+ * Força a ordem alfabética (A-Z) e exibe todos os membros de uma vez.
+ */
+add_action('pre_get_posts', function ($query) {
+    // Verifica se estamos no front-end, na consulta principal e na página de membros
+    if (!is_admin() && $query->is_main_query() && is_post_type_archive('member')) {
+        $query->set('orderby', 'title'); // Ordem alfabética
+        $query->set('order', 'ASC');     // A -> Z
+        $query->set('posts_per_page', -1); // -1 exibe todos na mesma página (sem paginação)
+    }
+});

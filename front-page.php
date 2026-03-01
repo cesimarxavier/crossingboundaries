@@ -214,10 +214,10 @@ $about_img = get_post_meta($id, '_home_about_img', true) ?: get_template_directo
                 // QUERY DIRETA E EXPLÍCITA (À prova de falhas)
                 $team_args = array(
                     'post_type'      => 'member', // Puxando o novo CPT
-                    'posts_per_page' => 4,
+                    'posts_per_page' => 10,
                     'post_status'    => 'publish',
-                    'orderby'        => 'date',
-                    'order'          => 'DESC'
+                    'orderby'        => 'title',
+                    'order'          => 'ASC'
                 );
                 $team_query = new WP_Query($team_args);
 
