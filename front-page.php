@@ -279,7 +279,7 @@ function get_safe_json_meta($post_id, $meta_key)
                 ?>
             </div>
 
-            <a href="<?php echo esc_url(home_url('/our-team')); ?>" class="inline-block border-b border-durham text-durham font-semibold hover:text-durham-dark pb-1 transition-colors">
+            <a href="<?php pll_e('Our Team - Link', 'crossingboundaries'); ?>" class="inline-block border-b border-durham text-durham font-semibold hover:text-durham-dark pb-1 transition-colors">
                 <?php pll_e('Our Team - Label', 'crossingboundaries'); ?>
             </a>
         </div>
