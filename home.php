@@ -12,20 +12,13 @@ get_header(); ?>
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-3xl">
                 <span class="inline-block py-1 px-3 rounded-full border border-white/20 text-purple-100 text-xs font-bold uppercase tracking-widest mb-4">
-                    <?php esc_html_e('Research Chronicle', 'crossingboundaries'); ?>
+                    <?php pll_e('RESEARCH CHRONICLE'); ?>
                 </span>
                 <h1 class="font-serif font-bold text-4xl md:text-5xl text-white mb-4">
-                    <?php
-                    $blog_page_id = get_option('page_for_posts');
-                    if ($blog_page_id) {
-                        echo esc_html(get_the_title($blog_page_id));
-                    } else {
-                        esc_html_e('Latest Updates', 'crossingboundaries');
-                    }
-                    ?>
+                    <?php pll_e('Updates'); ?>
                 </h1>
                 <p class="text-purple-100 text-lg font-light leading-relaxed">
-                    <?php esc_html_e('A continuous archive of scientific developments, field expeditions, and scholarly dissemination resulting from the Durham-UFRJ intercultural partnership.', 'crossingboundaries'); ?>
+                    <?php pll_e('A continuous archive of scientific developments, field expeditions, and scholarly dissemination resulting from the Durham-UFRJ intercultural partnership.'); ?>
                 </p>
             </div>
         </div>
@@ -38,7 +31,7 @@ get_header(); ?>
                 <div class="flex flex-wrap gap-2 justify-center lg:justify-start w-full lg:w-auto">
                     <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>"
                         class="<?php echo !is_category() ? 'bg-durham text-white border-durham' : 'text-gray-600 border-gray-200 hover:border-durham hover:text-durham'; ?> px-4 py-2 rounded-full border text-sm font-bold transition-all">
-                        <?php esc_html_e('All', 'crossingboundaries'); ?>
+                        <?php pll_e('All', 'crossingboundaries'); ?>
                     </a>
 
                     <?php
@@ -55,7 +48,7 @@ get_header(); ?>
 
                 <div class="relative w-full lg:w-80">
                     <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
-                        <input type="text" name="s" placeholder="<?php esc_attr_e('Search updates...', 'crossingboundaries'); ?>" value="<?php echo get_search_query(); ?>"
+                        <input type="text" name="s" placeholder="<?php pll_e('Search Placeholder', 'crossingboundaries'); ?>" value="<?php echo get_search_query(); ?>"
                             class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-durham focus:ring-1 focus:ring-durham transition-all">
                         <input type="hidden" name="post_type" value="post" />
                         <button type="submit" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-durham transition-colors">
@@ -115,7 +108,7 @@ get_header(); ?>
                                 </div>
 
                                 <a href="<?php the_permalink(); ?>" class="text-sm font-bold text-durham flex items-center mt-auto group/link">
-                                    <?php esc_html_e('Read More', 'crossingboundaries'); ?>
+                                    <?php pll_e('Read more', 'crossingboundaries'); ?>
                                     <i class="ph-bold ph-arrow-right ml-2 group-hover/link:translate-x-1 transition-transform"></i>
                                 </a>
                             </div>
@@ -141,10 +134,10 @@ get_header(); ?>
                     <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 text-gray-400 mb-6">
                         <i class="ph-duotone ph-article text-4xl"></i>
                     </div>
-                    <h2 class="font-serif font-bold text-2xl text-neutral-900 mb-4"><?php esc_html_e('No updates found.', 'crossingboundaries'); ?></h2>
-                    <p class="text-gray-500 mb-8"><?php esc_html_e('We could not find any posts matching your criteria.', 'crossingboundaries'); ?></p>
+                    <h2 class="font-serif font-bold text-2xl text-neutral-900 mb-4"><?php pll_e('No updates found.', 'crossingboundaries'); ?></h2>
+                    <p class="text-gray-500 mb-8"><?php pll_e('No updates found - Message', 'crossingboundaries'); ?></p>
                     <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="text-durham font-bold underline hover:text-durham-dark">
-                        <?php esc_html_e('Clear filters and view all updates', 'crossingboundaries'); ?>
+                        <?php pll_e('Clear filters and view all updates', 'crossingboundaries'); ?>
                     </a>
                 </div>
             <?php endif; ?>

@@ -48,10 +48,10 @@ get_header();
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff33_1px,transparent_1px)] [background-size:20px_20px]"></div>
         <div class="container mx-auto px-6 text-center relative z-10">
             <h1 class="font-serif font-bold text-4xl md:text-5xl text-white mb-6">
-                <?php post_type_archive_title('', true); ?>
+                <?php pll_e('Titulo Members', 'crossingboundaries'); ?>
             </h1>
             <p class="text-purple-100 text-lg max-w-2xl mx-auto font-light leading-relaxed">
-                <?php pll_e('Meet the academic leaders and dedicated researchers from Durham University and UFRJ bridging science and culture.', 'crossingboundaries'); ?>
+                <?php pll_e('Subtitulo Members', 'crossingboundaries'); ?>
             </p>
         </div>
     </section>

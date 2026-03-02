@@ -12,7 +12,7 @@ get_header(); ?>
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-3xl">
                 <span class="inline-block py-1 px-3 rounded-full border border-white/20 text-purple-100 text-xs font-bold uppercase tracking-widest mb-4">
-                    <?php esc_html_e('Filtered by Category', 'crossingboundaries'); ?>
+                    <?php pll_e('Filtered by Category', 'crossingboundaries'); ?>
                 </span>
 
                 <h1 class="font-serif font-bold text-4xl md:text-5xl text-white mb-4">
@@ -29,7 +29,7 @@ get_header(); ?>
                     if (! empty($cat_desc)) {
                         echo wp_kses_post($cat_desc);
                     } else {
-                        esc_html_e('Explore the latest updates and research logs related to this topic.', 'crossingboundaries');
+                        pll_e('Explore the latest updates and research logs related to this topic.', 'crossingboundaries');
                     }
                     ?>
                 </p>
@@ -44,7 +44,7 @@ get_header(); ?>
                 <div class="flex flex-wrap gap-2 justify-center lg:justify-start w-full lg:w-auto">
                     <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>"
                         class="<?php echo !is_category() ? 'bg-durham text-white border-durham' : 'text-gray-600 border-gray-200 hover:border-durham hover:text-durham'; ?> px-4 py-2 rounded-full border text-sm font-bold transition-all">
-                        <?php esc_html_e('All', 'crossingboundaries'); ?>
+                        <?php pll_e('All', 'crossingboundaries'); ?>
                     </a>
 
                     <?php
@@ -118,7 +118,7 @@ get_header(); ?>
                                 </div>
 
                                 <a href="<?php the_permalink(); ?>" class="text-sm font-bold text-durham flex items-center mt-auto group/link">
-                                    <?php esc_html_e('Read More', 'crossingboundaries'); ?>
+                                    <?php pll_e('Read More', 'crossingboundaries'); ?>
                                     <i class="ph-bold ph-arrow-right ml-2 group-hover/link:translate-x-1 transition-transform"></i>
                                 </a>
                             </div>
@@ -143,9 +143,10 @@ get_header(); ?>
                     <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 text-gray-400 mb-6">
                         <i class="ph-duotone ph-article text-4xl"></i>
                     </div>
-                    <h2 class="font-serif font-bold text-2xl text-neutral-900 mb-4"><?php esc_html_e('No updates in this category', 'crossingboundaries'); ?></h2>
+                    <h2 class="font-serif font-bold text-2xl text-neutral-900 mb-4"><?php pll_e('No updates found.', 'crossingboundaries'); ?></h2>
+                    <p class="text-gray-500 mb-8"><?php pll_e('No updates found - Message', 'crossingboundaries'); ?></p>
                     <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="text-durham font-bold underline hover:text-durham-dark">
-                        <?php esc_html_e('Clear filters and view all updates', 'crossingboundaries'); ?>
+                        <?php pll_e('Clear filters and view all updates', 'crossingboundaries'); ?>
                     </a>
                 </div>
             <?php endif; ?>

@@ -46,13 +46,20 @@ add_action('init', function () {
         pll_register_string('Theme', 'Research Interests', 'Crossing Boundaries');
 
         // --- 1. CABEÇALHO: UPDATES ---
-        pll_register_string('Tag Updates', 'RESEARCH CHRONICLE', 'Crossing Boundaries - Updates');
-        pll_register_string('Título Updates', 'Updates', 'Crossing Boundaries - Updates');
-        pll_register_string('Descrição Updates', 'A continuous archive of scientific developments, field expeditions, and scholarly dissemination resulting from the Durham-UFRJ intercultural partnership.', 'Crossing Boundaries - Updates', true);
+        pll_register_string('Updates', 'RESEARCH CHRONICLE', 'Crossing Boundaries - Updates');
+        pll_register_string('Updates Updates', 'Updates', 'Crossing Boundaries - Updates');
+        pll_register_string('Updates', 'A continuous archive of scientific developments, field expeditions, and scholarly dissemination resulting from the Durham-UFRJ intercultural partnership.', 'Crossing Boundaries - Updates', true);
+        pll_register_string('Updates', 'All', 'Crossing Boundaries');
+        pll_register_string('Updates', 'Search Placeholder', 'Crossing Boundaries');
+        pll_register_string('Updates', 'Read more', 'Crossing Boundaries');
+        pll_register_string('Updates', 'Clear filters and view all updates', 'Crossing Boundaries');
+        pll_register_string('Updates', 'No updates found', 'Crossing Boundaries');
+        pll_register_string('Updates', 'Filtered by Category', 'Crossing Boundaries');
+        pll_register_string('Updates', 'Explore the latest updates', 'Crossing Boundaries');
 
         // --- 2. CABEÇALHO: MEMBERS ---
-        pll_register_string('Título Members', 'Members', 'Crossing Boundaries - Equipe');
-        pll_register_string('Descrição Members', 'Meet the academic leaders and dedicated researchers from Durham University and UFRJ bridging science and culture.', 'Crossing Boundaries - Equipe', true);
+        pll_register_string('Members', 'Título Members', 'Crossing Boundaries - Equipe');
+        pll_register_string('Members', 'Subtitulo Members', 'Crossing Boundaries - Equipe', true);
 
         // --- 3. BLOCO ESTÁTICO: INTERSECTION OF KNOWLEDGE ---
         // (Nota: Se este bloco já estiver a vir daquele Meta Box do "The Project", não precisa disto. Mas se for fixo no layout, use estas strings!)
