@@ -129,7 +129,7 @@ function get_safe_json_meta($post_id, $meta_key)
 
                 <a href="<?php echo esc_url($method_btn_link); ?>" class="inline-flex items-center gap-2 border-2 border-durham text-durham font-bold px-8 py-3 rounded-full hover:bg-durham hover:text-white transition-colors uppercase tracking-wide text-sm">
                     <?php if (function_exists('pll_e')) {
-                        pll_e('Read full methodological manifesto');
+                        pll_e('About - Manifesto Label', 'crossingboundaries');
                     } else {
                         echo 'Read full methodological manifesto';
                     } ?>
@@ -187,8 +187,8 @@ function get_safe_json_meta($post_id, $meta_key)
         <div class="container mx-auto px-6 py-24 border-t border-gray-200">
             <div class="flex items-end justify-between mb-12">
                 <div>
-                    <span class="text-durham font-bold tracking-wider text-sm uppercase">Stay Connected</span>
-                    <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mt-2">Latest Updates</h2>
+                    <span class="text-durham font-bold tracking-wider text-sm uppercase"><?php pll_e('Updates - Header', 'crossingboundaries'); ?></span>
+                    <h2 class="font-serif font-bold text-3xl md:text-4xl text-neutral-900 mt-2"><?php pll_e('Updates - Title', 'crossingboundaries'); ?></h2>
                 </div>
             </div>
 
@@ -208,14 +208,16 @@ function get_safe_json_meta($post_id, $meta_key)
                 else :
                 ?>
                     <p class="col-span-3 text-gray-500 text-center py-8">
-                        <?php esc_html_e('No updates available at the moment.', 'crossingboundaries'); ?>
+                        <?php //esc_html_e('No updates available at the moment.', 'crossingboundaries'); 
+                        ?>
+                        <?php pll_e('Updates - No Data', 'crossingboundaries'); ?>
                     </p>
                 <?php endif; ?>
             </div>
 
             <div class="mt-12 text-center md:text-right">
-                <a href="<?php echo esc_url(home_url('/updates')); ?>" class="inline-block w-full md:w-auto px-8 py-3 border border-gray-300 text-neutral-700 font-semibold rounded-lg hover:border-durham hover:text-durham transition-all text-center">
-                    View all news & events
+                <a href="<?php pll_e('Updates - Link Button', 'crossingboundaries'); ?>" class="inline-block w-full md:w-auto px-8 py-3 border border-gray-300 text-neutral-700 font-semibold rounded-lg hover:border-durham hover:text-durham transition-all text-center">
+                    <?php pll_e('Updates - Label Button', 'crossingboundaries'); ?>
                     <i class="ph ph-arrow-right ml-2"></i>
                 </a>
             </div>
@@ -225,7 +227,7 @@ function get_safe_json_meta($post_id, $meta_key)
     <section id="team" class="py-24 bg-neutral-50 border-t border-gray-200">
         <div class="container mx-auto px-6 text-center">
             <h2 class="font-serif font-bold text-3xl text-neutral-900 mb-12">
-                <?php esc_html_e('Minds Behind the Project', 'crossingboundaries'); ?>
+                <?php pll_e('Our Team - Title', 'crossingboundaries'); ?>
             </h2>
 
             <div class="flex flex-wrap justify-center gap-12 mb-12">
@@ -271,13 +273,14 @@ function get_safe_json_meta($post_id, $meta_key)
                     wp_reset_postdata();
                 else :
                     // MENSAGEM DE DEBUG: Se cair aqui, sabemos que a query rodou, mas não achou nada no banco!
-                    echo '<p class="text-gray-500 italic w-full">Nenhum membro encontrado. Verifique se estão publicados no menu "Members" e se possuem um idioma atribuído (caso o Polylang esteja ativo).</p>';
+                    //echo '<p class="text-gray-500 italic w-full">Nenhum membro encontrado. Verifique se estão publicados no menu "Members" e se possuem um idioma atribuído (caso o Polylang esteja ativo).</p>';
+                    pll_e('Our Team - No Data', 'crossingboundaries');
                 endif;
                 ?>
             </div>
 
             <a href="<?php echo esc_url(home_url('/our-team')); ?>" class="inline-block border-b border-durham text-durham font-semibold hover:text-durham-dark pb-1 transition-colors">
-                <?php esc_html_e('Meet the full team & curricula', 'crossingboundaries'); ?>
+                <?php pll_e('Our Team - Label', 'crossingboundaries'); ?>
             </a>
         </div>
     </section>

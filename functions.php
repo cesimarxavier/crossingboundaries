@@ -61,6 +61,17 @@ add_action('init', function () {
         // --- 2. CABEÇALHO: MEMBERS ---
         pll_register_string('Members', 'Titulo Members', 'Crossing Boundaries');
         pll_register_string('Members', 'Subtitulo Members', 'Crossing Boundaries');
+
+        // --- DADOS HOME ---
+        pll_register_string('Home', 'About - Manifesto Label', 'Crossing Boundaries');
+        pll_register_string('Home', 'Updates - Header', 'Crossing Boundaries');
+        pll_register_string('Home', 'Updates - Title', 'Crossing Boundaries');
+        pll_register_string('Home', 'Updates - No Data', 'Crossing Boundaries');
+        pll_register_string('Home', 'Updates - Label Button', 'Crossing Boundaries');
+        pll_register_string('Home', 'Updates - Link Button', 'Crossing Boundaries');
+        pll_register_string('Home', 'Our Team - Title', 'Crossing Boundaries');
+        pll_register_string('Home', 'Our Team - Label', 'Crossing Boundaries');
+        pll_register_string('Home', 'Our Team - Link', 'Crossing Boundaries');
     }
 });
 
