@@ -461,3 +461,10 @@ add_action('customize_register', function ($wp_customize) {
         'type'        => 'url'
     ]);
 });
+
+// 1. Registar a posição do Menu "Links Rápidos"
+add_action('after_setup_theme', function () {
+    register_nav_menus([
+        'footer_menu' => 'Menu do Rodapé (Links Rápidos)'
+    ]);
+});
