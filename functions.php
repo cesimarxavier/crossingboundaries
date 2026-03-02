@@ -10,6 +10,7 @@ require_once get_template_directory() . '/core/class-member-module.php';
 // Módulo da Página Inicial (Meta Boxes)
 require_once get_template_directory() . '/core/class-home-module.php';
 require_once get_template_directory() . '/core/class-modularpress-voices.php';
+require_once get_template_directory() . '/core/class-modularpress-security.php';
 
 
 // Adiciona suportes nativos do tema
@@ -492,3 +493,13 @@ add_action('wp_before_admin_bar_render', function () {
     global $wp_admin_bar;
     $wp_admin_bar->remove_menu('comments');
 });
+
+// 1. Desativa o Editor de Ficheiros no Painel (Impede que hackers injetem código via Tema/Plugins se roubarem uma senha)
+define('DISALLOW_FILE_EDIT', true);
+
+// 2. Força o uso de HTTPS no Login e no Painel Admin
+define('FORCE_SSL_ADMIN', true);
+
+// 3. Desativa o modo de Debug (Nunca deixe true em produção, pois vaza caminhos do servidor)
+define('WP_DEBUG', false);
+define('WP_DEBUG_DISPLAY', false);
