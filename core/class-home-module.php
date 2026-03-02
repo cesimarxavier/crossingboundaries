@@ -129,19 +129,22 @@ class ModularPress_Home_MetaBoxes
 
                 switch ($field['type']) {
                     case 'text':
-                        update_post_meta($post_id, $field['id'], sanitize_text_field($raw_value));
-                        break; // Não estamos a escapar HTML aqui porque o título do hero tem span
+                        echo '<input type="text" id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" value="' . esc_attr($value) . '">';
+                        break;
                     case 'url':
-                        update_post_meta($post_id, $field['id'], esc_url_raw($raw_value));
+                        echo '<input type="url" id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" value="' . esc_url($value) . '" placeholder="https://...">';
                         break;
                     case 'textarea':
-                        update_post_meta($post_id, $field['id'], sanitize_textarea_field($raw_value));
+                        echo '<textarea id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '">' . esc_textarea($value) . '</textarea>';
                         break;
                     case 'wysiwyg':
-                        update_post_meta($post_id, $field['id'], wp_kses_post($raw_value));
+                        wp_editor($value, $field['id'], ['textarea_name' => $field['id'], 'textarea_rows' => 5, 'media_buttons' => true]);
                         break;
                     case 'json':
-                        update_post_meta($post_id, $field['id'], $raw_value);
+                        if (is_array($value)) {
+                            $value = wp_json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                        }
+                        echo '<textarea id="' . esc_attr($field['id']) . '" class="json-textarea" name="' . esc_attr($field['id']) . '">' . esc_textarea($value) . '</textarea>';
                         break;
                 }
             }

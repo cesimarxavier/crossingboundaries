@@ -63,3 +63,57 @@ add_action('init', function () {
         pll_register_string('Members', 'Subtitulo Members', 'Crossing Boundaries');
     }
 });
+
+/**
+ * Estilos Customizados para o Painel Admin do WordPress
+ */
+function crossingboundaries_admin_styles()
+{
+    // Carrega as fontes do Google (Inter e Merriweather) no Admin
+    wp_enqueue_style('cb-admin-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700;900&display=swap', false);
+
+    // Carrega o Tailwind compilado para o Admin
+    wp_enqueue_style('cb-admin-css', get_template_directory_uri() . '/assets/css/admin-style.min.css', array(), filemtime(get_template_directory() . '/assets/css/admin-style.min.css'));
+}
+add_action('admin_enqueue_scripts', 'crossingboundaries_admin_styles');
+
+/**
+ * Bónus: Muda a logo na tela de Login do WordPress
+ */
+function crossingboundaries_login_logo()
+{ ?>
+    <style type="text/css">
+        #login h1 a,
+        .login h1 a {
+            background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo-durham-university.svg);
+            height: 65px;
+            width: 320px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            padding-bottom: 30px;
+        }
+
+        body.login {
+            background-color: #F8F9FA;
+        }
+
+        .login form {
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .login #wp-submit {
+            background-color: #68246D;
+            border-color: #68246D;
+            text-shadow: none;
+            box-shadow: none;
+            border-radius: 6px;
+        }
+
+        .login #wp-submit:hover {
+            background-color: #4E1A52;
+        }
+    </style>
+<?php }
+add_action('login_enqueue_scripts', 'crossingboundaries_login_logo');

@@ -6,7 +6,7 @@
     "generate": "node scaffold.js",
     "dev:site": "npx tailwindcss -i ./assets/src/style.css -o ./assets/css/style.min.css --watch",
     "dev:admin": "npx tailwindcss -c ./tailwind.admin.config.js -i ./assets/src/admin-input.css -o ./assets/css/admin-style.min.css --watch",
-    "build": "npx tailwindcss -i ./assets/src/style.css -o ./assets/css/style.min.css --minify"
+    "build": "npx tailwindcss -i ./assets/src/style.css -o ./assets/css/style.min.css --minify && npx tailwindcss -c ./tailwind.admin.config.js -i ./assets/src/admin-input.css -o ./assets/css/admin-style.min.css --minify"
     
   },
   "devDependencies": {

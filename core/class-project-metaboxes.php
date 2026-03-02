@@ -107,22 +107,22 @@ class ModularPress_Project_MetaBoxes
 
             switch ($field['type']) {
                 case 'text':
-                    echo '<input type="text" id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" value="' . esc_attr($value) . '" style="width:100%;">';
+                    echo '<input type="text" id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" value="' . esc_attr($value) . '">';
                     break;
                 case 'url':
-                    echo '<input type="url" id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" value="' . esc_url($value) . '" style="width:100%;">';
+                    echo '<input type="url" id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" value="' . esc_url($value) . '" placeholder="https://...">';
                     break;
                 case 'textarea':
-                    echo '<textarea id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" style="width:100%; height:80px;">' . esc_textarea($value) . '</textarea>';
+                    echo '<textarea id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '">' . esc_textarea($value) . '</textarea>';
                     break;
                 case 'wysiwyg':
-                    wp_editor($value, $field['id'], ['textarea_name' => $field['id'], 'textarea_rows' => 8, 'media_buttons' => false]);
+                    wp_editor($value, $field['id'], ['textarea_name' => $field['id'], 'textarea_rows' => 5, 'media_buttons' => true]);
                     break;
                 case 'json':
                     if (is_array($value)) {
                         $value = wp_json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
                     }
-                    echo '<textarea id="' . esc_attr($field['id']) . '" name="' . esc_attr($field['id']) . '" style="width:100%; height:250px; font-family: monospace; background:#f0f0f1; padding: 10px;">' . esc_textarea($value) . '</textarea>';
+                    echo '<textarea id="' . esc_attr($field['id']) . '" class="json-textarea" name="' . esc_attr($field['id']) . '">' . esc_textarea($value) . '</textarea>';
                     break;
             }
             echo '</div>';

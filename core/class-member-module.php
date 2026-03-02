@@ -30,14 +30,14 @@ function render_member_metaboxes($post)
 ?>
     <p>
         <label><strong>Role / Institution:</strong></label><br>
-        <input type="text" name="_member_role" value="<?php echo esc_attr($role); ?>" style="width:100%;" placeholder="e.g. UFRJ • Microbiology">
+        <input type="text" name="_member_role" value="<?php echo esc_attr($role); ?>" style="width:100%;" placeholder="e.g. Durham • Microbiology">
     </p>
     <p>
         <label><strong>Research Interests (comma separated):</strong></label><br>
         <input type="text" name="_member_interests" value="<?php echo esc_attr($interests); ?>" style="width:100%;">
     </p>
     <p>
-        <label><strong>Selected Publications:</strong></label><br>
+        <label><strong>Selected Publications (comma separated):</strong></label><br>
         <textarea name="_member_publications" style="width:100%; height:100px;"><?php echo esc_textarea($pubs); ?></textarea>
     </p>
 <?php
