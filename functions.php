@@ -59,8 +59,8 @@ add_action('init', function () {
         pll_register_string('Updates', 'Explore the latest updates', 'Crossing Boundaries');
 
         // --- 2. CABEÇALHO: MEMBERS ---
-        pll_register_string('Members', 'Título Members', 'Crossing Boundaries - Equipe');
-        pll_register_string('Members', 'Subtitulo Members', 'Crossing Boundaries - Equipe', true);
+        pll_register_string('Members', 'Título Members', 'Crossing Boundaries');
+        pll_register_string('Members', 'Subtitulo Members', 'Crossing Boundaries');
 
         // --- 3. BLOCO ESTÁTICO: INTERSECTION OF KNOWLEDGE ---
         // (Nota: Se este bloco já estiver a vir daquele Meta Box do "The Project", não precisa disto. Mas se for fixo no layout, use estas strings!)
