@@ -72,6 +72,7 @@ add_action('init', function () {
         pll_register_string('Home', 'Our Team - Title', 'Crossing Boundaries');
         pll_register_string('Home', 'Our Team - Label', 'Crossing Boundaries');
         pll_register_string('Home', 'Our Team - Link', 'Crossing Boundaries');
+        pll_register_string('Home', 'Our Team - No Data', 'Crossing Boundaries');
     }
 });
 
