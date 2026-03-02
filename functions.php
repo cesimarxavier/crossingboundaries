@@ -9,6 +9,7 @@ require_once get_template_directory() . '/core/class-theme-init.php';
 require_once get_template_directory() . '/core/class-member-module.php';
 // Módulo da Página Inicial (Meta Boxes)
 require_once get_template_directory() . '/core/class-home-module.php';
+require_once get_template_directory() . '/core/class-modularpress-voices.php';
 
 
 // Adiciona suportes nativos do tema
@@ -73,6 +74,11 @@ add_action('init', function () {
         pll_register_string('Home', 'Our Team - Label', 'Crossing Boundaries');
         pll_register_string('Home', 'Our Team - Link', 'Crossing Boundaries');
         pll_register_string('Home', 'Our Team - No Data', 'Crossing Boundaries');
+        pll_register_string('Home', 'Voices - Title', 'Crossing Boundaries');
+        pll_register_string('Home', 'Voices - Subtitle', 'Crossing Boundaries');
+        // O impacto real do projeto vai além dos dados. Histórias de quem viveu a ciência intercultural na prática.
+        pll_register_string('Home', 'Voices - Link Label', 'Crossing Boundaries');
+        //Ler todas as histórias
     }
 });
 

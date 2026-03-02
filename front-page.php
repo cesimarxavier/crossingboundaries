@@ -183,6 +183,117 @@ function get_safe_json_meta($post_id, $meta_key)
 
     <?php endwhile; ?>
 
+
+    <?php
+    /**
+     * ========================================================================
+     * CORE CPT: VOICES (Depoimentos)
+     * Abertura da seção
+     * ========================================================================
+     */
+    // 1. FAZ A CONSULTA ANTES DE ABRIR O HTML
+    $voices_query = new WP_Query([
+        'post_type'      => 'voice',
+        'posts_per_page' => 10,
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC'
+    ]);
+
+    // 2. A REGRA: Se houver posts, mostra a secção inteira. Se não houver, ignora este bloco inteiro.
+    if ($voices_query->have_posts()) :
+    ?>
+        <section id="voices" class="py-24 bg-durham-dark relative overflow-hidden">
+            <div class="absolute inset-0 opacity-5 bg-[radial-gradient(#ffffff33_1px,transparent_1px)] [background-size:20px_20px]"></div>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col lg:flex-row gap-12 items-stretch">
+
+                    <div class="lg:w-1/3 flex flex-col justify-center text-white">
+                        <div class="mb-8 inline-flex items-center justify-center w-20 h-20 rounded-full bg-white text-durham shadow-lg">
+                            <i class="ph-fill ph-quotes text-5xl" aria-hidden="true"></i>
+                        </div>
+
+                        <h2 class="font-serif font-bold text-4xl md:text-5xl mb-6 leading-tight">
+                            <?php if (function_exists('pll_e')) pll_e('Vozes que Cruzam Fronteiras'); ?>
+                        </h2>
+
+                        <p class="text-lg text-purple-100 mb-8 leading-relaxed max-w-md">
+                            <?php if (function_exists('pll_e')) pll_e('O impacto real do projeto vai além dos dados. Histórias de quem viveu a ciência intercultural na prática.'); ?>
+                        </p>
+
+                        <a href="#" class="group inline-flex items-center font-bold text-white hover:text-purple-300 transition-colors mb-12">
+                            <?php if (function_exists('pll_e')) pll_e('Ler todas as histórias'); ?>
+                            <i class="ph-bold ph-arrow-circle-right ml-2 text-2xl group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+                        </a>
+
+                        <div class="flex gap-4">
+                            <button onclick="document.getElementById('voices-slider').scrollBy({left: -320, behavior: 'smooth'})" aria-label="Anterior" class="w-12 h-12 rounded-full border border-white/30 hover:bg-white hover:text-durham flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-white">
+                                <i class="ph-bold ph-caret-left text-xl" aria-hidden="true"></i>
+                            </button>
+                            <button onclick="document.getElementById('voices-slider').scrollBy({left: 320, behavior: 'smooth'})" aria-label="Próximo" class="w-12 h-12 rounded-full bg-white text-durham hover:bg-purple-100 flex items-center justify-center transition-all shadow-lg focus:outline-none focus:ring-2 focus:ring-white">
+                                <i class="ph-bold ph-caret-right text-xl" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:w-2/3 w-full min-w-0">
+                        <div id="voices-slider" class="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar pr-6 cursor-grab active:cursor-grabbing" style="scroll-behavior: smooth;">
+
+                            <?php
+                            // 3. O LOOP DOS CARDS
+                            while ($voices_query->have_posts()) : $voices_query->the_post();
+                                $voice_id = get_the_ID();
+                                $area     = get_post_meta($voice_id, '_voice_area', true);
+                                $country  = get_post_meta($voice_id, '_voice_country', true);
+                            ?>
+                                <article class="min-w-[300px] md:min-w-[340px] bg-white rounded-3xl overflow-hidden shadow-xl snap-start flex flex-col h-full transform hover:-translate-y-2 transition-all duration-300 relative border border-gray-100">
+
+                                    <div class="absolute top-4 right-6 text-purple-50 opacity-50 pointer-events-none">
+                                        <i class="ph-fill ph-quotes text-8xl" aria-hidden="true"></i>
+                                    </div>
+
+                                    <div class="p-8 flex-1 flex flex-col relative z-10">
+                                        <div class="mb-6 pb-6 border-b border-gray-100">
+                                            <h4 class="font-serif font-bold text-2xl text-neutral-900 leading-tight">
+                                                <?php the_title(); ?>
+                                            </h4>
+
+                                            <?php if ($area || $country): ?>
+                                                <p class="text-xs font-bold text-durham uppercase tracking-widest mt-2">
+                                                    <?php
+                                                    $meta_text = [];
+                                                    if ($area) $meta_text[] = esc_html($area);
+                                                    if ($country) $meta_text[] = esc_html($country);
+                                                    echo implode(' &bull; ', $meta_text);
+                                                    ?>
+                                                </p>
+                                            <?php endif; ?>
+                                        </div>
+
+                                        <div class="text-neutral-600 text-base leading-relaxed italic relative">
+                                            <?php the_content(); ?>
+                                        </div>
+                                    </div>
+                                </article>
+
+                            <?php
+                            endwhile;
+                            wp_reset_postdata(); // Restaura a query global do WP
+                            ?>
+
+                            <div class="min-w-[20px] md:min-w-[40px] snap-end"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    <?php endif;
+    // FIM DA REGRA: Se não houver posts, o código acima é 100% ignorado 
+    ?>
+
+
+
     <section id="updates" class="bg-white">
         <div class="container mx-auto px-6 py-24 border-t border-gray-200">
             <div class="flex items-end justify-between mb-12">
