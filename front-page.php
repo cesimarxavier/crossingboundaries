@@ -214,14 +214,14 @@ function get_safe_json_meta($post_id, $meta_key)
                         </div>
 
                         <h2 class="font-serif font-bold text-4xl md:text-5xl mb-6 leading-tight">
-                            <?php if (function_exists('pll_e')) pll_e('Vozes que Cruzam Fronteiras'); ?>
+                            <?php if (function_exists('pll_e')) pll_e('Voices - Title'); ?>
                         </h2>
 
                         <p class="text-lg text-purple-100 mb-8 leading-relaxed max-w-md">
-                            <?php if (function_exists('pll_e')) pll_e('O impacto real do projeto vai além dos dados. Histórias de quem viveu a ciência intercultural na prática.'); ?>
+                            <?php if (function_exists('pll_e')) pll_e('Voices - Subtitle'); ?>
                         </p>
 
-                        <a href="#" class="group inline-flex items-center font-bold text-white hover:text-purple-300 transition-colors mb-12">
+                        <a href="#" class="group inline-flex items-center font-bold text-white hover:text-purple-300 transition-colors mb-12 hidden">
                             <?php if (function_exists('pll_e')) pll_e('Ler todas as histórias'); ?>
                             <i class="ph-bold ph-arrow-circle-right ml-2 text-2xl group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
                         </a>

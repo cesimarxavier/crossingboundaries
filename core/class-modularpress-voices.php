@@ -8,6 +8,7 @@
  */
 class ModularPress_Voices
 {
+
     public function __construct()
     {
         // 1. Registar CPT
@@ -19,6 +20,9 @@ class ModularPress_Voices
         // 3. Registar e Guardar Meta Boxes
         add_action('add_meta_boxes', [$this, 'add_meta_boxes']);
         add_action('save_post', [$this, 'save_data']);
+
+        // 4. FORÇAR SUPORTE AO POLYLANG (Adicione esta linha!)
+        add_filter('pll_get_post_types', [$this, 'enable_polylang_support'], 10, 2);
     }
 
     /**
@@ -124,6 +128,15 @@ class ModularPress_Voices
         if (isset($_POST['_voice_country'])) {
             update_post_meta($post_id, '_voice_country', sanitize_text_field($_POST['_voice_country']));
         }
+    }
+
+    /**
+     * Força o Polylang a traduzir este CPT, mesmo ele sendo "public => false"
+     */
+    public function enable_polylang_support($post_types, $is_settings)
+    {
+        $post_types['voice'] = 'voice';
+        return $post_types;
     }
 }
 
