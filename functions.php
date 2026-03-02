@@ -117,3 +117,74 @@ function crossingboundaries_login_logo()
     </style>
 <?php }
 add_action('login_enqueue_scripts', 'crossingboundaries_login_logo');
+
+
+/**
+ * ========================================================================
+ * CUSTOMIZAR A LISTAGEM (TABELA) DO CPT "MEMBER" NO ADMIN
+ * ========================================================================
+ */
+
+// 1. Criar e reordenar as colunas
+add_filter('manage_member_posts_columns', function ($columns) {
+    $new_columns = [];
+
+    // Mantém a checkbox de seleção em massa
+    $new_columns['cb'] = $columns['cb'];
+
+    // Adiciona a nossa coluna de Foto logo a seguir à checkbox
+    $new_columns['member_photo'] = __('Photo', 'crossingboundaries');
+
+    // Mantém o Título (Nome do Membro)
+    $new_columns['title'] = __('Name', 'crossingboundaries');
+
+    // Adiciona o Cargo / Instituição
+    $new_columns['member_role'] = __('Role / Institution', 'crossingboundaries');
+
+    // Mantém as restantes colunas nativas (Data, Idiomas do Polylang, etc.)
+    foreach ($columns as $key => $value) {
+        if (!isset($new_columns[$key])) {
+            $new_columns[$key] = $value;
+        }
+    }
+
+    return $new_columns;
+});
+
+// 2. Preencher os dados nas nossas novas colunas
+add_action('manage_member_posts_custom_column', function ($column_name, $post_id) {
+
+    // Renderiza a Fotografia
+    if ($column_name === 'member_photo') {
+        if (has_post_thumbnail($post_id)) {
+            // Usa as classes Tailwind que já estão no nosso painel para criar um avatar redondo perfeito
+            echo get_the_post_thumbnail($post_id, [50, 50], [
+                'class' => 'w-10 h-10 rounded-full object-cover border border-gray-200 shadow-sm'
+            ]);
+        } else {
+            // Fallback caso não tenham carregado foto
+            echo '<div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center border border-gray-200"><span class="text-gray-400 font-bold text-xs">?</span></div>';
+        }
+    }
+
+    // Renderiza o Role / Institution
+    if ($column_name === 'member_role') {
+        $role = get_post_meta($post_id, '_member_role', true);
+        if ($role) {
+            echo '<span class="font-sans text-sm text-neutral-600 font-medium">' . esc_html($role) . '</span>';
+        } else {
+            echo '<span class="text-gray-400 italic text-xs">Not defined</span>';
+        }
+    }
+}, 10, 2);
+
+// 3. Ajustar a largura das colunas via CSS para ficar esteticamente perfeito
+add_action('admin_head', function () {
+    $screen = get_current_screen();
+    if ($screen && $screen->post_type === 'member') {
+        echo '<style>
+            .column-member_photo { width: 70px; text-align: center !important; }
+            .column-member_role { width: 25%; }
+        </style>';
+    }
+});
