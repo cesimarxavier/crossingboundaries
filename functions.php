@@ -61,17 +61,5 @@ add_action('init', function () {
         // --- 2. CABEÇALHO: MEMBERS ---
         pll_register_string('Members', 'Título Members', 'Crossing Boundaries');
         pll_register_string('Members', 'Subtitulo Members', 'Crossing Boundaries');
-
-        // --- 3. BLOCO ESTÁTICO: INTERSECTION OF KNOWLEDGE ---
-        // (Nota: Se este bloco já estiver a vir daquele Meta Box do "The Project", não precisa disto. Mas se for fixo no layout, use estas strings!)
-        pll_register_string('Título Intersection', 'The Intersection of Knowledge', 'Crossing Boundaries - Interseção');
-        pll_register_string('Texto Intersection', 'The project transcends pure chemistry. We incorporate researchers from Applied Linguistics and Education to monitor the process.', 'Crossing Boundaries - Interseção', true);
-        pll_register_string('Botão Intersection', 'Meet our Researchers', 'Crossing Boundaries - Interseção');
-
-        // Ícones do Grid da Interseção (se forem estáticos)
-        pll_register_string('Grid Hard Science', 'Hard Science', 'Crossing Boundaries - Interseção');
-        pll_register_string('Grid Culture', 'Culture', 'Crossing Boundaries - Interseção');
-        pll_register_string('Grid Sustainability', 'Sustainability', 'Crossing Boundaries - Interseção');
-        pll_register_string('Grid Education', 'Education', 'Crossing Boundaries - Interseção');
     }
 });
