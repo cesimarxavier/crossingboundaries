@@ -76,9 +76,20 @@ add_action('init', function () {
         pll_register_string('Home', 'Our Team - No Data', 'Crossing Boundaries');
         pll_register_string('Home', 'Voices - Title', 'Crossing Boundaries');
         pll_register_string('Home', 'Voices - Subtitle', 'Crossing Boundaries');
-        // O impacto real do projeto vai além dos dados. Histórias de quem viveu a ciência intercultural na prática.
         pll_register_string('Home', 'Voices - Link Label', 'Crossing Boundaries');
-        //Ler todas as histórias
+
+        // --- DADOS FOOTER ---
+        // Coluna 2 e 3: Títulos e Contato
+        pll_register_string('Footer', 'Subtitle Footer', 'Crossing Boundaries');
+        pll_register_string('Footer', 'Title Links'/*, 'Links Rápidos'*/, 'Crossing Boundaries');
+        pll_register_string('Footer', 'Title Contact'/*, 'Contato'*/, 'Crossing Boundaries');
+
+        // Barra Inferior (Copyright e Links de Políticas)
+        pll_register_string('Footer', 'Copyright Footer'/*, '© 2026 Durham University. Todos os direitos reservados.'*/, 'Crossing Boundaries');
+        //pll_register_string('Footer', 'Label Acessibilidade'/*, 'Acessibilidade'*/, 'Crossing Boundaries');
+        //pll_register_string('Footer', 'URL Acessibilidade'/*, '/acessibilidade'*/, 'Crossing Boundaries');
+        //pll_register_string('Footer', 'Label Privacidade'/*, 'Privacidade'*/, 'Crossing Boundaries');
+        //pll_register_string('Footer', 'URL Privacidade'/*, '/privacidade'*/, 'Crossing Boundaries');
     }
 });
 
@@ -398,4 +409,55 @@ add_filter('login_headerurl', function () {
 // 4. Alterar o Texto Alternativo do Logo
 add_filter('login_headertext', function () {
     return 'Crossing Boundaries - Durham University';
+});
+
+/**
+ * ========================================================================
+ * OPÇÕES GLOBAIS DO TEMA (Customizer)
+ * Redes Sociais e Contato
+ * ========================================================================
+ */
+add_action('customize_register', function ($wp_customize) {
+
+    // Cria uma nova secção no menu Aparência > Personalizar
+    $wp_customize->add_section('cb_global_settings', [
+        'title'       => 'Contato & Redes Sociais',
+        'description' => 'Os dados de contato e links que aparecem no rodapé do site.',
+        'priority'    => 120,
+    ]);
+
+    // 1. E-mail de Contato
+    $wp_customize->add_setting('cb_contact_email', [
+        'default'           => 'contact@crossingboundaries.uk',
+        'sanitize_callback' => 'sanitize_email'
+    ]);
+    $wp_customize->add_control('cb_contact_email', [
+        'label'   => 'E-mail Institucional',
+        'section' => 'cb_global_settings',
+        'type'    => 'email'
+    ]);
+
+    // 2. Link do X (Twitter)
+    $wp_customize->add_setting('cb_twitter_url', [
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw'
+    ]);
+    $wp_customize->add_control('cb_twitter_url', [
+        'label'       => 'URL do X (Twitter)',
+        'description' => 'Deixe em branco para esconder o ícone.',
+        'section'     => 'cb_global_settings',
+        'type'        => 'url'
+    ]);
+
+    // 3. Link do LinkedIn
+    $wp_customize->add_setting('cb_linkedin_url', [
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw'
+    ]);
+    $wp_customize->add_control('cb_linkedin_url', [
+        'label'       => 'URL do LinkedIn',
+        'description' => 'Deixe em branco para esconder o ícone.',
+        'section'     => 'cb_global_settings',
+        'type'        => 'url'
+    ]);
 });

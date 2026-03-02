@@ -1,44 +1,91 @@
-<div class="bg-neutral-100 border-t border-gray-200 pt-16 pb-20">
+<footer class="bg-durham-dark text-white pt-20 pb-8 mt-auto border-t-[6px] border-durham-light relative z-20">
     <div class="container mx-auto px-6">
-        <p class="text-center text-sm font-bold text-gray-400 uppercase tracking-widest mb-10">Organised & Funded by</p>
-        <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo-durham-university.svg" alt="Durham University" title="Durham University" class="h-12 w-auto object-contain">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo-ufrj.svg" alt="UFRJ" title="Federal University of Rio de Janeiro" class="h-12 w-auto object-contain">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/british-council-1.svg" alt="British Council" title="British Council" class="h-10 w-auto object-contain">
-        </div>
-    </div>
-</div>
 
-<footer class="bg-durham-dark border-t border-purple-900/50 pt-12 pb-8">
-    <div class="container mx-auto px-6">
-        <div class="grid md:grid-cols-3 gap-12 mb-12 text-white">
-            <div class="md:col-span-1">
-                <span class="font-serif font-bold text-xl leading-tight block mb-4">Crossing <br>Boundaries</span>
-                <p class="text-sm text-purple-200 mb-6">Connecting Durham and Brazil for a sustainable future.</p>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+
+            <div class="md:col-span-5">
+                <h3 class="font-serif font-bold text-2xl lg:text-3xl mb-4 leading-tight">
+                    Crossing<br>Boundaries
+                </h3>
+                <p class="text-purple-100 text-sm md:text-base mb-6 max-w-sm">
+                    <?php if (function_exists('pll_e')) pll_e('Subtitle Footer', 'crossingboundaries'); ?>
+                </p>
+
                 <div class="flex gap-4">
-                    <a href="#" class="text-purple-200 hover:text-white transition-colors"><i class="ph ph-x-logo text-xl"></i></a>
-                    <a href="#" class="text-purple-200 hover:text-white transition-colors"><i class="ph ph-linkedin-logo text-xl"></i></a>
+                    <?php
+                    // Vai buscar as URLs do Customizer
+                    $twitter_url  = get_theme_mod('cb_twitter_url');
+                    $linkedin_url = get_theme_mod('cb_linkedin_url');
+
+                    // Renderiza o X apenas se não estiver vazio
+                    if (!empty($twitter_url)) :
+                    ?>
+                        <a href="<?php echo esc_url($twitter_url); ?>" target="_blank" rel="noopener noreferrer" class="text-purple-200 hover:text-white transition-colors">
+                            <i class="ph-bold ph-x-logo text-xl" aria-hidden="true"></i>
+                        </a>
+                    <?php endif; ?>
+
+                    <?php
+                    // Renderiza o LinkedIn apenas se não estiver vazio
+                    if (!empty($linkedin_url)) :
+                    ?>
+                        <a href="<?php echo esc_url($linkedin_url); ?>" target="_blank" rel="noopener noreferrer" class="text-purple-200 hover:text-white transition-colors">
+                            <i class="ph-bold ph-linkedin-logo text-2xl" aria-hidden="true"></i>
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
-            <div>
-                <h4 class="font-bold mb-4 text-purple-100">Quick Links</h4>
-                <ul class="space-y-2 text-sm text-purple-200">
-                    <li><a href="<?php echo esc_url(home_url('/the-project')); ?>" class="hover:text-white transition-colors">The Project</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/solutions')); ?>" class="hover:text-white transition-colors">Solutions</a></li>
-                    <li><a href="<?php echo esc_url(home_url('/our-team')); ?>" class="hover:text-white transition-colors">Our Team</a></li>
-                </ul>
+
+            <div class="md:col-span-3">
+                <h4 class="font-bold text-lg mb-6 tracking-wide">
+                    <?php if (function_exists('pll_e')) pll_e('Title Links', 'crossingboundaries'); ?>
+                </h4>
+
+                <nav class="footer-nav">
+                    <?php
+                    if (has_nav_menu('footer_menu')) {
+                        wp_nav_menu([
+                            'theme_location' => 'footer_menu',
+                            'container'      => false,
+                            'menu_class'     => 'flex flex-col gap-3 text-sm text-purple-100',
+                            'depth'          => 1,
+                            'fallback_cb'    => false
+                        ]);
+                    } else {
+                        echo '<p class="text-sm text-purple-200 opacity-60">Atribua um menu em Aparência > Menus</p>';
+                    }
+                    ?>
+                </nav>
             </div>
-            <div>
-                <h4 class="font-bold mb-4 text-purple-100">Contact</h4>
-                <ul class="space-y-3 text-sm text-purple-200">
-                    <li class="flex items-start gap-3"><i class="ph ph-envelope-simple text-lg"></i> <a href="mailto:contact@crossingboundaries.ac.uk" class="hover:text-white underline">contact@crossingboundaries.ac.uk</a></li>
-                </ul>
+
+            <div class="md:col-span-4">
+                <h4 class="font-bold text-lg mb-6 tracking-wide">
+                    <?php if (function_exists('pll_e')) pll_e('Title Contact', 'crossingboundaries'); ?>
+                </h4>
+
+                <?php
+                // Puxa o e-mail do Customizer (com um fallback seguro se estiver vazio)
+                $contact_email = get_theme_mod('cb_contact_email', 'contact@crossingboundaries.ac.uk');
+
+                if (!empty($contact_email)) :
+                ?>
+                    <a href="mailto:<?php echo esc_attr($contact_email); ?>" class="inline-flex items-center gap-3 text-sm md:text-base text-purple-100 hover:text-white transition-colors underline underline-offset-4 decoration-purple-100/30 hover:decoration-white">
+                        <i class="ph-bold ph-envelope-simple text-xl" aria-hidden="true"></i>
+                        <?php echo esc_html($contact_email); ?>
+                    </a>
+                <?php endif; ?>
             </div>
+
         </div>
-        <div class="border-t border-white/25 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-purple-300 gap-4">
-            <p>&copy; <?php echo date('Y'); ?> Durham University. All rights reserved.</p>
-            <div class="flex gap-6"><a href="#" class="hover:text-white">Accessibility</a><a href="#" class="hover:text-white">Privacy Policy</a></div>
+
+        <div class="pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-6 text-xs md:text-sm text-purple-200">
+            <p>
+                <?php if (function_exists('pll_e')) pll_e('Copyright Footer', 'crossingboundaries'); ?>
+            </p>
+
+            <div class="flex gap-6"></div>
         </div>
+
     </div>
 </footer>
 
