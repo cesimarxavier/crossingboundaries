@@ -29,7 +29,7 @@ get_header(); ?>
                     if (! empty($cat_desc)) {
                         echo wp_kses_post($cat_desc);
                     } else {
-                        pll_e('Explore the latest updates and research logs related to this topic.', 'crossingboundaries');
+                        pll_e('Clear filters and view all updates', 'crossingboundaries');
                     }
                     ?>
                 </p>
@@ -143,7 +143,7 @@ get_header(); ?>
                     <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 text-gray-400 mb-6">
                         <i class="ph-duotone ph-article text-4xl"></i>
                     </div>
-                    <h2 class="font-serif font-bold text-2xl text-neutral-900 mb-4"><?php pll_e('No updates found.', 'crossingboundaries'); ?></h2>
+                    <h2 class="font-serif font-bold text-2xl text-neutral-900 mb-4"><?php pll_e('No updates found', 'crossingboundaries'); ?></h2>
                     <p class="text-gray-500 mb-8"><?php pll_e('No updates found - Message', 'crossingboundaries'); ?></p>
                     <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="text-durham font-bold underline hover:text-durham-dark">
                         <?php pll_e('Clear filters and view all updates', 'crossingboundaries'); ?>

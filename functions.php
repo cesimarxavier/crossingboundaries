@@ -54,6 +54,7 @@ add_action('init', function () {
         pll_register_string('Updates', 'Read more', 'Crossing Boundaries');
         pll_register_string('Updates', 'Clear filters and view all updates', 'Crossing Boundaries');
         pll_register_string('Updates', 'No updates found', 'Crossing Boundaries');
+        pll_register_string('Updates', 'No updates found - Message', 'Crossing Boundaries');
         pll_register_string('Updates', 'Filtered by Category', 'Crossing Boundaries');
         pll_register_string('Updates', 'Explore the latest updates', 'Crossing Boundaries');
 
