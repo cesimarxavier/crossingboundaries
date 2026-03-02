@@ -468,3 +468,27 @@ add_action('after_setup_theme', function () {
         'footer_menu' => 'Menu do Rodapé (Links Rápidos)'
     ]);
 });
+
+/**
+ * ========================================================================
+ * LIMPEZA DO PAINEL: ESCONDER MENUS SENSÍVEIS (Acesso apenas via URL)
+ * ========================================================================
+ */
+
+// 1. Remove os menus da barra lateral esquerda
+add_action('admin_menu', function () {
+    // Esconde os Comentários
+    remove_menu_page('edit-comments.php');
+
+    // Esconde os Plugins (Acesso via: /wp-admin/plugins.php)
+    remove_menu_page('plugins.php');
+
+    // Esconde as Ferramentas (Acesso via: /wp-admin/tools.php)
+    remove_menu_page('tools.php');
+}, 999); // A prioridade 999 garante que removemos depois de outros plugins os tentarem adicionar
+
+// 2. Remove o ícone de balão de "Comentários" da barra superior preta (Admin Bar)
+add_action('wp_before_admin_bar_render', function () {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('comments');
+});
