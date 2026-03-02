@@ -59,7 +59,7 @@ add_action('init', function () {
         pll_register_string('Updates', 'Explore the latest updates', 'Crossing Boundaries');
 
         // --- 2. CABEÇALHO: MEMBERS ---
-        pll_register_string('Members', 'Título Members', 'Crossing Boundaries');
+        pll_register_string('Members', 'Titulo Members', 'Crossing Boundaries');
         pll_register_string('Members', 'Subtitulo Members', 'Crossing Boundaries');
     }
 });
