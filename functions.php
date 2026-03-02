@@ -207,40 +207,40 @@ add_action('login_enqueue_scripts', function () {
 
         /* O Fundo: Overlay roxo sobre imagem académica */
         body.login {
-            background-image: linear-gradient(rgba(78, 26, 82, 0.85), rgba(104, 36, 109, 0.9)), url('<?php echo $bg_image; ?>');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+            background-image: linear-gradient(rgba(78, 26, 82, 0.85), rgba(104, 36, 109, 0.9)), url('<?php echo $bg_image; ?>') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            font-family: 'Inter', sans-serif !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-height: 100vh !important;
         }
 
         /* O Cartão Flutuante */
         #login {
             width: 420px !important;
             padding: 0 !important;
-            background: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            position: relative;
+            background: #ffffff !important;
+            border-radius: 16px !important;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+            overflow: hidden !important;
+            position: relative !important;
         }
 
         /* O Logo da Durham */
         .login h1 {
-            background-color: #F8F9FA;
-            padding: 40px 0 20px;
-            margin: 0;
-            border-bottom: 1px solid #F3F4F6;
+            background-color: #F8F9FA !important;
+            padding: 40px 0 20px !important;
+            margin: 0 !important;
+            border-bottom: 1px solid #F3F4F6 !important;
         }
 
         .login h1 a {
-            background-image: url('<?php echo $logo_url; ?>');
-            background-size: contain;
-            background-position: center;
+            background-image: url('<?php echo $logo_url; ?>') !important;
+            background-size: contain !important;
+            background-position: center !important;
             width: 220px;
             height: 65px;
             margin: 0 auto;
@@ -249,21 +249,21 @@ add_action('login_enqueue_scripts', function () {
         /* A Mensagem Narrativa (injetada via hook) */
         .cb-login-message {
             text-align: center;
-            padding: 30px 40px 10px;
+            padding: 30px 40px 10px !important;
         }
 
         .cb-login-message h2 {
-            font-family: 'Merriweather', serif;
-            color: #111827;
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            font-weight: 900;
+            font-family: 'Merriweather', serif !important;
+            color: #111827 !important;
+            font-size: 1.4rem !important;
+            margin-bottom: 0.5rem !important;
+            font-weight: 900 !important;
         }
 
         .cb-login-message p {
-            color: #6B7280;
-            font-size: 0.9rem;
-            line-height: 1.6;
+            color: #6B7280 !important;
+            font-size: 0.9rem !important;
+            line-height: 1.6 !important;
             margin: 0;
         }
 
@@ -278,30 +278,30 @@ add_action('login_enqueue_scripts', function () {
 
         /* Labels e Inputs */
         .login label {
-            font-weight: 600;
-            color: #4B5563;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-weight: 600 !important;
+            color: #4B5563 !important;
+            font-size: 0.85rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
         }
 
         .login input[type="text"],
         .login input[type="password"] {
-            border-radius: 8px;
-            border: 1px solid #D1D5DB;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
-            width: 100%;
-            margin-top: 0.5rem;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-            transition: all 0.2s;
+            border-radius: 8px !important;
+            border: 1px solid #D1D5DB !important;
+            padding: 0.75rem 1rem !important;
+            font-size: 1rem !important;
+            width: 100% !important;
+            margin-top: 0.5rem !important;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+            transition: all 0.2s !important;
         }
 
         .login input[type="text"]:focus,
         .login input[type="password"]:focus {
-            border-color: #68246D;
-            box-shadow: 0 0 0 3px rgba(104, 36, 109, 0.15);
-            outline: none;
+            border-color: #68246D !important;
+            box-shadow: 0 0 0 3px rgba(104, 36, 109, 0.15) !important;
+            outline: none !important;
         }
 
         /* O Botão de Login */
@@ -324,26 +324,26 @@ add_action('login_enqueue_scripts', function () {
 
         .login .button-primary:hover {
             background-color: #4E1A52 !important;
-            transform: translateY(-1px);
+            transform: translateY(-1px) !important;
         }
 
         /* Links de Rodapé ("Perdeu a senha?" / "Voltar para o site") */
         .login #nav,
         .login #backtoblog {
-            text-align: center;
-            padding: 0 0 15px;
-            margin: 0;
+            text-align: center !important;
+            padding: 0 0 15px !important;
+            margin: 0 !important;
         }
 
         .login #backtoblog {
-            padding-bottom: 30px;
+            padding-bottom: 30px !important;
         }
 
         .login #nav a,
         .login #backtoblog a {
             color: #9CA3AF !important;
-            font-size: 0.85rem;
-            transition: color 0.2s;
+            font-size: 0.85rem !important;
+            transition: color 0.2s !important;
             text-decoration: none !important;
         }
 
@@ -354,8 +354,8 @@ add_action('login_enqueue_scripts', function () {
 
         /* Seletor de Idioma nativo do WP */
         .login .wp-core-ui .button.language-switcher {
-            margin-top: 15px;
-            border-radius: 6px;
+            margin-top: 15px !important;
+            border-radius: 6px !important;
         }
     </style>
 <?php
