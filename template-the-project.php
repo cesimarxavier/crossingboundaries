@@ -200,7 +200,7 @@ function get_safe_json_meta($post_id, $meta_key)
                             <?php if (!empty($area['bullets'])): ?>
                                 <ul class="space-y-2 text-sm text-gray-500">
                                     <?php
-                                    $bullets = explode("\n", $area['bullets']);
+                                    $bullets = explode(";;", $area['bullets']);
                                     foreach ($bullets as $bullet):
                                         if (trim($bullet) !== '') {
                                             // Adicionado o ícone de check do seu layout

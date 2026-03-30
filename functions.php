@@ -503,3 +503,27 @@ define('FORCE_SSL_ADMIN', true);
 // 3. Desativa o modo de Debug (Nunca deixe true em produção, pois vaza caminhos do servidor)
 define('WP_DEBUG', false);
 define('WP_DEBUG_DISPLAY', false);
+
+/**
+ * BLINDAGEM CONTRA CONEXÕES NÃO AUTORIZADAS
+ */
+
+// 1. Desativar XML-RPC (Porta de entrada comum para ataques e spam)
+add_filter('xmlrpc_enabled', '__return_false');
+
+// 2. Desativar Pingbacks (Evita que usem seu servidor para atacar outros)
+add_filter('wp_die_handler', function ($handler) {
+    return is_xmlrpc() ? 'remove_xmlrpc_pingback' : $handler;
+});
+
+// 3. Desativar Comentários via API REST (Impede robôs de postarem via script)
+add_filter('rest_pre_dispatch', function ($result, $server, $request) {
+    if (strpos($request->get_route(), '/wp/v2/comments') !== false) {
+        return new WP_Error('rest_forbidden', __('Comentários desativados.'), ['status' => 403]);
+    }
+    return $result;
+}, 10, 3);
+
+// 4. Remover links de comentários e XML-RPC do Header
+remove_action('wp_head', 'rsd_link');
+remove_action('wp_head', 'wlwmanifest_link');
